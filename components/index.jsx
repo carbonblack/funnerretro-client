@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
+import configureStore from '../store'
+import Root from './Root'
+
+const store = configureStore()
 
 render (
-    <div>Hello, World!</div>,
+    <Root store={ store } />,
     document.getElementById('app')
 )
