@@ -7,7 +7,7 @@ const paths = {
 
 module.exports = {
     entry: {
-        index: './index.jsx'
+        index: path.join(paths.SRC, 'components/index.jsx')
     },
     devServer: {
         contentBase: paths.SRC,
@@ -36,7 +36,7 @@ module.exports = {
     },
      plugins: [
         new HtmlWebpackPlugin({
-            template: path.join(paths.SRC, 'index.html'),
+            template: path.join(paths.SRC, 'assets/index.html'),
         }),
     ],
 }
