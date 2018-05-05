@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import configureStore from '../store'
-import Root from './Root'
+import configureStore from './store'
+import Root from './components/Root'
 
 const store = configureStore()
 

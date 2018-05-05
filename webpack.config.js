@@ -7,7 +7,7 @@ const paths = {
 
 module.exports = {
     entry: {
-        index: path.join(paths.SRC, 'components/index.jsx')
+        index: path.join(paths.SRC, 'index.jsx')
     },
     devServer: {
         contentBase: paths.SRC,
