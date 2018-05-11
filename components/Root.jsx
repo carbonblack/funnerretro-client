@@ -1,12 +1,24 @@
 import React from 'react'
-import { Provider } from 'react-redux'
+import { Provider, connect } from 'react-redux'
+import { HashRouter, Route, Redirect, Switch } from 'react-router-dom'
+import Home from './Home'
+import Login from './Login'
 
 const Root = ({ store }) => (
     <Provider store={store}>
         <div>
-            <p>Hello, World!</p>
+            <HashRouter>
+                <Switch>
+                    <Route exact path="/" component={ Home } />
+                    <Route path="/login" component={ Login } />
+                </Switch>
+            </HashRouter>
         </div>
     </Provider>
 )
 
-export default Root
+const mapStateToProps = state => ({
+    isAuthenticated: state.user.isAuthenticated
+})
+
+export default connect(mapStateToProps)(Root)

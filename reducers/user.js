@@ -1,9 +1,7 @@
 const initialState = {
-    user: {
-        name: '',
-        email: ''
-    },
-    loggedIn: false
+    name: '',
+    email: '',
+    isAuthenticated: false
 }
 
 const user = (state = initialState, action) => {
