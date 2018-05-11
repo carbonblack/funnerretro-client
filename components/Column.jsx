@@ -1,8 +1,9 @@
 import React from 'react'
+import Card from './Card'
 
-const Column = ({}) => (
+const Column = ({ column }) => (
     <div>
-        Column
+        { column.cards.map(card => <Card key={ `card-${card.id}` } card={ card } />) }
     </div>
 )
 

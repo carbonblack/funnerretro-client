@@ -1,5 +1,7 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 const paths = {
     DIST: path.resolve(__dirname, 'dist'),
     SRC: path.resolve(__dirname),
@@ -38,5 +40,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.join(paths.SRC, 'assets/index.html'),
         }),
+        new webpack.DefinePlugin({
+            'WEBSOCKET_SERVER_URI': JSON.stringify("http://127.0.0.1:8000")
+        })
     ],
 }

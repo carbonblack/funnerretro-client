@@ -1,9 +1,17 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import Column from './Column'
 
-const Board = ({}) => (
+const Board = ({ name, columns }) => (
     <div>
-        Board
+        <h2>{ name }</h2>
+        { columns.map(column => <Column key={ `column-${column.id}` } column={ column } />) }
     </div>
 )
 
-export default Board
+const mapStateToProps = state => ({
+    name: state.board.name,
+    columns: state.board.columns
+})
+
+export default connect(mapStateToProps)(Board)

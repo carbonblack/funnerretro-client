@@ -1,8 +1,9 @@
 import React from 'react'
 
-const Card = ({}) => (
+const Card = ({ card }) => (
     <div>
-        Card
+        <p>{ card.text }</p>
+        <p>{ card.votes }</p>
     </div>
 )
 
