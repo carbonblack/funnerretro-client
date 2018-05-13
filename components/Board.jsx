@@ -14,6 +14,9 @@ const Board = ({ name, columns }) => (
         <h2>{ name }</h2>
         <div className={ columnsContainer }>
             { columns.map(column => <Column key={ `column-${column.id}` } column={ column } />) }
+            <div>
+                Add a column placeholder
+            </div>
         </div>
     </div>
 )

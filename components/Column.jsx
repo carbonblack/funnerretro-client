@@ -15,6 +15,9 @@ const columnContainer = css`
 const Column = ({ column }) => (
     <div className={ columnContainer }>
         { column.cards.map(card => <Card key={ `card-${card.id}` } card={ card } />) }
+        <div>
+            Add a card placeholder
+        </div>
     </div>
 )
 
