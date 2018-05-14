@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { css } from 'react-emotion'
 import colors from '../constants/colors'
 import { createCard } from '../actions/board'
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import Card from './Card'
 import New from './New'
 
@@ -31,4 +33,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     } 
 })
 
-export default connect(null, mapDispatchToProps)(Column)
+export default DragDropContext(HTML5Backend)(connect(null, mapDispatchToProps)(Column))
