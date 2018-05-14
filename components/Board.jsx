@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { css } from 'react-emotion'
+import { createColumn } from '../actions/board'
 import Column from './Column'
 import New from './New'
 
@@ -14,13 +15,13 @@ const newColumnContainer = css`
     margin-left: 1rem;
 `
 
-const Board = ({ name, columns }) => (
+const Board = ({ name, columns, onNewColumn }) => (
     <div>
         <h2>{ name }</h2>
         <div className={ columnsContainer }>
             { columns.map(column => <Column key={ `column-${column.id}` } column={ column } />) }
             <div className={ newColumnContainer }>
-                <New placeholder="New column" />
+                <New placeholder="New column" onSubmit={ value => onNewColumn(value) } />
             </div>
         </div>
     </div>
@@ -31,4 +32,10 @@ const mapStateToProps = state => ({
     columns: state.board.columns
 })
 
-export default connect(mapStateToProps)(Board)
+const mapDispatchToProps = dispatch => ({
+    onNewColumn: (value) => {
+        dispatch(createColumn(value))
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board)

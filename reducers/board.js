@@ -61,6 +61,11 @@ const board = (state = initialState, action) => {
                     }
                 })
             }
+        case actionTypes.RECEIVE_COLUMN:
+            return {
+                ...state,
+                columns: [...state.columns, action.column]
+            }
     }
     return state
 }

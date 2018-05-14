@@ -15,3 +15,18 @@ export const receiveCard = (card, columnId) => ({
     card,
     columnId
 })
+
+export const createColumn = (value) => {
+    return (dispatch) => {
+        dispatch(receiveColumn({
+            id: value,
+            name: value,
+            cards: []
+        }))
+    }
+}
+
+export const receiveColumn = column => ({
+    type: actionTypes.RECEIVE_COLUMN,
+    column
+})

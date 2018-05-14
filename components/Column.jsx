@@ -17,6 +17,7 @@ const columnContainer = css`
 
 const Column = ({ column, onNewCard }) => (
     <div className={ columnContainer }>
+        <h2>{ column.name }</h2>
         { column.cards.map(card => <Card key={ `card-${card.id}` } card={ card } />) }
         <div>
             <New placeholder="New card" onSubmit={ (value) => onNewCard(value, column.id) } />
