@@ -4,7 +4,7 @@ import colors from '../constants/colors'
 import Board from './Board'
 
 const backdrop = css`
-    background: linear-gradient(141deg, ${ colors.teal } 0%, ${ colors.lightBlue } 51%, ${ colors.blue } 75%);
+    background: linear-gradient(141deg, ${ colors.blue } 0%, ${ colors.lightBlue } 51%, ${ colors.mediumBlue } 75%);
     position: absolute;
     left: 0;
     right: 0;

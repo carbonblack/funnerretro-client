@@ -1,14 +1,27 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { css } from 'react-emotion'
 import { findDOMNode } from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
+import FontAwesome from 'react-fontawesome'
 import colors from '../constants/colors'
 import itemTypes from '../constants/itemTypes'
+import { vote } from '../actions/board'
 
-const cardContainer = css`
+const cardContainer = isDragging => css`
     background: ${ colors.white };
     margin-bottom: 1rem;
-    padding: 0.25rem;
+    padding: 0.5rem;
+    cursor: move;
+    opacity: ${ isDragging ? 0 : 1 };
+`
+
+const text = css`
+    margin-bottom: 0.25rem;
+`
+
+const votes = css`
+    margin-left: 0.25rem;
 `
 
 const cardSource = {
@@ -17,13 +30,7 @@ const cardSource = {
             id: props.card.id,
             index: props.index
         }
-    },
-    // endDrag(props, monitor) {
-    //     if (monitor.didDrop()) {
-    //         const item = monitor.getItem()
-    //         props.moveCard(item.index)
-    //     }
-    // }
+    }
 }
 
 const cardTarget = {
@@ -84,16 +91,25 @@ const DragSourceConnector = DragSource(itemTypes.CARD, cardSource, (connect, mon
 
 class Card extends Component {
     render() {
-        const { connectDragSource, connectDropTarget, card } = this.props
+        const { connectDragSource, connectDropTarget, isDragging, card } = this.props
         return connectDragSource(
             connectDropTarget(
-                <div className={ cardContainer }>
-                    <p>{ card.text }</p>
-                    <p>{ card.votes }</p>
+                <div className={ cardContainer(isDragging) }>
+                    <p className={ text }>{ card.text }</p>
+                    <button onClick={ () => this.props.onVote(card.id) }>
+                        <FontAwesome name="thumbs-o-up" />
+                        <span className={ votes }>{ card.votes }</span>
+                    </button>
                 </div>
             )
         )
     }
 }
 
-export default DropTargetConnector(DragSourceConnector(Card))
+const mapDispatchToProps = dispatch => ({
+    onVote: (cardId) => {
+        dispatch(vote(cardId))
+    }
+})
+
+export default DropTargetConnector(DragSourceConnector(connect(null, mapDispatchToProps)(Card)))

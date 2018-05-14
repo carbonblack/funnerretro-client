@@ -1,3 +1,4 @@
 export const RECEIVE_CARD = 'RECEIVE_CARD'
 export const RECEIVE_COLUMN = 'RECEIVE_COLUMN'
 export const RECEIVE_MOVED_CARD = 'RECEIVE_MOVED_CARD'
+export const VOTE_ON_CARD = 'VOTE_ON_CARD'

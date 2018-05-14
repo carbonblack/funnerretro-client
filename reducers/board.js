@@ -55,7 +55,7 @@ const board = (state = initialState, action) => {
             return {
                 ...state,
                 columns: state.columns.map(column => {
-                    if(column.id != action.columnId) return column
+                    if(column.id !== action.columnId) return column
                     return {
                         ...column,
                         cards: [...column.cards, action.card]
@@ -71,7 +71,7 @@ const board = (state = initialState, action) => {
             return {
                 ...state,
                 columns: state.columns.map((column) => {
-                    if(column.id != action.columnId) return column
+                    if(column.id !== action.columnId) return column
                     return update(column, {
                         cards: {
                             $splice: [[action.dragIndex, 1], [action.hoverIndex, 0, column.cards[action.dragIndex]]]
@@ -79,8 +79,25 @@ const board = (state = initialState, action) => {
                     })
                 })
             }
+        case actionTypes.VOTE_ON_CARD:
+            return {
+                ...state,
+                columns: state.columns.map((column) => {
+                    return {
+                        ...column,
+                        cards: column.cards.map((card) => {
+                            if(card.id !== action.cardId) return card
+                            return {
+                                ...card,
+                                votes: card.votes + 1
+                            }
+                        })
+                    }
+                })
+            }
+        default:
+            return state
     }
-    return state
 }
 
 export default board

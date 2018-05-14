@@ -43,3 +43,8 @@ export const receiveColumn = column => ({
     type: actionTypes.RECEIVE_COLUMN,
     column
 })
+
+export const vote = cardId => ({
+    type: actionTypes.VOTE_ON_CARD,
+    cardId
+})
