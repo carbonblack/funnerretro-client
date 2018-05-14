@@ -1,7 +1,10 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { css } from 'react-emotion'
 import colors from '../constants/colors'
+import { createCard } from '../actions/board'
 import Card from './Card'
+import New from './New'
 
 const columnContainer = css`
     display: flex;
@@ -12,13 +15,19 @@ const columnContainer = css`
     width: 300px;
 `
 
-const Column = ({ column }) => (
+const Column = ({ column, onNewCard }) => (
     <div className={ columnContainer }>
         { column.cards.map(card => <Card key={ `card-${card.id}` } card={ card } />) }
         <div>
-            Add a card placeholder
+            <New placeholder="New card" onSubmit={ (value) => onNewCard(value, column.id) } />
         </div>
     </div>
 )
 
-export default Column
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    onNewCard: (value) => {
+        dispatch(createCard(value, ownProps.column.id))
+    } 
+})
+
+export default connect(null, mapDispatchToProps)(Column)

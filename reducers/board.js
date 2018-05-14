@@ -1,3 +1,5 @@
+import * as actionTypes from '../constants/actionTypes'
+
 const initialState = {
     columns: [
         {
@@ -47,6 +49,19 @@ const initialState = {
 }
 
 const board = (state = initialState, action) => {
+    switch(action.type) {
+        case actionTypes.RECEIVE_CARD:
+            return {
+                ...state,
+                columns: state.columns.map(column => {
+                    if(column.id != action.columnId) return column
+                    return {
+                        ...column,
+                        cards: [...column.cards, action.card]
+                    }
+                })
+            }
+    }
     return state
 }
 
