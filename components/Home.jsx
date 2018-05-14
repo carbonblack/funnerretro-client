@@ -1,7 +1,7 @@
 import React from 'react'
 import { css } from 'react-emotion'
 import colors from '../constants/colors'
-import Board from './Board'
+import BoardContainer from '../containers/BoardContainer';
 
 const backdrop = css`
     background: linear-gradient(141deg, ${ colors.blue } 0%, ${ colors.lightBlue } 51%, ${ colors.mediumBlue } 75%);
@@ -16,7 +16,7 @@ const backdrop = css`
 const Home = ({}) => (
     <div>
         <div className={ backdrop }></div>
-        <Board />
+        <BoardContainer />
     </div>
 )
 

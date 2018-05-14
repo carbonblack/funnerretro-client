@@ -1,5 +1,5 @@
 import React from 'react'
-import { Provider, connect } from 'react-redux'
+import { Provider } from 'react-redux'
 import { HashRouter, Route, Redirect, Switch } from 'react-router-dom'
 import Home from './Home'
 import Login from './Login'
@@ -17,8 +17,4 @@ const Root = ({ store }) => (
     </Provider>
 )
 
-const mapStateToProps = state => ({
-    isAuthenticated: state.user.isAuthenticated
-})
-
-export default connect(mapStateToProps)(Root)
+export default Root

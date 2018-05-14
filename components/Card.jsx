@@ -106,10 +106,4 @@ class Card extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    onVote: (cardId) => {
-        dispatch(vote(cardId))
-    }
-})
-
-export default DropTargetConnector(DragSourceConnector(connect(null, mapDispatchToProps)(Card)))
+export default DropTargetConnector(DragSourceConnector(Card))
