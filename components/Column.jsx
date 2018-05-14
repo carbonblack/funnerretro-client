@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { css } from 'react-emotion'
 import colors from '../constants/colors'
-import { createCard } from '../actions/board'
+import { createCard, moveCard } from '../actions/board'
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import Card from './Card'
@@ -17,10 +17,12 @@ const columnContainer = css`
     width: 300px;
 `
 
-const Column = ({ column, onNewCard }) => (
+const Column = ({ column, onNewCard, moveCard }) => (
     <div className={ columnContainer }>
         <h2>{ column.name }</h2>
-        { column.cards.map(card => <Card key={ `card-${card.id}` } card={ card } />) }
+        { column.cards.map(((card, index) => (
+            <Card key={ `card-${card.id}` } card={ card } columnId={ column.id } moveCard={ (dragIndex, hoverIndex) => moveCard(column.id, dragIndex, hoverIndex) } index={ index } /> 
+        )))}
         <div>
             <New placeholder="New card" onSubmit={ (value) => onNewCard(value, column.id) } />
         </div>
@@ -30,7 +32,10 @@ const Column = ({ column, onNewCard }) => (
 const mapDispatchToProps = (dispatch, ownProps) => ({
     onNewCard: (value) => {
         dispatch(createCard(value, ownProps.column.id))
-    } 
+    },
+    moveCard: (columnId, dragIndex, hoverIndex) => {
+        dispatch(moveCard(columnId, dragIndex, hoverIndex))
+    }
 })
 
 export default DragDropContext(HTML5Backend)(connect(null, mapDispatchToProps)(Column))

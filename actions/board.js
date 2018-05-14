@@ -16,6 +16,19 @@ export const receiveCard = (card, columnId) => ({
     columnId
 })
 
+export const moveCard = (columnId, dragIndex, hoverIndex) => {
+    return (dispatch) => {
+        dispatch(receiveMovedCard(columnId, dragIndex, hoverIndex))
+    }
+}
+
+export const receiveMovedCard = (columnId, dragIndex, hoverIndex) => ({
+    type: actionTypes.RECEIVE_MOVED_CARD,
+    columnId,
+    dragIndex,
+    hoverIndex
+})
+
 export const createColumn = (value) => {
     return (dispatch) => {
         dispatch(receiveColumn({

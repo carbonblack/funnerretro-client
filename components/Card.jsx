@@ -15,9 +15,15 @@ const cardSource = {
     beginDrag(props) {
         return {
             id: props.card.id,
-            index: props.card.index
+            index: props.index
         }
-    }
+    },
+    // endDrag(props, monitor) {
+    //     if (monitor.didDrop()) {
+    //         const item = monitor.getItem()
+    //         props.moveCard(item.index)
+    //     }
+    // }
 }
 
 const cardTarget = {
@@ -57,7 +63,7 @@ const cardTarget = {
 		}
 
 		// Time to actually perform the action
-		props.moveCard(dragIndex, hoverIndex)
+		props.moveCard(dragIndex, hoverIndex);
 
 		// Note: we're mutating the monitor item here!
 		// Generally it's better to avoid mutations,

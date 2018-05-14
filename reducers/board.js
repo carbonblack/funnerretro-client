@@ -1,6 +1,8 @@
 import * as actionTypes from '../constants/actionTypes'
+import update from 'immutability-helper'
 
 const initialState = {
+    name: '',
     columns: [
         {
             id: "1",
@@ -44,8 +46,7 @@ const initialState = {
                 } 
             ]
         }
-    ],
-    name: ''
+    ]
 }
 
 const board = (state = initialState, action) => {
@@ -65,6 +66,18 @@ const board = (state = initialState, action) => {
             return {
                 ...state,
                 columns: [...state.columns, action.column]
+            }
+        case actionTypes.RECEIVE_MOVED_CARD:
+            return {
+                ...state,
+                columns: state.columns.map((column) => {
+                    if(column.id != action.columnId) return column
+                    return update(column, {
+                        cards: {
+                            $splice: [[action.dragIndex, 1], [action.hoverIndex, 0, column.cards[action.dragIndex]]]
+                        }
+                    })
+                })
             }
     }
     return state
