@@ -5,7 +5,7 @@ import BoardContainer from '../containers/BoardContainer';
 
 const Home = ({}) => (
     <div>
-        <BoardContainer />
+        Home
     </div>
 )
 
