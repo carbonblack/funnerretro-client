@@ -9,7 +9,7 @@ const columnContainer = css`
     flex-direction: column;
     height: auto;
     margin-left: 1rem;
-    width: 300px;
+    width: 325px;
 `
 
 const inner = css`

@@ -48,3 +48,16 @@ export const vote = cardId => ({
     type: actionTypes.VOTE_ON_CARD,
     cardId
 })
+
+export const getBoards = () => {
+    return (dispatch) => {
+        dispatch(receiveBoards({
+            boards: []
+        }))
+    }
+}
+
+export const receiveBoards = (boards) => ({
+    type: actionTypes.RECEIVE_BOARDS,
+    boards
+})

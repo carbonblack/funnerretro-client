@@ -2,7 +2,9 @@ import * as actionTypes from '../constants/actionTypes'
 import update from 'immutability-helper'
 
 const initialState = {
+    boards: [],
     name: '',
+    id: '',
     columns: [
         {
             id: "1",
