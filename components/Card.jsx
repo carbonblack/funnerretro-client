@@ -24,6 +24,20 @@ const votes = css`
     margin-left: 0.25rem;
 `
 
+const button = css`
+    font-size: 0.9rem;
+    color: ${ colors.mediumGray };
+    border: 0;
+
+    &:active, :focus, :visited {
+        outline: none;
+    }
+
+    &:hover {
+        color: ${ colors.darkGray };
+    }
+`
+
 const cardSource = {
     beginDrag(props) {
         return {
@@ -96,9 +110,12 @@ class Card extends Component {
             connectDropTarget(
                 <div className={ cardContainer(isDragging) }>
                     <p className={ text }>{ card.text }</p>
-                    <button onClick={ () => this.props.onVote(card.id) }>
+                    <button className={ button } onClick={ () => this.props.onVote(card.id) }>
                         <FontAwesome name="thumbs-o-up" />
                         <span className={ votes }>{ card.votes }</span>
+                    </button>
+                    <button onClick={ () => this.props.onDelete(card.id) } className={ button }>
+                        <FontAwesome name="trash-o" />
                     </button>
                 </div>
             )

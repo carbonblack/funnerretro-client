@@ -84,3 +84,14 @@ export const receiveBoard = (board) => ({
     type: actionTypes.RECEIVE_BOARD,
     board
 })
+
+export const deleteCard = (cardId) => {
+    return (dispatch) => {
+        dispatch(successfulDelete(cardId))
+    }
+}
+
+export const successfulDelete = (cardId) => ({
+    type: actionTypes.DELETE_CARD,
+    cardId
+})
