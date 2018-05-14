@@ -21,6 +21,10 @@ const submit = css`
     border-radius: 2px;
     padding: 0.5rem 0.75rem;
     font-size: 0.9rem;
+
+    &:hover {
+        background: ${ colors.mediumOrange };
+    }
 `
 
 class New extends Component {
