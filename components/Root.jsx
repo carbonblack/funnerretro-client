@@ -8,6 +8,7 @@ import Home from './Home'
 import Login from './Login'
 import BoardsContainer from '../containers/BoardsContainer'
 import BoardContainer from '../containers/BoardContainer'
+import NewBoardContainer from '../containers/NewBoardContainer'
 
 const backdrop = css`
     background: linear-gradient(141deg, ${ colors.blue } 0%, ${ colors.lightBlue } 51%, ${ colors.mediumBlue } 75%);
@@ -33,6 +34,7 @@ const Root = ({ store, isAuthenticated }) => (
                     <div className={ mainContent }>
                         <Switch>
                             <Route exact path="/" component={ Home } />
+                            <Route path="/board/new" component={ NewBoardContainer } />
                             <Route path="/board/:id" component={ BoardContainer } />
                             <Route path="/boards" component={ BoardsContainer } />
                             <Route path="/login" component={ Login } />
