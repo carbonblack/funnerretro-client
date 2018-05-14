@@ -4,7 +4,8 @@ import { getBoards } from '../actions/board'
 import Boards from '../components/Boards'
 
 const mapStateToProps = state => ({
-    boards: state.board.boards
+    boards: state.board.boards,
+    isFetching: state.board.isFetchingBoards
 })
 
 const mapDispatchToProps = dispatch => ({

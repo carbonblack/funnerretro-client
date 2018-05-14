@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { css } from 'react-emotion'
 import ColumnContainer from '../containers/ColumnContainer'
 import New from './New'
@@ -13,16 +13,26 @@ const newColumnContainer = css`
     margin-left: 1rem;
 `
 
-const Board = ({ name, columns, onNewColumn }) => (
-    <div>
-        <h2>{ name }</h2>
-        <div className={ columnsContainer }>
-            { columns.map(column => <ColumnContainer key={ `column-${column.id}` } column={ column } />) }
-            <div className={ newColumnContainer }>
-                <New placeholder="New column" onSubmit={ value => onNewColumn(value) } />
+class Board extends Component {
+    componentDidMount() {
+        this.props.load()
+    }
+
+    render() {
+        const { name, columns, onNewColumn } = this.props
+
+        return (
+            <div>
+                <h2>{ name }</h2>
+                <div className={ columnsContainer }>
+                    { columns.map(column => <ColumnContainer key={ `column-${column.id}` } column={ column } />) }
+                    <div className={ newColumnContainer }>
+                        <New placeholder="New column" onSubmit={ value => onNewColumn(value) } />
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-)
+        )
+    }
+}
 
 export default Board

@@ -51,13 +51,36 @@ export const vote = cardId => ({
 
 export const getBoards = () => {
     return (dispatch) => {
-        dispatch(receiveBoards({
-            boards: []
-        }))
+        dispatch(fetchBoards())
+        dispatch(receiveBoards({ boards: [] }))
     }
 }
+
+export const fetchBoards = () => ({
+    type: actionTypes.FETCH_BOARDS
+})
 
 export const receiveBoards = (boards) => ({
     type: actionTypes.RECEIVE_BOARDS,
     boards
+})
+
+export const getBoard = () => {
+    return (dispatch) => {
+        dispatch(fetchBoard())
+        dispatch(receiveBoard({
+            name: '',
+            id: '',
+            columns: []
+        }))
+    }
+}
+
+export const fetchBoard = () => ({
+    type: actionTypes.FETCH_BOARD
+})
+
+export const receiveBoard = (board) => ({
+    type: actionTypes.RECEIVE_BOARD,
+    board
 })

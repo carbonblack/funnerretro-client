@@ -2,9 +2,11 @@ import * as actionTypes from '../constants/actionTypes'
 import update from 'immutability-helper'
 
 const initialState = {
-    boards: [],
     name: '',
     id: '',
+    isFetchingBoard: false,
+    isFetchingBoards: false,
+    boards: [],
     columns: [
         {
             id: "1",
@@ -96,6 +98,30 @@ const board = (state = initialState, action) => {
                         })
                     }
                 })
+            }
+        case actionTypes.RECEIVE_BOARDS:
+            return {
+                ...state,
+                boards: action.boards,
+                isFetchingBoards: false
+            }
+        case actionTypes.RECEIVE_BOARD:
+            return {
+                ...state,
+                name: action.board.name,
+                id: action.board.id,
+                columns: action.board.columns,
+                isFetchingBoard: false
+            }
+        case actionTypes.FETCH_BOARDS:
+            return {
+                ...state,
+                isFetchingBoards: true
+            }
+        case actionTypes.FETCH_BOARD:
+            return {
+                ...state,
+                isFetchingBoard: true
             }
         default:
             return state
