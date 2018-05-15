@@ -7,16 +7,24 @@ const paths = {
     SRC: path.resolve(__dirname),
 }
 
+const proxyUrls = {
+    WS: 'http://localhost:80',
+    API: 'http://localhost:80'
+}
+
 module.exports = {
     entry: {
         index: path.join(paths.SRC, 'index.jsx')
     },
     devServer: {
         contentBase: paths.SRC,
-        proxy: {
-            '/ws*':  { target: 'http://localhost:8000', secure: false }
-            // TODO add more proxies for other APIs
-        }
+        proxy: [{
+            context: [
+                '/api/**'
+            ],
+            target: proxyUrls.API, 
+            secure: false
+        }]
     },
     resolve: {
         extensions: ['.js', '.jsx'],
@@ -41,7 +49,7 @@ module.exports = {
             template: path.join(paths.SRC, 'assets/index.html'),
         }),
         new webpack.DefinePlugin({
-            'WEBSOCKET_SERVER_URI': JSON.stringify("http://127.0.0.1:8000")
+            'WEBSOCKET_SERVER_URI': JSON.stringify(proxyUrls.WS)
         })
     ],
 }

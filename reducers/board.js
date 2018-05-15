@@ -5,12 +5,12 @@ const initialState = {
     name: '',
     id: '',
     isFetchingBoard: false,
+    boardError: false,
     isFetchingBoards: false,
+    boardsError: false,
     boards: [],
     columns: []
 }
-
-let id = 7
 
 const board = (state = initialState, action) => {
     switch(action.type) {
@@ -21,10 +21,7 @@ const board = (state = initialState, action) => {
                     if(column.id !== action.columnId) return column
                     return {
                         ...column,
-                        cards: [...column.cards, {
-                            ...action.card,
-                            id: ++id // TODO remove this
-                        }]
+                        cards: [...column.cards, action.card]
                     }
                 })
             }
@@ -65,7 +62,8 @@ const board = (state = initialState, action) => {
             return {
                 ...state,
                 boards: action.boards,
-                isFetchingBoards: false
+                isFetchingBoards: false,
+                boardsError: false
             }
         case actionTypes.RECEIVE_BOARD:
             return {
@@ -73,17 +71,32 @@ const board = (state = initialState, action) => {
                 name: action.board.name,
                 id: action.board.id,
                 columns: action.board.columns,
-                isFetchingBoard: false
+                isFetchingBoard: false,
+                boardError: false
+            }
+        case actionTypes.FETCH_BOARDS_ERROR:
+            return {
+                ...state,
+                isFetchingBoards: false,
+                boardsError: action.error
             }
         case actionTypes.FETCH_BOARDS:
             return {
                 ...state,
-                isFetchingBoards: true
+                isFetchingBoards: true,
+                boardsError: false
             }
         case actionTypes.FETCH_BOARD:
             return {
                 ...state,
-                isFetchingBoard: true
+                isFetchingBoard: true,
+                boardError: false
+            }
+        case actionTypes.FETCH_BOARD_ERROR:
+            return {
+                ...state,
+                isFetchingBoard: false,
+                boardError: action.error
             }
         case actionTypes.DELETE_CARD:
             return {
@@ -107,6 +120,13 @@ const board = (state = initialState, action) => {
                     ...state.columns.slice(0, index),
                     ...state.columns.slice(index + 1)
                 ]
+            }
+        case actionTypes.DELETE_BOARD:
+            return {
+                ...state,
+                id: '',
+                name: '',
+                columns: []
             }
         default:
             return state

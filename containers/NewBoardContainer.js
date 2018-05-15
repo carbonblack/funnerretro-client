@@ -4,10 +4,7 @@ import { createBoard } from '../actions/board';
 
 const mapDispatchToProps = dispatch => ({
     onSubmit: (boardName) => {
-        dispatch(createBoard({
-            name: boardName,
-            columns: []
-        }))
+        dispatch(createBoard({ name: boardName }))
     }
 })
 

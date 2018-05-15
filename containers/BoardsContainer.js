@@ -4,17 +4,7 @@ import { getBoards } from '../actions/board'
 import Boards from '../components/Boards'
 
 const mapStateToProps = state => ({
-    // boards: state.board.boards,
-    boards: [
-        {
-            name: 'blah',
-            id: '1'
-        },
-        {
-            name: 'blah2',
-            id: '2'
-        }
-    ],
+    boards: state.board.boards,
     isFetching: state.board.isFetchingBoards
 })
 
