@@ -1,8 +1,9 @@
 import React from 'react'
+import New from './New'
 
-const NewBoard = ({}) => (
+const NewBoard = ({ onSubmit }) => (
     <div>
-        New Board
+        <New placeholder="New board" onSubmit={ (boardName) => onSubmit(boardName) } />
     </div>
 )
 

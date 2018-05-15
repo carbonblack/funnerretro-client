@@ -1,4 +1,7 @@
 import * as actionTypes from '../constants/actionTypes'
+import { push } from 'react-router-redux'
+
+let tmp = 0
 
 export const createCard = (value, columnId) => {
     return (dispatch) => {
@@ -106,3 +109,13 @@ export const successfulColumnDelete = (columnId) => ({
     type: actionTypes.DELETE_COLUMN,
     columnId
 })
+
+export const createBoard = (board) => {
+    return (dispatch) => {
+        dispatch(receiveBoard({
+            ...board,
+            id: ++tmp // TODO change
+        }))
+        dispatch(push(`/board/${ tmp }`)) // TODO change
+    }
+}
