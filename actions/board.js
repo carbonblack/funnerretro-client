@@ -55,8 +55,8 @@ export const getBoards = () => {
     return (dispatch) => {
         dispatch(fetchBoards())
         axios.get('/api/boards')
-            .then(response => dispatch(receiveBoards(response.data)))
-            .error(response => dispatch(getBoardsError(response.error)))
+            .then(response => dispatch(receiveBoards(response.status !== 204 ? response.data : [])))
+            .catch(response => dispatch(getBoardsError(response.error)))
     }
 }
 
