@@ -1,5 +1,7 @@
 # Retro • Spec Client
 
+[![Build Status](https://travis-ci.org/carbonblack/retrospec-client.svg?branch=master)](https://travis-ci.org/carbonblack/retrospec-client)
+
 This is the UI for Retro • Spec.
 
 ## Contributing
