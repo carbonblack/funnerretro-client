@@ -51,13 +51,13 @@ class New extends Component {
     }
 
     render() {
-        const { placeholder } = this.props
+        const { placeholder, submitLabel } = this.props
 
         return (
             <div>
                 <form className={ container } onSubmit={ () => false }>
                     <input value={ this.state.value } className={ inputStyles } placeholder={ placeholder } onChange={ e => this.onChange(e.target.value) } />
-                    <button className={ submit } onClick={ e => this.onSubmit(e) }>Create</button>
+                    <button className={ submit } onClick={ e => this.onSubmit(e) }>{ submitLabel }</button>
                 </form>
             </div>
         )

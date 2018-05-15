@@ -58,7 +58,7 @@ const Column = ({ column, onNewCard, moveCard, onDelete }) => (
                 <CardContainer key={ `card-${card.id}` } card={ card } columnId={ column.id } moveCard={ (dragIndex, hoverIndex) => moveCard(column.id, dragIndex, hoverIndex) } index={ index } /> 
             )))}
             <div>
-                <New placeholder="New card" onSubmit={ (value) => onNewCard(value, column.id) } />
+                <New placeholder="New card" submitLabel="Add" onSubmit={ (value) => onNewCard(value, column.id) } />
             </div>
         </div>
     </div>

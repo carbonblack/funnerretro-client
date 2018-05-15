@@ -27,7 +27,7 @@ class Board extends Component {
                 <div className={ columnsContainer }>
                     { columns.map(column => <ColumnContainer key={ `column-${column.id}` } column={ column } />) }
                     <div className={ newColumnContainer }>
-                        <New placeholder="New column" onSubmit={ value => onNewColumn(value) } />
+                        <New placeholder="New column" submitLabel="Create" onSubmit={ value => onNewColumn(value) } />
                     </div>
                 </div>
             </div>
