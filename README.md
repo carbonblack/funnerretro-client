@@ -2,7 +2,7 @@
 
 This is the UI for Retro • Spec.
 
-## Hacking
+## Contributing
 
 1. Install Node.js
 2. Clone this repo
