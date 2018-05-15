@@ -70,12 +70,13 @@ export const receiveBoards = (boards) => ({
 
 export const getBoard = () => {
     return (dispatch) => {
-        dispatch(fetchBoard())
-        dispatch(receiveBoard({
-            name: '',
-            id: '',
-            columns: []
-        }))
+        // TODO fix with server tie in, this was getting called on board load -- causing name to be ''
+        // dispatch(fetchBoard())
+        // dispatch(receiveBoard({
+        //     name: '',
+        //     id: '',
+        //     columns: []
+        // }))
     }
 }
 
