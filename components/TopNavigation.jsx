@@ -1,12 +1,13 @@
 import React from 'react'
 import { css } from 'react-emotion'
 import { Link } from 'react-router-dom'
-import colors from '../constants/colors'
+import colors from '../styles/colors'
 
 const nav = css`
     display: flex;
     justify-content: space-between;
     padding: 0.5rem 3rem;
+    margin-bottom: 1rem;
 
     a {
         color: ${ colors.white };

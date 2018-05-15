@@ -1,14 +1,15 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { HashRouter, Route, Redirect, Switch } from 'react-router-dom'
+import { Router, Route, Redirect, Switch } from 'react-router-dom'
 import { css } from 'react-emotion'
-import colors from '../constants/colors'
+import colors from '../styles/colors'
 import TopNavigation from './TopNavigation'
 import Home from './Home'
 import Login from './Login'
 import BoardsContainer from '../containers/BoardsContainer'
 import BoardContainer from '../containers/BoardContainer'
 import NewBoardContainer from '../containers/NewBoardContainer'
+import history from '../history'
 
 const backdrop = css`
     background: linear-gradient(141deg, ${ colors.blue } 0%, ${ colors.lightBlue } 51%, ${ colors.mediumBlue } 100%);
@@ -24,7 +25,7 @@ const Root = ({ store, isAuthenticated }) => (
     <Provider store={store}>
         <div>
             <div className={ backdrop }></div>
-            <HashRouter>
+            <Router history={ history }>
                 <div>
                     <TopNavigation isAuthenticated={ isAuthenticated }/>
                     <div>
@@ -37,7 +38,7 @@ const Root = ({ store, isAuthenticated }) => (
                         </Switch>
                     </div>
                 </div>
-            </HashRouter>
+            </Router>
         </div>
     </Provider>
 )

@@ -1,7 +1,7 @@
 import React from 'react'
 import { css, cx } from 'react-emotion'
 import { Link } from 'react-router-dom'
-import colors from '../constants/colors'
+import colors from '../styles/colors'
 import BoardContainer from '../containers/BoardContainer';
 
 const container = css`
@@ -11,7 +11,7 @@ const container = css`
     justify-content: center;
     height: 100%;
     color: ${ colors.white };
-    margin-top: -3rem;
+    margin-top: -4rem;
 `
 
 const actions = css`

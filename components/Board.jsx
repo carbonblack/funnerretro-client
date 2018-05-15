@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { css } from 'react-emotion'
 import ColumnContainer from '../containers/ColumnContainer'
 import New from './New'
+import colors from '../styles/colors'
 
 const columnsContainer = css`
     display: flex;
@@ -11,6 +12,11 @@ const columnsContainer = css`
 
 const newColumnContainer = css`
     margin-left: 1rem;
+`
+
+const header = css`
+    text-align: center;
+    color: ${ colors.white };
 `
 
 class Board extends Component {
@@ -23,11 +29,11 @@ class Board extends Component {
 
         return (
             <div>
-                <h2>{ name }</h2>
+                <h2 className={ header }>{ name }</h2>
                 <div className={ columnsContainer }>
                     { columns.map(column => <ColumnContainer key={ `column-${column.id}` } column={ column } />) }
                     <div className={ newColumnContainer }>
-                        <New placeholder="New column" onSubmit={ value => onNewColumn(value) } />
+                        <New placeholder="New column" submitLabel="Create" onSubmit={ value => onNewColumn(value) } />
                     </div>
                 </div>
             </div>

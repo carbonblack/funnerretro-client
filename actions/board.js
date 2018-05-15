@@ -1,5 +1,7 @@
 import * as actionTypes from '../constants/actionTypes'
-import axios from 'axios'
+import { push } from 'react-router-redux'
+
+let tmp = 0
 
 export const createCard = (value, columnId) => {
     return (dispatch) => {
@@ -78,6 +80,7 @@ export const getBoard = (boardId) => {
     return (dispatch) => {
         dispatch(fetchBoard())
         axios.get(`/api/boards/${ boardId }`)
+            .then(response => dispatch(receiveBoard(response.data)))
             .catch(response => dispatch(getBoardError(response.response.statusText)))
     }
 }
@@ -118,3 +121,13 @@ export const successfulColumnDelete = (columnId) => ({
     type: actionTypes.DELETE_COLUMN,
     columnId
 })
+
+export const createBoard = (board) => {
+    return (dispatch) => {
+        dispatch(receiveBoard({
+            ...board,
+            id: ++tmp // TODO change
+        }))
+        dispatch(push(`/board/${ tmp }`)) // TODO change
+    }
+}
