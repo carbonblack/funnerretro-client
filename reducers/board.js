@@ -53,6 +53,8 @@ const initialState = {
     ]
 }
 
+let id = 7
+
 const board = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.RECEIVE_CARD:
@@ -62,7 +64,10 @@ const board = (state = initialState, action) => {
                     if(column.id !== action.columnId) return column
                     return {
                         ...column,
-                        cards: [...column.cards, action.card]
+                        cards: [...column.cards, {
+                            ...action.card,
+                            id: ++id // TODO remove this
+                        }]
                     }
                 })
             }
@@ -122,6 +127,20 @@ const board = (state = initialState, action) => {
             return {
                 ...state,
                 isFetchingBoard: true
+            }
+        case actionTypes.DELETE_CARD:
+            return {
+                ...state,
+                columns: state.columns.map((column) => {
+                    const index = column.cards.map(card => card.id).indexOf(action.cardId)
+                    return {
+                        ...column,
+                        cards: [
+                            ...column.cards.slice(0, index),
+                            ...column.cards.slice(index + 1)
+                        ]
+                    }
+                })
             }
         default:
             return state
