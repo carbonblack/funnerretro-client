@@ -88,12 +88,20 @@ const board = (state = initialState, action) => {
         case actionTypes.FETCH_BOARDS:
             return {
                 ...state,
-                isFetchingBoards: true
+                isFetchingBoards: true,
+                boardsError: false
             }
         case actionTypes.FETCH_BOARD:
             return {
                 ...state,
-                isFetchingBoard: true
+                isFetchingBoard: true,
+                boardError: false
+            }
+        case actionTypes.FETCH_BOARD_ERROR:
+            return {
+                ...state,
+                isFetchingBoard: false,
+                boardError: action.error
             }
         case actionTypes.DELETE_CARD:
             return {

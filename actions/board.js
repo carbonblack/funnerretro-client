@@ -56,7 +56,7 @@ export const getBoards = () => {
         dispatch(fetchBoards())
         axios.get('/api/boards')
             .then(response => dispatch(receiveBoards(response.status !== 204 ? response.data : [])))
-            .catch(response => dispatch(getBoardsError(response.error)))
+            .catch(response => dispatch(getBoardsError(response.response.statusText)))
     }
 }
 
@@ -64,24 +64,26 @@ export const fetchBoards = () => ({
     type: actionTypes.FETCH_BOARDS
 })
 
-export const receiveBoards = (boards) => ({
+export const receiveBoards = boards => ({
     type: actionTypes.RECEIVE_BOARDS,
     boards
 })
 
-export const getBoardsError = (error) => ({
+export const getBoardsError = error => ({
     type: actionTypes.FETCH_BOARDS_ERROR,
     error
 })
 
-export const getBoard = () => {
+export const getBoard = (boardId) => {
     return (dispatch) => {
         dispatch(fetchBoard())
-        dispatch(receiveBoard({
-            name: '',
-            id: '',
-            columns: []
-        }))
+        axios.get(`/api/boards/${ boardId }`)
+            .then(response => dispatch(receiveBoard(response.status !== 204 ? response.data : {
+                name: '',
+                id: '',
+                columns: []
+            })))
+            .catch(response => dispatch(getBoardError(response.response.statusText)))
     }
 }
 
@@ -92,6 +94,11 @@ export const fetchBoard = () => ({
 export const receiveBoard = (board) => ({
     type: actionTypes.RECEIVE_BOARD,
     board
+})
+
+export const getBoardError = error => ({
+    type: actionTypes.FETCH_BOARD_ERROR,
+    error
 })
 
 export const deleteCard = (cardId) => {
