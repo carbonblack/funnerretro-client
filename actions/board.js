@@ -1,4 +1,5 @@
 import * as actionTypes from '../constants/actionTypes'
+import axios from 'axios'
 
 export const createCard = (value, columnId) => {
     return (dispatch) => {
@@ -44,6 +45,7 @@ export const receiveColumn = column => ({
     column
 })
 
+// TODO also make API request to update card
 export const vote = cardId => ({
     type: actionTypes.VOTE_ON_CARD,
     cardId
@@ -52,7 +54,9 @@ export const vote = cardId => ({
 export const getBoards = () => {
     return (dispatch) => {
         dispatch(fetchBoards())
-        dispatch(receiveBoards({ boards: [] }))
+        axios.get('/api/boards')
+            .then(response => dispatch(receiveBoards(response.data)))
+            .error(response => dispatch(getBoardsError(response.error)))
     }
 }
 
@@ -63,6 +67,11 @@ export const fetchBoards = () => ({
 export const receiveBoards = (boards) => ({
     type: actionTypes.RECEIVE_BOARDS,
     boards
+})
+
+export const getBoardsError = (error) => ({
+    type: actionTypes.FETCH_BOARDS_ERROR,
+    error
 })
 
 export const getBoard = () => {

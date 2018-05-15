@@ -5,7 +5,9 @@ const initialState = {
     name: '',
     id: '',
     isFetchingBoard: false,
+    boardError: false,
     isFetchingBoards: false,
+    boardsError: false,
     boards: [],
     columns: []
 }
@@ -74,6 +76,12 @@ const board = (state = initialState, action) => {
                 id: action.board.id,
                 columns: action.board.columns,
                 isFetchingBoard: false
+            }
+        case actionTypes.FETCH_BOARDS_ERROR:
+            return {
+                ...state,
+                isFetchingBoards: false,
+                boardsError: action.error
             }
         case actionTypes.FETCH_BOARDS:
             return {
