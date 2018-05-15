@@ -7,6 +7,7 @@ const nav = css`
     display: flex;
     justify-content: space-between;
     padding: 0.5rem 3rem;
+    margin-bottom: 1rem;
 
     a {
         color: ${ colors.white };

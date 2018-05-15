@@ -105,6 +105,7 @@ const DragSourceConnector = DragSource('card', cardSource, (connect, monitor) =>
 class Card extends Component {
     render() {
         const { connectDragSource, connectDropTarget, isDragging, card } = this.props
+        
         return connectDragSource(
             connectDropTarget(
                 <div className={ cardContainer(isDragging) }>

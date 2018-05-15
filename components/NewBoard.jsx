@@ -9,7 +9,7 @@ const container = css`
     align-items: center;
     flex-direction: column;
     height: 100%;
-    margin-top: -3rem;
+    margin-top: -4rem;
 `
 
 const inner = css`

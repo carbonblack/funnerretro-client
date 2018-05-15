@@ -11,7 +11,7 @@ const container = css`
     justify-content: center;
     height: 100%;
     color: ${ colors.white };
-    margin-top: -3rem;
+    margin-top: -4rem;
 `
 
 const actions = css`
