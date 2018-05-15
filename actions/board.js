@@ -70,12 +70,10 @@ export const getBoards = () => {
         dispatch(fetchBoards())
         axios.get('/api/v1/boards')
             .then((response) => {
-                const boards = response.data.boards.map(board => {
-                    return {
-                        name: board.content.name,
-                        id: board.id
-                    }
-                })
+                const boards = response.data.boards.map(board => ({
+                    name: board.content.name,
+                    id: board.id
+                }))
                 dispatch(receiveBoards(boards))
             })
             .catch(response => dispatch(getBoardsError(response.response.statusText)))
@@ -100,7 +98,25 @@ export const getBoard = (boardId) => {
     return (dispatch) => {
         dispatch(fetchBoard())
         axios.get(`/api/v1/boards/${ boardId }`)
-            .then(response => dispatch(receiveBoard(response.data.nodes[0])))
+            .then((response) => {
+                const board = response.data.nodes.filter(node => node.id === boardId)[0]
+                const columns = response.data.nodes.filter(node => node.parent === boardId).map((column) => {
+                    return {
+                        name: column.content.name,
+                        id: column.id,
+                        parent: column.parent,
+                        child: column.child,
+                        cards: []
+                    }
+                })
+
+                const payload = {
+                    name: board.content.name,
+                    id: board.id,
+                    columns: columns
+                }
+                dispatch(receiveBoard(payload))
+            })
             .catch(response => dispatch(getBoardError(response.response.statusText)))
     }
 }
@@ -145,7 +161,11 @@ export const createBoard = (board) => {
     return (dispatch) => {
         axios.post('/api/v1/boards', { name: board.name }, headers.json)
             .then((response) => {
-                dispatch(receiveBoard(response.data))
+                dispatch(receiveBoard({
+                    name: response.data.content.name,
+                    id: response.data.id,
+                    columns: []
+                }))
                 dispatch(push(`/board/${ response.data.id }`))
             })
     }
