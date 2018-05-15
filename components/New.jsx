@@ -44,6 +44,9 @@ class New extends Component {
     onSubmit(e) {
         e.stopPropagation()
         e.preventDefault()
+        this.setState({
+            value: ''
+        })
         this.props.onSubmit(this.state.value)
     }
 
@@ -53,7 +56,7 @@ class New extends Component {
         return (
             <div>
                 <form className={ container } onSubmit={ () => false }>
-                    <input className={ inputStyles } placeholder={ placeholder } onChange={ e => this.onChange(e.target.value) } />
+                    <input value={ this.state.value } className={ inputStyles } placeholder={ placeholder } onChange={ e => this.onChange(e.target.value) } />
                     <button className={ submit } onClick={ e => this.onSubmit(e) }>Create</button>
                 </form>
             </div>
