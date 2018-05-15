@@ -121,6 +121,13 @@ const board = (state = initialState, action) => {
                     ...state.columns.slice(index + 1)
                 ]
             }
+        case actionTypes.DELETE_BOARD:
+            return {
+                ...state,
+                id: '',
+                name: '',
+                columns: []
+            }
         default:
             return state
     }

@@ -136,3 +136,18 @@ export const createBoard = (board) => {
             })
     }
 }
+
+export const deleteBoard = (boardId) => {
+    return (dispatch) => {
+        axios.delete(`/api/v1/boards/${ boardId }`)
+            .then((response) => {
+                dispatch(successfulDeleteBoard(boardId))
+                dispatch(push('/'))
+            })
+    }
+}
+
+export const successfulDeleteBoard = (boardId) => ({
+    type: actionTypes.DELETE_BOARD,
+    boardId
+})
