@@ -69,6 +69,15 @@ export const getBoards = () => {
     return (dispatch) => {
         dispatch(fetchBoards())
         axios.get('/api/v1/boards')
+            .then((response) => {
+                const boards = response.data.boards.map(board => {
+                    return {
+                        name: board.content.name,
+                        id: board.id
+                    }
+                })
+                dispatch(receiveBoards(boards))
+            })
             .catch(response => dispatch(getBoardsError(response.response.statusText)))
     }
 }
@@ -136,7 +145,7 @@ export const createBoard = (board) => {
     return (dispatch) => {
         axios.post('/api/v1/boards', { name: board.name }, headers.json)
             .then((response) => {
-                dispatch(receiveBoard(response.data)) // TODO revisit this after server infinite loop is gone
+                dispatch(receiveBoard(response.data))
                 dispatch(push(`/board/${ response.data.id }`))
             })
     }
