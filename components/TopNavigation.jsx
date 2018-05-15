@@ -27,7 +27,7 @@ const brand = css`
 
 const TopNavigation = ({ isAuthenticated }) => (
     <div className={ nav }>
-        <h2 className={ brand }><Link to="/">FunnerRetro</Link></h2>
+        <h2 className={ brand }><Link to="/">Retro • Spec</Link></h2>
         <div>
             <Link to="/boards">Boards</Link>
             { !isAuthenticated &&

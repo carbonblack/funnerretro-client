@@ -41,7 +41,7 @@ const firstButton = css`
 
 const Home = ({}) => (
     <div className={ container }>
-        <h1>Welcome to FunnerRetro</h1>
+        <h1>Welcome to Retro • Spec</h1>
         <div className={ actions }>
             <Link className={ cx(button, firstButton) } to="/board/new">Create a new board</Link>
             <Link className={ button } to="/boards">All boards</Link>

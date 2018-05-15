@@ -87,11 +87,22 @@ export const receiveBoard = (board) => ({
 
 export const deleteCard = (cardId) => {
     return (dispatch) => {
-        dispatch(successfulDelete(cardId))
+        dispatch(successfulCardDelete(cardId))
     }
 }
 
-export const successfulDelete = (cardId) => ({
+export const successfulCardDelete = (cardId) => ({
     type: actionTypes.DELETE_CARD,
     cardId
+})
+
+export const deleteColumn = (columnId) => {
+    return (dispatch) => {
+        dispatch(successfulColumnDelete(columnId))
+    }
+}
+
+export const successfulColumnDelete = (columnId) => ({
+    type: actionTypes.DELETE_COLUMN,
+    columnId
 })

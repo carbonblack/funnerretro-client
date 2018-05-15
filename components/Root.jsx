@@ -20,10 +20,6 @@ const backdrop = css`
     z-index: -1;
 `
 
-const mainContent = css`
-    margin: 2rem;
-`
-
 const Root = ({ store, isAuthenticated }) => (
     <Provider store={store}>
         <div>
@@ -31,7 +27,7 @@ const Root = ({ store, isAuthenticated }) => (
             <HashRouter>
                 <div>
                     <TopNavigation isAuthenticated={ isAuthenticated }/>
-                    <div className={ mainContent }>
+                    <div>
                         <Switch>
                             <Route exact path="/" component={ Home } />
                             <Route path="/board/new" component={ NewBoardContainer } />

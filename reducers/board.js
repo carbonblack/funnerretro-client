@@ -7,50 +7,7 @@ const initialState = {
     isFetchingBoard: false,
     isFetchingBoards: false,
     boards: [],
-    columns: [
-        {
-            id: "1",
-            name: "column 1",
-            cards: [
-                {
-                    id: "1",
-                    text: "Hello",
-                    votes: 2
-                },
-                {
-                    id: "2",
-                    text: "Hello 2",
-                    votes: 5
-                },
-                {
-                    id: "3",
-                    text: "Hello 3",
-                    votes: 6
-                } 
-            ]
-        },
-        {
-            id: "2",
-            name: "column 2",
-            cards: [
-                {
-                    id: "4",
-                    text: "Hello",
-                    votes: 2
-                },
-                {
-                    id: "5",
-                    text: "Hello 2",
-                    votes: 5
-                },
-                {
-                    id: "6",
-                    text: "Hello 3",
-                    votes: 6
-                } 
-            ]
-        }
-    ]
+    columns: []
 }
 
 let id = 7
@@ -141,6 +98,15 @@ const board = (state = initialState, action) => {
                         ]
                     }
                 })
+            }
+        case actionTypes.DELETE_COLUMN:
+            const index = state.columns.map(column => column.id).indexOf(action.columnId)
+            return {
+                ...state,
+                columns: [
+                    ...state.columns.slice(0, index),
+                    ...state.columns.slice(index + 1)
+                ]
             }
         default:
             return state

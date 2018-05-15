@@ -1,6 +1,7 @@
 import React from 'react'
 import { css } from 'react-emotion'
 import colors from '../constants/colors'
+import FontAwesome from 'react-fontawesome'
 import CardContainer from '../containers/CardContainer'
 import New from './New'
 
@@ -23,10 +24,36 @@ const title = css`
     margin-bottom: 1rem;
 `
 
-const Column = ({ column, onNewCard, moveCard }) => (
+const button = css`
+    font-size: 1rem;
+    color: ${ colors.mediumGray };
+    border: 0;
+    background: transparent;
+    margin-bottom: 1rem;
+
+    &:active, :focus, :visited {
+        outline: none;
+    }
+
+    &:hover {
+        color: ${ colors.darkGray };
+    }
+`
+
+const header = css`
+    display: flex;
+    justify-content: space-between;
+`
+
+const Column = ({ column, onNewCard, moveCard, onDelete }) => (
     <div className={ columnContainer }>
         <div className={ inner }>
-            <h3 className={ title }>{ column.name }</h3>
+            <div className={ header }>
+                <h3 className={ title }>{ column.name }</h3>
+                <button onClick={ () => onDelete(column.id) } className={ button }>
+                    <FontAwesome name="trash-o" />
+                </button>
+            </div>
             { column.cards.map(((card, index) => (
                 <CardContainer key={ `card-${card.id}` } card={ card } columnId={ column.id } moveCard={ (dragIndex, hoverIndex) => moveCard(column.id, dragIndex, hoverIndex) } index={ index } /> 
             )))}
