@@ -1,6 +1,6 @@
 import React from 'react'
 import { css } from 'react-emotion'
-import colors from '../constants/colors'
+import colors from '../styles/colors'
 import FontAwesome from 'react-fontawesome'
 import CardContainer from '../containers/CardContainer'
 import New from './New'

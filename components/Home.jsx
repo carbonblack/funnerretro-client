@@ -1,7 +1,7 @@
 import React from 'react'
 import { css, cx } from 'react-emotion'
 import { Link } from 'react-router-dom'
-import colors from '../constants/colors'
+import colors from '../styles/colors'
 import BoardContainer from '../containers/BoardContainer';
 
 const container = css`

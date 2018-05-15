@@ -4,8 +4,7 @@ import { css } from 'react-emotion'
 import { findDOMNode } from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
 import FontAwesome from 'react-fontawesome'
-import colors from '../constants/colors'
-import itemTypes from '../constants/itemTypes'
+import colors from '../styles/colors'
 import { vote } from '../actions/board'
 
 const cardContainer = isDragging => css`
@@ -94,11 +93,11 @@ const cardTarget = {
 	},
 }
 
-const DropTargetConnector = DropTarget(itemTypes.CARD, cardTarget, connect => ({
+const DropTargetConnector = DropTarget('card', cardTarget, connect => ({
     connectDropTarget: connect.dropTarget()
 }))
 
-const DragSourceConnector = DragSource(itemTypes.CARD, cardSource, (connect, monitor) => ({
+const DragSourceConnector = DragSource('card', cardSource, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging()
 }))
