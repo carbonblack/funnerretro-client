@@ -41,10 +41,15 @@ export const createColumn = (value) => {
         axios.post(`/api/v1/boards/${ boardId }/nodes`, {
             parent_id: boardId,
             content: {
-                text: value  
+                name: value  
             }
         }, headers.json).then((response) => {
-            console.log(response)
+            dispatch(receiveColumn({
+                id: response.data.id,
+                name: response.data.content.name,
+                parent_id: response.data.parent,
+                cards: []
+            }))
         })
     }
 }
