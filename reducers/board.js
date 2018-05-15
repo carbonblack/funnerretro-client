@@ -68,9 +68,9 @@ const board = (state = initialState, action) => {
         case actionTypes.RECEIVE_BOARD:
             return {
                 ...state,
-                name: action.board.name,
+                name: action.board.content.name,
                 id: action.board.id,
-                columns: action.board.columns,
+                columns: action.board.children,
                 isFetchingBoard: false,
                 boardError: false
             }

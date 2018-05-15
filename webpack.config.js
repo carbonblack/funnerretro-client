@@ -20,7 +20,7 @@ module.exports = {
         contentBase: paths.SRC,
         proxy: [{
             context: [
-                '/api/*'
+                '/api/**'
             ],
             target: proxyUrls.API, 
             secure: false

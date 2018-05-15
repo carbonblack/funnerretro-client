@@ -1,4 +1,6 @@
 import * as actionTypes from '../constants/actionTypes'
+import * as headers from '../constants/headers'
+import axios from 'axios'
 import { push } from 'react-router-redux'
 
 let tmp = 0
@@ -34,12 +36,16 @@ export const receiveMovedCard = (columnId, dragIndex, hoverIndex) => ({
 })
 
 export const createColumn = (value) => {
-    return (dispatch) => {
-        dispatch(receiveColumn({
-            id: value,
-            name: value,
-            cards: []
-        }))
+    return (dispatch, getState) => {
+        const boardId = getState().board.id
+        axios.post(`/api/v1/boards/${ boardId }/nodes`, {
+            parent_id: boardId,
+            content: {
+                text: value  
+            }
+        }, headers.json).then((response) => {
+            console.log(response)
+        })
     }
 }
 
@@ -57,7 +63,7 @@ export const vote = cardId => ({
 export const getBoards = () => {
     return (dispatch) => {
         dispatch(fetchBoards())
-        axios.get('/api/boards')
+        axios.get('/api/v1/boards')
             .catch(response => dispatch(getBoardsError(response.response.statusText)))
     }
 }
@@ -79,8 +85,8 @@ export const getBoardsError = error => ({
 export const getBoard = (boardId) => {
     return (dispatch) => {
         dispatch(fetchBoard())
-        axios.get(`/api/boards/${ boardId }`)
-            .then(response => dispatch(receiveBoard(response.data)))
+        axios.get(`/api/v1/boards/${ boardId }`)
+            .then(response => dispatch(receiveBoard(response.data.nodes[0])))
             .catch(response => dispatch(getBoardError(response.response.statusText)))
     }
 }
@@ -101,11 +107,10 @@ export const getBoardError = error => ({
 
 export const deleteCard = (cardId) => {
     return (dispatch, getState) => {
-        axios.post(`/api/boards/${ getState().board.id }/nodes/${ cardId }`)
+        axios.delete(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`)
     }
 }
 
-// TODO add boardId
 export const successfulCardDelete = (cardId) => ({
     type: actionTypes.DELETE_CARD,
     cardId
@@ -124,10 +129,10 @@ export const successfulColumnDelete = (columnId) => ({
 
 export const createBoard = (board) => {
     return (dispatch) => {
-        dispatch(receiveBoard({
-            ...board,
-            id: ++tmp // TODO change
-        }))
-        dispatch(push(`/board/${ tmp }`)) // TODO change
+        axios.post('/api/v1/boards', { name: board.name }, headers.json)
+            .then((response) => {
+                dispatch(receiveBoard(response.data)) // TODO revisit this after server infinite loop is gone
+                dispatch(push(`/board/${ response.data.id }`))
+            })
     }
 }

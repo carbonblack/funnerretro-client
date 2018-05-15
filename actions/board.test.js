@@ -10,3 +10,15 @@ test('should create an action to add a card to state', () => {
         columnId
     })
 })
+
+test('should create an action to add a column to state', () => {
+    const column = { text: 'test name' }
+    expect(actions.receiveColumn(column)).toEqual({
+        type: actionTypes.RECEIVE_COLUMN,
+        column
+    })
+})
+
+test('should create an action to add a board to state', () => {
+    
+})
