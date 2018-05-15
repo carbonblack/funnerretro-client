@@ -12,8 +12,6 @@ const initialState = {
     columns: []
 }
 
-let id = 7
-
 const board = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.RECEIVE_CARD:
@@ -23,10 +21,7 @@ const board = (state = initialState, action) => {
                     if(column.id !== action.columnId) return column
                     return {
                         ...column,
-                        cards: [...column.cards, {
-                            ...action.card,
-                            id: ++id // TODO remove this
-                        }]
+                        cards: [...column.cards, action.card]
                     }
                 })
             }

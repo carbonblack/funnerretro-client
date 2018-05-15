@@ -17,6 +17,7 @@ export const receiveCard = (card, columnId) => ({
     columnId
 })
 
+// TODO change these indices to card ids
 export const moveCard = (columnId, dragIndex, hoverIndex) => {
     return (dispatch) => {
         dispatch(receiveMovedCard(columnId, dragIndex, hoverIndex))
@@ -55,7 +56,6 @@ export const getBoards = () => {
     return (dispatch) => {
         dispatch(fetchBoards())
         axios.get('/api/boards')
-            .then(response => dispatch(receiveBoards(response.status !== 204 ? response.data : [])))
             .catch(response => dispatch(getBoardsError(response.response.statusText)))
     }
 }
@@ -78,11 +78,6 @@ export const getBoard = (boardId) => {
     return (dispatch) => {
         dispatch(fetchBoard())
         axios.get(`/api/boards/${ boardId }`)
-            .then(response => dispatch(receiveBoard(response.status !== 204 ? response.data : {
-                name: '',
-                id: '',
-                columns: []
-            })))
             .catch(response => dispatch(getBoardError(response.response.statusText)))
     }
 }
@@ -102,11 +97,12 @@ export const getBoardError = error => ({
 })
 
 export const deleteCard = (cardId) => {
-    return (dispatch) => {
-        dispatch(successfulCardDelete(cardId))
+    return (dispatch, getState) => {
+        axios.post(`/api/boards/${ getState().board.id }/nodes/${ cardId }`)
     }
 }
 
+// TODO add boardId
 export const successfulCardDelete = (cardId) => ({
     type: actionTypes.DELETE_CARD,
     cardId
