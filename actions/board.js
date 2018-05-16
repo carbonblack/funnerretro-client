@@ -133,12 +133,11 @@ export const getBoard = (boardId) => {
                     }
                 }).sort((a, b) => a.orig_version > b.orig_version)
 
-                const payload = {
+                dispatch(receiveBoard({
                     name: board.content.name,
                     id: board.id,
                     columns: columns
-                }
-                dispatch(receiveBoard(payload))
+                }))
             })
             .catch(response => dispatch(getBoardError(response.response.statusText)))
     }
