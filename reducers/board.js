@@ -128,6 +128,22 @@ const board = (state = initialState, action) => {
                 name: '',
                 columns: []
             }
+        case actionTypes.UPDATE_CARD:
+        return {
+            ...state,
+            columns: state.columns.map((column) => {
+                return {
+                    ...column,
+                    cards: column.cards.map((card) => {
+                        if(card.id !== action.cardId) return card
+                        return {
+                            ...card,
+                            text: card.text
+                        }
+                    })
+                }
+            })
+        }
         default:
             return state
     }
