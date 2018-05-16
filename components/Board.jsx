@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { css } from 'react-emotion'
+import FontAwesome from 'react-fontawesome'
 import ColumnContainer from '../containers/ColumnContainer'
 import New from './New'
 import colors from '../styles/colors'
@@ -15,8 +16,25 @@ const newColumnContainer = css`
 `
 
 const header = css`
-    text-align: center;
+    display: flex;
+    justify-content: center;
     color: ${ colors.white };
+`
+
+const button = css`
+    font-size: 1.1rem;
+    color: ${ colors.white };
+    border: 0;
+    background: transparent;
+    margin-left: 1rem;
+
+    &:active, :focus, :visited {
+        outline: none;
+    }
+
+    &:hover {
+        color: ${ colors.gray };
+    }
 `
 
 class Board extends Component {
@@ -25,11 +43,16 @@ class Board extends Component {
     }
 
     render() {
-        const { name, columns, onNewColumn } = this.props
+        const { name, id, columns, onNewColumn } = this.props
 
         return (
             <div>
-                <h2 className={ header }>{ name }</h2>
+                <div className={ header }>
+                    <h2>{ name }</h2>
+                    <button onClick={ () => this.props.onDelete(id) } className={ button }>
+                        <FontAwesome name="trash-o" />
+                    </button>
+                </div>
                 <div className={ columnsContainer }>
                     { columns.map(column => <ColumnContainer key={ `column-${column.id}` } column={ column } />) }
                     <div className={ newColumnContainer }>
