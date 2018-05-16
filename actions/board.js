@@ -34,8 +34,11 @@ export const receiveCard = (card, columnId) => ({
 })
 
 // TODO change these indices to card ids
-export const moveCard = (columnId, dragIndex, hoverIndex) => {
-    return (dispatch) => {
+export const moveCard = (cardId, columnId, dragIndex, hoverIndex) => {
+    return (dispatch, getState) => {
+        // axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`, {
+        //     parent_id: getState().board.columns.filter(column => column.id === columnId)[0].cards[hoverIndex].id
+        // }, headers.json).then(response => console.log(response))
         dispatch(receiveMovedCard(columnId, dragIndex, hoverIndex))
     }
 }

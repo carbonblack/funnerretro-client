@@ -55,7 +55,7 @@ const Column = ({ column, onNewCard, moveCard, onDelete }) => (
                 </button>
             </div>
             { column.cards.map(((card, index) => (
-                <CardContainer key={ `card-${card.id}` } card={ card } columnId={ column.id } moveCard={ (dragIndex, hoverIndex) => moveCard(column.id, dragIndex, hoverIndex) } index={ index } /> 
+                <CardContainer key={ `card-${card.id}` } card={ card } columnId={ column.id } moveCard={ (dragIndex, hoverIndex) => moveCard(card.id, column.id, dragIndex, hoverIndex) } index={ index } /> 
             )))}
             <div>
                 <New placeholder="New card" submitLabel="Add" onSubmit={ (value) => onNewCard(value, column.id) } />

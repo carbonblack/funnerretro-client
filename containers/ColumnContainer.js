@@ -8,8 +8,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     onNewCard: (value) => {
         dispatch(createCard(value, ownProps.column.id))
     },
-    moveCard: (columnId, dragIndex, hoverIndex) => {
-        dispatch(moveCard(columnId, dragIndex, hoverIndex))
+    moveCard: (cardId, columnId, dragIndex, hoverIndex) => {
+        dispatch(moveCard(cardId, columnId, dragIndex, hoverIndex))
     },
     onDelete: (columnId) => {
         dispatch(deleteColumn(columnId))
