@@ -72,8 +72,17 @@ export const receiveColumn = column => ({
     column
 })
 
-// TODO also make API request to update card
-export const vote = cardId => ({
+export const vote = cardId => {
+    return (dispatch, getState) => {
+        axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`, {
+            field: 'votes',
+            value: 1,
+            operation: 'INCR'
+        }).then(response => dispatch(successfulVote(cardId)))
+    }
+}
+
+export const successfulVote = cardId => ({
     type: actionTypes.VOTE_ON_CARD,
     cardId
 })
