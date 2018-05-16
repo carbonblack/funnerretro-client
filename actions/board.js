@@ -3,15 +3,27 @@ import * as headers from '../constants/headers'
 import axios from 'axios'
 import { push } from 'react-router-redux'
 
-let tmp = 0
+let columnOrder = 0
 
 export const createCard = (value, columnId) => {
-    return (dispatch) => {
-        dispatch(receiveCard({
-            id: value,
-            text: value,
-            votes: 0   
-        }, columnId))
+    return (dispatch, getState) => {
+        const boardId = getState().board.id
+        const cardsInColumn = getState().board.columns.filter(column => column.id === columnId)[0].cards
+        const parentCard = cardsInColumn[cardsInColumn.length - 1]
+        axios.post(`/api/v1/boards/${ boardId }/nodes`, {
+            parent_id: parentCard ? parentCard.id : columnId,
+            content: {
+                text: value,
+                votes: 0
+            }
+        }, headers.json).then((response) => {
+            dispatch(receiveCard({
+                text: response.data.content.text,
+                id: response.data.id,
+                parent: response.data.parent,
+                votes: 0
+            }, columnId))
+        })
     }
 }
 
@@ -41,13 +53,14 @@ export const createColumn = (value) => {
         axios.post(`/api/v1/boards/${ boardId }/nodes`, {
             parent_id: boardId,
             content: {
-                name: value  
+                name: value
             }
         }, headers.json).then((response) => {
             dispatch(receiveColumn({
                 id: response.data.id,
                 name: response.data.content.name,
                 parent_id: response.data.parent,
+                orig_version: response.data.orig_version,
                 cards: []
             }))
         })
@@ -106,9 +119,10 @@ export const getBoard = (boardId) => {
                         id: column.id,
                         parent: column.parent,
                         child: column.child,
-                        cards: []
+                        orig_version: column.orig_version,
+                        cards: constructCards(response.data.nodes, column.id)
                     }
-                })
+                }).sort((a, b) => a.orig_version > b.orig_version)
 
                 const payload = {
                     name: board.content.name,
@@ -119,6 +133,30 @@ export const getBoard = (boardId) => {
             })
             .catch(response => dispatch(getBoardError(response.response.statusText)))
     }
+}
+
+// TODO clean this shit up
+const constructCards = (nodes, initialParent) => {
+    let parent = initialParent
+    let cards = []
+    while(parent != null) {
+        const card = nodes.filter(node => node.parent === parent).map(n => ({
+            text: n.content.text,
+            id: "id" in n ? n.id : null,
+            parent: n.parent,
+            votes: n.content.votes
+        }))[0]
+
+        if(card) {
+            cards.push(card)
+        } else {
+            break
+        }
+
+        parent = cards[cards.length - 1].id
+    }
+
+    return cards
 }
 
 export const fetchBoard = () => ({
@@ -138,6 +176,7 @@ export const getBoardError = error => ({
 export const deleteCard = (cardId) => {
     return (dispatch, getState) => {
         axios.delete(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`)
+            .then(response =>  dispatch(successfulCardDelete(cardId)))
     }
 }
 
@@ -147,8 +186,9 @@ export const successfulCardDelete = (cardId) => ({
 })
 
 export const deleteColumn = (columnId) => {
-    return (dispatch) => {
-        dispatch(successfulColumnDelete(columnId))
+    return (dispatch, getState) => {
+        axios.delete(`/api/v1/boards/${ getState().board.id }/nodes/${ columnId }`)
+            .then(response => dispatch(successfulColumnDelete(columnId)))
     }
 }
 
