@@ -18,15 +18,22 @@ const inner = css`
 `
 
 const header = css`
-    color: ${ colors.white };
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+`
+
+const content = css`
+    background: ${ colors.gray };
+    padding: 2rem 4rem;
+    border-radius: 2px;
 `
 
 const NewBoard = ({ onSubmit }) => (
     <div className={ container }>
         <div className={ inner }>
-            <h2 className={ header }>Create a new retro board</h2>
-            <New placeholder="Board name" submitLabel="Create" onSubmit={ boardName => onSubmit(boardName) } />
+            <div className={ content }>
+                <h2 className={ header }>Create a new retro board</h2>
+                <New placeholder="Board name" submitLabel="Create" onSubmit={ boardName => onSubmit(boardName) } />
+            </div>
         </div>
     </div>
 )

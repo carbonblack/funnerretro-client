@@ -51,9 +51,9 @@ export const receiveCard = (card, columnId) => ({
 // TODO change these indices to card ids
 export const moveCard = (cardId, columnId, dragIndex, hoverIndex) => {
     return (dispatch, getState) => {
-        // axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`, {
-        //     parent_id: getState().board.columns.filter(column => column.id === columnId)[0].cards[hoverIndex].id
-        // }, headers.json).then(response => console.log(response))
+        axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`, {
+            parent_id: getState().board.columns.filter(column => column.id === columnId)[0].cards[dragIndex].id
+        }, headers.json).then(response => console.log(response))
         dispatch(receiveMovedCard(columnId, dragIndex, hoverIndex))
     }
 }
@@ -202,7 +202,7 @@ export const getBoardError = error => ({
 export const deleteCard = (cardId) => {
     return (dispatch, getState) => {
         axios.delete(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`)
-            .then(response =>  dispatch(successfulCardDelete(cardId)))
+            .then(response => dispatch(successfulCardDelete(cardId)))
     }
 }
 

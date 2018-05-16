@@ -1,6 +1,6 @@
 import { createColumn } from '../actions/board'
 import { connect } from 'react-redux'
-import { getBoards } from '../actions/board'
+import { getBoards, deleteBoard } from '../actions/board'
 import Boards from '../components/Boards'
 
 const mapStateToProps = state => ({
@@ -11,6 +11,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     load: () => {
         dispatch(getBoards())
+    },
+    onDelete: (boardId) => {
+        dispatch(deleteBoard(boardId))
     }
 })
 

@@ -12,7 +12,9 @@ import NewBoardContainer from '../containers/NewBoardContainer'
 import history from '../history'
 
 const backdrop = css`
-    background: linear-gradient(141deg, ${ colors.blue } 0%, ${ colors.lightBlue } 51%, ${ colors.mediumBlue } 100%);
+    background-image: url("/assets/background.png");
+    background-repeat: repeat;
+    opacity: 0.65;
     position: absolute;
     left: 0;
     right: 0;

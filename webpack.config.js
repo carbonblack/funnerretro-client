@@ -37,11 +37,22 @@ module.exports = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
+                include: paths.SRC,
                 exclude: /node_modules/,
                 use: [
                     'babel-loader',
                 ],
             },
+            {
+                test: /\.(png|svg)$/,
+                include: path.join(paths.SRC, 'assets'),
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {}
+                    }
+                ]
+            }
         ],
     },
      plugins: [

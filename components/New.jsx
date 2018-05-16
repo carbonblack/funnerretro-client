@@ -16,14 +16,14 @@ const inputStyles = css`
 
 const submit = css`
     color: ${ colors.white };
-    background: ${ colors.orange };
+    background: ${ colors.pink };
     border: 0;
     border-radius: 2px;
     padding: 0.5rem 0.75rem;
     font-size: 0.9rem;
 
     &:hover {
-        background: ${ colors.mediumOrange };
+        background: ${ colors.lightPink };
     }
 `
 

@@ -2,6 +2,7 @@ import React from 'react'
 import { css, cx } from 'react-emotion'
 import { Link } from 'react-router-dom'
 import colors from '../styles/colors'
+import logoImg from '../assets/retro_spec@3x.png'
 import BoardContainer from '../containers/BoardContainer';
 
 const container = css`
@@ -23,7 +24,7 @@ const actions = css`
 
 const button = css`
     color: ${ colors.white };
-    background: ${ colors.orange };
+    background: ${ colors.pink };
     border: 0;
     border-radius: 2px;
     padding: 0.5rem 0.75rem;
@@ -31,7 +32,7 @@ const button = css`
     text-decoration: none;
 
     &:hover {
-        background: ${ colors.mediumOrange };
+        background: ${ colors.lightPink };
     }
 `
 
@@ -41,7 +42,7 @@ const firstButton = css`
 
 const Home = ({}) => (
     <div className={ container }>
-        <h1>Welcome to Retro • Spec</h1>
+        <img src={ logoImg } />
         <div className={ actions }>
             <Link className={ cx(button, firstButton) } to="/board/new">Create a new board</Link>
             <Link className={ button } to="/boards">All boards</Link>

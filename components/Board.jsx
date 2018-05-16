@@ -18,12 +18,17 @@ const newColumnContainer = css`
 const header = css`
     display: flex;
     justify-content: center;
-    color: ${ colors.white };
+`
+
+const innerHeader = css`
+    display: flex;
+    background: ${ colors.gray };
+    padding: 1rem 2rem;
+    border-radius: 2px;
 `
 
 const button = css`
     font-size: 1.1rem;
-    color: ${ colors.white };
     border: 0;
     background: transparent;
     margin-left: 1rem;
@@ -33,7 +38,7 @@ const button = css`
     }
 
     &:hover {
-        color: ${ colors.gray };
+        color: ${ colors.darkGray };
     }
 `
 
@@ -48,10 +53,12 @@ class Board extends Component {
         return (
             <div>
                 <div className={ header }>
-                    <h2>{ name }</h2>
-                    <button onClick={ () => this.props.onDelete(id) } className={ button }>
-                        <FontAwesome name="trash-o" />
-                    </button>
+                    <div className={ innerHeader }>
+                        <h2>{ name }</h2>
+                        <button onClick={ () => this.props.onDelete(id) } className={ button }>
+                            <FontAwesome name="trash-o" />
+                        </button>
+                    </div>
                 </div>
                 <div className={ columnsContainer }>
                     { columns.map(column => <ColumnContainer key={ `column-${column.id}` } column={ column } />) }

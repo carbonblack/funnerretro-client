@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { css } from 'react-emotion'
+import FontAwesome from 'react-fontawesome'
 import { Link } from 'react-router-dom'
 import colors from '../styles/colors'
 
@@ -19,16 +20,38 @@ const inner = css`
 
 const boardContainer = css`
     display: flex;
-    background: ${ colors.white };
+    background: ${ colors.gray };
     margin-left: 1rem;
     padding: 0.5rem;
     border-radius: 2px;
-    color: ${ colors.darkGray };
+    color: ${ colors.black };
 `
 
 const header = css`
-    text-align: center;
-    color: ${ colors.white };
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const headerInner = css`
+    background: ${ colors.gray };
+    padding: 1rem 2rem;
+    border-radius: 2px;
+`
+
+const button = css`
+    font-size: 0.9rem;
+    color: ${ colors.mediumGray };
+    border: 0;
+    background: transparent;
+
+    &:active, :focus, :visited {
+        outline: none;
+    }
+
+    &:hover {
+        color: ${ colors.darkGray };
+    }
 `
 
 class Boards extends Component {
@@ -39,14 +62,19 @@ class Boards extends Component {
     render() {
         return (
             <div className={ container }>
-                <h2 className={ header }>All Retro Boards</h2>
+                <div className={ header }>
+                    <h2 className={ headerInner }>All Retro Boards</h2>
+                </div>
                 <div className={ inner }>
                     {this.props.boards.map(board => (
-                        <Link key={ `board-${ board.id }` } to={`/board/${ board.id }`}>
-                            <div className={ boardContainer }>
+                        <div key={ `board-${ board.id }` } className={ boardContainer }>
+                            <Link to={`/board/${ board.id }`}>
                                 <h3>{ board.name }</h3>
-                            </div>
-                        </Link>
+                            </Link>
+                            <button onClick={ () => this.props.onDelete(board.id) } className={ button }>
+                                <FontAwesome name="trash-o" />
+                            </button>
+                        </div>
                     ))}
                 </div>
             </div>
