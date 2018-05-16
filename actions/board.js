@@ -27,6 +27,21 @@ export const createCard = (value, columnId) => {
     }
 }
 
+export const updateCard = (cardId, text) => {
+  return (dispatch, getState) => {
+    axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`, {
+      content: {
+        text: text
+      }
+    }).then(response => dispatch(successfulUpdate(cardId)))
+  }
+}
+
+export const successfulUpdate = cardId => ({
+    type: actionTypes.UPDATE_CARD,
+    cardId
+})
+
 export const receiveCard = (card, columnId) => ({
     type: actionTypes.RECEIVE_CARD,
     card,
