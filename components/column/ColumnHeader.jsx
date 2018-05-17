@@ -7,6 +7,7 @@ import New from '../shared/New'
 const header = css`
     display: flex;
     justify-content: space-between;
+    align-items: center;
 `
 
 const title = css`

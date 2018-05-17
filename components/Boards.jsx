@@ -7,7 +7,6 @@ import colors from '../styles/colors'
 const container = css`
     display: flex;
     flex-direction: column;
-    margin-left: 1rem;
 
     a {
         text-decoration: none;
@@ -16,13 +15,18 @@ const container = css`
 
 const inner = css`
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 `
 
 const boardContainer = css`
+    padding: 0 1rem;
+`
+
+const boardInner = css`
     display: flex;
     background: ${ colors.offWhite };
     border: 4px solid ${ colors.black };
-    margin-left: 1rem;
     padding: 1rem 2rem;
     border-radius: 2px;
     color: ${ colors.black };
@@ -32,7 +36,7 @@ const header = css`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 `
 
 const headerInner = css`
@@ -72,12 +76,14 @@ class Boards extends Component {
                 <div className={ inner }>
                     {this.props.boards.map(board => (
                         <div key={ `board-${ board.id }` } className={ boardContainer }>
-                            <Link to={`/board/${ board.id }`}>
-                                <h3>{ board.name }</h3>
-                            </Link>
-                            <button onClick={ () => this.props.onDelete(board.id) } className={ button }>
-                                <FontAwesome name="trash-o" />
-                            </button>
+                            <div className={ boardInner }>
+                                <Link to={`/board/${ board.id }`}>
+                                    <h3>{ board.name }</h3>
+                                </Link>
+                                <button onClick={ () => this.props.onDelete(board.id) } className={ button }>
+                                    <FontAwesome name="trash-o" />
+                                </button>
+                            </div>
                         </div>
                     ))}
                 </div>

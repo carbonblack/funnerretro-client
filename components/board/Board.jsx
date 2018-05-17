@@ -8,7 +8,7 @@ import colors from '../../styles/colors'
 const columnsContainer = css`
     display: flex;
     overflow-x: auto;
-    margin-top: 1rem;
+    margin-top: 2rem;
 `
 
 const newColumnContainer = css`

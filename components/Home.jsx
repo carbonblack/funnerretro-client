@@ -3,7 +3,7 @@ import { css, cx } from 'react-emotion'
 import { Link } from 'react-router-dom'
 import { baseButton } from '../styles/button'
 import colors from '../styles/colors'
-import logoImg from '../assets/logo@3x.png'
+import logoImg from '../assets/logo.png'
 import BoardContainer from '../containers/BoardContainer';
 
 const container = css`

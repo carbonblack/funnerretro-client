@@ -9,7 +9,7 @@ const nav = css`
     justify-content: space-between;
     align-items: center;
     padding: 0rem 3rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 
     background: ${ colors.offWhite };
     border-bottom: 4px solid ${ colors.black };
