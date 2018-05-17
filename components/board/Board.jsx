@@ -15,6 +15,13 @@ const newColumnContainer = css`
     margin-left: 1rem;
 `
 
+const inner = css`
+    background: ${ colors.gray };
+    border: 4px solid ${ colors.black };
+    padding: 1rem 0.5rem 0 0.5rem;
+    height: fit-content;
+`
+
 const header = css`
     display: flex;
     justify-content: center;
@@ -25,7 +32,6 @@ const innerHeader = css`
     background: ${ colors.offWhite };
     border: 4px solid ${ colors.black };
     padding: 1rem 2rem;
-    border-radius: 2px;
 `
 
 const button = css`
@@ -63,7 +69,7 @@ class Board extends Component {
                 </div>
                 <div className={ columnsContainer }>
                     { columns.map(column => <ColumnContainer key={ `column-${column.id}` } column={ column } />) }
-                    <div className={ newColumnContainer }>
+                    <div className={ cx(inner, newColumnContainer) }>
                         <New placeholder="New column" submitLabel="Create" onSubmit={ value => onNewColumn(value) } />
                     </div>
                 </div>

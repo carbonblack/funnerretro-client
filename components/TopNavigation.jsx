@@ -31,6 +31,7 @@ const links = css`
         padding: 1rem;
         text-transform: uppercase;
         font-weight: bold;
+        font-family: 'Dosis', sans-serif;
 
         &:hover {
             background: ${ colors.lightPink };

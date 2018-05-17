@@ -19,7 +19,6 @@ const inner = css`
     background: ${ colors.gray };
     border: 4px solid ${ colors.black };
     padding: 1rem 0.5rem 0 0.5rem;
-    border-radius: 2px;
 `
 
 class Column extends Component {

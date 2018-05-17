@@ -8,7 +8,7 @@ const paths = {
 }
 
 const proxyUrls = {
-    WS: 'http://localhost:80',
+    WS: 'http://localhost:80/websocket',
     API: 'http://localhost:80'
 }
 
