@@ -86,3 +86,11 @@ test('should create an action for deleting a board', () => {
         boardId
     })
 })
+
+test('should create an action for updating a column', () => {
+    const column = { name: 'hello' }
+    expect(actions.successfulColumnUpdate(column)).toEqual({
+        type: actionTypes.UPDATE_COLUMN,
+        column
+    })
+})

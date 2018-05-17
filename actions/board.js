@@ -3,8 +3,6 @@ import * as headers from '../constants/headers'
 import axios from 'axios'
 import { push } from 'react-router-redux'
 
-let columnOrder = 0
-
 export const createCard = (value, columnId) => {
     return (dispatch, getState) => {
         const boardId = getState().board.id
@@ -109,15 +107,12 @@ export const successfulVote = cardId => ({
 export const getBoards = () => {
     return (dispatch) => {
         dispatch(fetchBoards())
-        axios.get('/api/v1/boards')
-            .then((response) => {
-                const boards = response.data.boards.map(board => ({
-                    name: board.content.name,
-                    id: board.id
-                }))
-                dispatch(receiveBoards(boards))
-            })
-            .catch(response => dispatch(getBoardsError(response.response.statusText)))
+        axios.get('/api/v1/boards').then((response) => {
+            dispatch(receiveBoards(response.data.boards.map(board => ({
+                name: board.content.name,
+                id: board.id
+            }))))
+        }).catch(response => dispatch(getBoardsError(response.response.statusText)))
     }
 }
 
@@ -166,7 +161,7 @@ export const getBoard = (boardId) => {
 const constructCards = (nodes, initialParent) => {
     let parent = initialParent
     let cards = []
-    while(parent != null) {
+    while(parent !== null) {
         const card = nodes.filter(node => node.parent === parent).map(n => ({
             text: n.content.text,
             id: "id" in n ? n.id : null,
@@ -253,7 +248,6 @@ export const successfulDeleteBoard = boardId => ({
     boardId
 })
 
-// TODO dispatch success action for this
 export const updateColumn = (columnId, data) => {
     return (dispatch, getState) => {
         axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ columnId }`, data, headers.json)
