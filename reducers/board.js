@@ -26,6 +26,9 @@ const board = (state = initialState, action) => {
                 })
             }
         case actionTypes.RECEIVE_COLUMN:
+            if(state.columns.some(column => column.id === action.column.id)) {
+                return state
+            }
             return {
                 ...state,
                 columns: [...state.columns, action.column]
@@ -113,14 +116,17 @@ const board = (state = initialState, action) => {
                 })
             }
         case actionTypes.DELETE_COLUMN:
-            const index = state.columns.map(column => column.id).indexOf(action.columnId)
-            return {
-                ...state,
-                columns: [
-                    ...state.columns.slice(0, index),
-                    ...state.columns.slice(index + 1)
-                ]
+            if(state.columns.some(column => column.id === action.columnId)) {
+                const index = state.columns.map(column => column.id).indexOf(action.columnId)
+                return {
+                    ...state,
+                    columns: [
+                        ...state.columns.slice(0, index),
+                        ...state.columns.slice(index + 1)
+                    ]
+                }
             }
+            return state
         case actionTypes.DELETE_BOARD:
             return {
                 ...state,
