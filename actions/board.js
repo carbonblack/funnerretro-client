@@ -51,9 +51,10 @@ export const receiveCard = (card, columnId) => ({
 // TODO change these indices to card ids
 export const moveCard = (cardId, columnId, dragIndex, hoverIndex) => {
     return (dispatch, getState) => {
-        axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`, {
-            parent_id: getState().board.columns.filter(column => column.id === columnId)[0].cards[dragIndex].id
-        }, headers.json).then(response => console.log(response))
+        // TODO fix? maybe server issue?
+        // axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`, {
+        //     parent_id: getState().board.columns.filter(column => column.id === columnId)[0].cards[dragIndex].id
+        // }, headers.json).then(response => console.log(response))
         dispatch(receiveMovedCard(columnId, dragIndex, hoverIndex))
     }
 }
@@ -247,7 +248,7 @@ export const deleteBoard = (boardId) => {
     }
 }
 
-export const successfulDeleteBoard = (boardId) => ({
+export const successfulDeleteBoard = boardId => ({
     type: actionTypes.DELETE_BOARD,
     boardId
 })
@@ -256,6 +257,11 @@ export const successfulDeleteBoard = (boardId) => ({
 export const updateColumn = (columnId, data) => {
     return (dispatch, getState) => {
         axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ columnId }`, data, headers.json)
-            .then(response => console.log(response))
+            .then(response => dispatch(successfulColumnUpdate(response.data)))
     }
 }
+
+export const successfulColumnUpdate = column => ({
+    type: actionTypes.UPDATE_COLUMN,
+    column
+})

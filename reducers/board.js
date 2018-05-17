@@ -129,21 +129,36 @@ const board = (state = initialState, action) => {
                 columns: []
             }
         case actionTypes.UPDATE_CARD:
-        return {
-            ...state,
-            columns: state.columns.map((column) => {
-                return {
-                    ...column,
-                    cards: column.cards.map((card) => {
-                        if(card.id !== action.cardId) return card
-                        return {
-                            ...card,
-                            text: card.text
-                        }
-                    })
-                }
-            })
-        }
+            return {
+                ...state,
+                columns: state.columns.map((column) => {
+                    return {
+                        ...column,
+                        cards: column.cards.map((card) => {
+                            if(card.id !== action.cardId) return card
+                            return {
+                                ...card,
+                                text: card.text
+                            }
+                        })
+                    }
+                })
+            }
+        case actionTypes.UPDATE_COLUMN:
+            return {
+                ...state,
+                columns: state.columns.map((column) => {
+                    if(action.column.id !== column.id) return column
+
+                    return {
+                        ...column,
+                        name: action.column.content.name,
+                        parent: action.column.parent,
+                        child: action.column.child,
+                        id: action.column.id
+                    }
+                })
+            }
         default:
             return state
     }
