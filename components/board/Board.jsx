@@ -54,6 +54,10 @@ class Board extends Component {
         this.props.load()
     }
 
+    componentWillUnmount() {
+        this.props.unload()
+    }
+
     render() {
         const { name, id, columns, onNewColumn } = this.props
 

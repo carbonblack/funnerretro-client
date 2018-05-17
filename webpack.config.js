@@ -8,8 +8,8 @@ const paths = {
 }
 
 const proxyUrls = {
-    WS: 'http://localhost:80/websocket',
-    API: 'http://localhost:80'
+    API: 'http://localhost:80',
+    WS: 'http://localhost:5124/websocket'
 }
 
 module.exports = {
@@ -53,6 +53,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
+                include: path.join(paths.SRC, 'assets'),
                 use: ['style-loader','css-loader']
             }
         ],

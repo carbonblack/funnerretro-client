@@ -1,6 +1,7 @@
 import { createColumn } from '../actions/board'
 import { connect } from 'react-redux'
 import { getBoard, deleteBoard } from '../actions/board'
+import { subscribeToBoard, unsubscribeToBoard } from '../actions/websocket'
 import Board from '../components/board/Board'
 
 const mapStateToProps = state => ({
@@ -15,7 +16,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         dispatch(createColumn(value))
     },
     load: () => {
+        subscribeToBoard(ownProps.match.params.id)
         dispatch(getBoard(ownProps.match.params.id))
+    },
+    unload: () => {
+        unsubscribeToBoard(ownProps.match.params.id)
     },
     onDelete: (boardId) => {
         dispatch(deleteBoard(boardId))
