@@ -143,7 +143,24 @@ export const getBoard = (boardId) => {
                         parent: column.parent,
                         child: column.child,
                         orig_version: column.orig_version,
-                        cards: constructCards(response.data.nodes, column.id)
+                        cards: ((nodes, parent) => {
+                            let cards = []
+                            while(parent !== null) {
+                                const card = nodes.filter(node => node.parent === parent).map(n => ({
+                                    text: n.content.text,
+                                    id: "id" in n ? n.id : null,
+                                    parent: n.parent,
+                                    votes: n.content.votes
+                                }))[0]
+
+                                if(!card) break
+
+                                cards.push(card)
+                                parent = cards[cards.length - 1].id
+                            }
+
+                            return cards
+                        })(response.data.nodes, column.id)
                     }
                 }).sort((a, b) => a.orig_version > b.orig_version)
 
@@ -155,30 +172,6 @@ export const getBoard = (boardId) => {
             })
             .catch(response => dispatch(getBoardError(response.response.statusText)))
     }
-}
-
-// TODO clean this shit up
-const constructCards = (nodes, initialParent) => {
-    let parent = initialParent
-    let cards = []
-    while(parent !== null) {
-        const card = nodes.filter(node => node.parent === parent).map(n => ({
-            text: n.content.text,
-            id: "id" in n ? n.id : null,
-            parent: n.parent,
-            votes: n.content.votes
-        }))[0]
-
-        if(card) {
-            cards.push(card)
-        } else {
-            break
-        }
-
-        parent = cards[cards.length - 1].id
-    }
-
-    return cards
 }
 
 export const fetchBoard = () => ({
