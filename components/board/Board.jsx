@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { css } from 'react-emotion'
 import FontAwesome from 'react-fontawesome'
-import ColumnContainer from '../containers/ColumnContainer'
-import New from './New'
-import colors from '../styles/colors'
+import ColumnContainer from '../../containers/ColumnContainer'
+import New from '../shared/New'
+import colors from '../../styles/colors'
 
 const columnsContainer = css`
     display: flex;

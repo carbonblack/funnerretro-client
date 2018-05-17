@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { css } from 'react-emotion'
-import colors from '../styles/colors'
 import FontAwesome from 'react-fontawesome'
-import CardContainer from '../containers/CardContainer'
-import New from './New'
+import colors from '../../styles/colors'
+import CardContainer from '../../containers/CardContainer'
+import New from '../shared/New'
 import ColumnHeader from './ColumnHeader'
 
 const columnContainer = css`

@@ -1,41 +1,7 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { css } from 'react-emotion'
 import { findDOMNode } from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
-import FontAwesome from 'react-fontawesome'
-import colors from '../styles/colors'
-import { vote } from '../actions/board'
-
-const cardContainer = isDragging => css`
-    background: ${ colors.white };
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-    cursor: move;
-    opacity: ${ isDragging ? 0 : 1 };
-`
-
-const text = css`
-    margin-bottom: 0.25rem;
-`
-
-const votes = css`
-    margin-left: 0.25rem;
-`
-
-const button = css`
-    font-size: 0.9rem;
-    color: ${ colors.mediumGray };
-    border: 0;
-
-    &:active, :focus, :visited {
-        outline: none;
-    }
-
-    &:hover {
-        color: ${ colors.darkGray };
-    }
-`
+import Card from './Card'
 
 const cardSource = {
     beginDrag(props) {
@@ -102,25 +68,20 @@ const DragSourceConnector = DragSource('card', cardSource, (connect, monitor) =>
     isDragging: monitor.isDragging()
 }))
 
-class Card extends Component {
+class DraggableCard extends Component {
     render() {
-        const { connectDragSource, connectDropTarget, isDragging, card } = this.props
+        const { connectDragSource, connectDropTarget, isDragging, card, onDelete, onVote } = this.props
         
-        return connectDragSource(
-            connectDropTarget(
-                <div className={ cardContainer(isDragging) }>
-                    <p className={ text }>{ card.text }</p>
-                    <button className={ button } onClick={ () => this.props.onVote(card.id) }>
-                        <FontAwesome name="thumbs-o-up" />
-                        <span className={ votes }>{ card.votes }</span>
-                    </button>
-                    <button onClick={ () => this.props.onDelete(card.id) } className={ button }>
-                        <FontAwesome name="trash-o" />
-                    </button>
-                </div>
-            )
-        )
+        return connectDragSource(connectDropTarget(
+            <div>
+                <Card
+                    card={ card }
+                    isDragging={ isDragging }
+                    onDelete={ id => onDelete(id) }
+                    onVote={ id => onVote(id) } />
+            </div>
+        ))
     }
 }
 
-export default DropTargetConnector(DragSourceConnector(Card))
+export default DropTargetConnector(DragSourceConnector(DraggableCard))

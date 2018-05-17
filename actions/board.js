@@ -243,7 +243,7 @@ export const deleteBoard = (boardId) => {
         axios.delete(`/api/v1/boards/${ boardId }`)
             .then((response) => {
                 dispatch(successfulDeleteBoard(boardId))
-                dispatch(push('/'))
+                dispatch(push('/boards'))
             })
     }
 }

@@ -1,7 +1,7 @@
 import { createColumn } from '../actions/board'
 import { connect } from 'react-redux'
 import { getBoard, deleteBoard } from '../actions/board'
-import Board from '../components/Board'
+import Board from '../components/board/Board'
 
 const mapStateToProps = state => ({
     name: state.board.name,

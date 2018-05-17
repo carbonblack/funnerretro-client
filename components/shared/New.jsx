@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { css } from 'react-emotion'
-import { baseButton } from '../styles/button'
-import colors from '../styles/colors'
+import { baseButton } from '../../styles/button'
+import colors from '../../styles/colors'
 
 const container = css`
     display: flex;

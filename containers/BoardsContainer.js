@@ -14,6 +14,7 @@ const mapDispatchToProps = dispatch => ({
     },
     onDelete: (boardId) => {
         dispatch(deleteBoard(boardId))
+        dispatch(getBoards())
     }
 })
 

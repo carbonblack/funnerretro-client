@@ -1,8 +1,8 @@
 import React from 'react'
 import { css } from 'react-emotion'
 import FontAwesome from 'react-fontawesome'
-import colors from '../styles/colors'
-import New from './New'
+import colors from '../../styles/colors'
+import New from '../shared/New'
 
 const header = css`
     display: flex;

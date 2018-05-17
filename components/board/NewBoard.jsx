@@ -1,7 +1,7 @@
 import React from 'react'
 import { css } from 'react-emotion'
-import New from './New'
-import colors from '../styles/colors'
+import New from '../shared/New'
+import colors from '../../styles/colors'
 
 const container = css`
     display: flex;

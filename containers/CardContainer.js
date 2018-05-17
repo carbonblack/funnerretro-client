@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { vote, deleteCard } from '../actions/board'
-import Card from '../components/Card'
+import DraggableCard from '../components/card/DraggableCard'
 
 const mapDispatchToProps = dispatch => ({
     onVote: (cardId) => {
@@ -11,4 +11,4 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-export default connect(null, mapDispatchToProps)(Card)
+export default connect(null, mapDispatchToProps)(DraggableCard)

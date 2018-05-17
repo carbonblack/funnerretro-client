@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import NewBoard from '../components/NewBoard'
+import NewBoard from '../components/board/NewBoard'
 import { createBoard } from '../actions/board';
 
 const mapDispatchToProps = dispatch => ({
