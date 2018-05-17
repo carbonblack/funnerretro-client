@@ -28,7 +28,7 @@ const links = css`
     display: flex;
 
     a {
-        padding: 0.75rem 1rem;
+        padding: 1rem;
         text-transform: uppercase;
         font-weight: bold;
 
@@ -42,15 +42,22 @@ const links = css`
 
 const brand = css`
     width: 1.5rem;
+    padding: 0 1rem;
 `
 
-const TopNavigation = ({ isAuthenticated }) => (
-    <div className={ nav }>
-        <Link to="/"><img src={ brandLogo } className={ brand } /></Link>
-        <div className={ links }>
-            <Link to="/boards">Boards</Link>
-        </div>
-    </div>
-)
+const TopNavigation = ({ shouldShow }) => {
+    if(shouldShow) {
+        return (
+            <div className={ nav }>
+                <Link to="/"><img src={ brandLogo } className={ brand } /></Link>
+                <div className={ links }>
+                    <Link to="/boards">Boards</Link>
+                </div>
+            </div>
+        )
+    }
+
+    return null
+}
 
 export default TopNavigation

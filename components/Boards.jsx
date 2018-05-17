@@ -23,7 +23,7 @@ const boardContainer = css`
     background: ${ colors.offWhite };
     border: 4px solid ${ colors.black };
     margin-left: 1rem;
-    padding: 0.5rem;
+    padding: 1rem 2rem;
     border-radius: 2px;
     color: ${ colors.black };
 `
@@ -32,6 +32,7 @@ const header = css`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 1rem;
 `
 
 const headerInner = css`
@@ -39,6 +40,7 @@ const headerInner = css`
     border: 4px solid ${ colors.black };
     padding: 1rem 2rem;
     border-radius: 2px;
+    text-transform: uppercase;
 `
 
 const button = css`

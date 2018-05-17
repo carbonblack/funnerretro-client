@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { css } from 'react-emotion'
+import { css, cx } from 'react-emotion'
 import FontAwesome from 'react-fontawesome'
 import ColumnContainer from '../../containers/ColumnContainer'
 import New from '../shared/New'
