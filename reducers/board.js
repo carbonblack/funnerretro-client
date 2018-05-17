@@ -19,6 +19,9 @@ const board = (state = initialState, action) => {
                 ...state,
                 columns: state.columns.map(column => {
                     if(column.id !== action.columnId) return column
+
+                    if(column.cards.some(card => card.id === action.card.id)) return column
+
                     return {
                         ...column,
                         cards: [...column.cards, action.card]
@@ -105,14 +108,18 @@ const board = (state = initialState, action) => {
             return {
                 ...state,
                 columns: state.columns.map((column) => {
-                    const index = column.cards.map(card => card.id).indexOf(action.cardId)
-                    return {
-                        ...column,
-                        cards: [
-                            ...column.cards.slice(0, index),
-                            ...column.cards.slice(index + 1)
-                        ]
+                    if(column.cards.some(card => card.id === action.cardId)) {
+                        const index = column.cards.map(card => card.id).indexOf(action.cardId)
+                        return {
+                            ...column,
+                            cards: [
+                                ...column.cards.slice(0, index),
+                                ...column.cards.slice(index + 1)
+                            ]
+                        }
                     }
+
+                    return column
                 })
             }
         case actionTypes.DELETE_COLUMN:
@@ -149,7 +156,8 @@ const board = (state = initialState, action) => {
                                 votes: action.card.content.votes,
                                 parent: action.card.parent,
                                 child: action.card.child,
-                                id: action.card.id
+                                id: action.card.id,
+                                column_header: action.card.column_header
                             }
                         })
                     }

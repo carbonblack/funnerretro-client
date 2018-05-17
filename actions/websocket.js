@@ -1,12 +1,10 @@
 import io from 'socket.io-client'
-import { successfulCardUpdate, successfulCardDelete, successfulColumnDelete, successfulDeleteBoard, successfulColumnUpdate, receiveColumn } from './board';
+import { successfulCardUpdate, successfulCardDelete, successfulColumnDelete, successfulDeleteBoard, successfulColumnUpdate, receiveColumn, receiveCard } from './board';
 
 const socket = io(WEBSOCKET_SERVER_URI, { transports: ['websocket'] })
 
 export const init = (store) => {
-    // TODO maybe check orig_version === version to see if create or not
     socket.on('node_update', (payload) => {
-        console.log(`UPDATE: ${JSON.stringify(payload)}`)
         payload.nodes.forEach(node => {
             switch(node.type) {
                 case 'ColumnHeader':
@@ -22,18 +20,24 @@ export const init = (store) => {
                         store.dispatch(successfulColumnUpdate(node))
                     }
                     break
-                case 'Board':
-                    // currently not a thing
-                    break
                 case 'Content':
-                    store.dispatch(successfulCardUpdate(node))
+                    if(node.orig_version === node.version) {
+                        store.dispatch(receiveCard({
+                            text: node.content.text,
+                            id: node.id,
+                            parent: node.parent,
+                            column_header: node.column_header,
+                            votes: 0
+                        }, node.column_header))
+                    } else {
+                        store.dispatch(successfulCardUpdate(node))
+                    }
                     break
             }
         })
     })
 
     socket.on('node_del', (payload) => {
-        console.log(`DELETE: ${JSON.stringify(payload)}`)
         payload.nodes.forEach(node => {
             switch(node.type) {
                 case 'ColumnHeader':

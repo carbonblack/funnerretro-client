@@ -15,12 +15,15 @@ export const createCard = (value, columnId) => {
                 votes: 0
             }
         }, headers.json).then((response) => {
-            dispatch(receiveCard({
-                text: response.data.content.text,
-                id: response.data.id,
-                parent: response.data.parent,
-                votes: 0
-            }, columnId))
+            response.data.nodes.forEach(node => {
+                dispatch(receiveCard({
+                    text: node.content.text,
+                    id: node.id,
+                    parent: node.parent,
+                    column_header: node.column_header,
+                    votes: 0
+                }, columnId))
+            })
         })
     }
 }
@@ -133,6 +136,7 @@ export const getBoard = (boardId) => {
                             text: n.content.text,
                             id: "id" in n ? n.id : null,
                             parent: n.parent,
+                            column_header: n.column_header,
                             votes: n.content.votes
                         }))[0]
 
