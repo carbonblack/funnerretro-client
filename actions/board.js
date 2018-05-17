@@ -183,7 +183,7 @@ export const successfulCardDelete = (cardId) => ({
 
 export const deleteColumn = (columnId) => {
     return (dispatch, getState) => {
-        axios.delete(`/api/v1/boards/${ getState().board.id }/nodes/${ columnId }`)
+        axios.delete(`/api/v1/boards/${ getState().board.id }/nodes/${ columnId }`, { cascade: true }, headers.json)
             .then(response => dispatch(successfulColumnDelete(columnId)))
     }
 }
