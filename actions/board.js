@@ -133,44 +133,40 @@ export const getBoardsError = error => ({
 export const getBoard = (boardId) => {
     return (dispatch) => {
         dispatch(fetchBoard())
-        axios.get(`/api/v1/boards/${ boardId }`)
-            .then((response) => {
-                const board = response.data.nodes.filter(node => node.id === boardId)[0]
-                const columns = response.data.nodes.filter(node => node.parent === boardId).map((column) => {
-                    return {
-                        name: column.content.name,
-                        id: column.id,
-                        parent: column.parent,
-                        child: column.child,
-                        orig_version: column.orig_version,
-                        cards: ((nodes, parent) => {
-                            let cards = []
-                            while(parent !== null) {
-                                const card = nodes.filter(node => node.parent === parent).map(n => ({
-                                    text: n.content.text,
-                                    id: "id" in n ? n.id : null,
-                                    parent: n.parent,
-                                    votes: n.content.votes
-                                }))[0]
+        axios.get(`/api/v1/boards/${ boardId }`).then((response) => {
+            const board = response.data.nodes.filter(node => node.id === boardId)[0]
+            const columns = response.data.nodes.filter(node => node.parent === boardId).map((column) => ({
+                name: column.content.name,
+                id: column.id,
+                parent: column.parent,
+                child: column.child,
+                orig_version: column.orig_version,
+                cards: ((nodes, parent) => {
+                    let cards = []
+                    while(parent) {
+                        const card = nodes.filter(node => node.parent === parent).map(n => ({
+                            text: n.content.text,
+                            id: "id" in n ? n.id : null,
+                            parent: n.parent,
+                            votes: n.content.votes
+                        }))[0]
 
-                                if(!card) break
+                        if(!card) break
 
-                                cards.push(card)
-                                parent = cards[cards.length - 1].id
-                            }
-
-                            return cards
-                        })(response.data.nodes, column.id)
+                        cards.push(card)
+                        parent = cards[cards.length - 1].id
                     }
-                }).sort((a, b) => a.orig_version > b.orig_version)
 
-                dispatch(receiveBoard({
-                    name: board.content.name,
-                    id: board.id,
-                    columns: columns
-                }))
-            })
-            .catch(response => dispatch(getBoardError(response.response.statusText)))
+                    return cards
+                })(response.data.nodes, column.id)
+            })).sort((a, b) => a.orig_version > b.orig_version)
+
+            dispatch(receiveBoard({
+                name: board.content.name,
+                id: board.id,
+                columns: columns
+            }))
+        }).catch(response => dispatch(getBoardError(response.response.statusText)))
     }
 }
 
