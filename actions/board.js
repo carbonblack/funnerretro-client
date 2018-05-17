@@ -28,9 +28,9 @@ export const createCard = (value, columnId) => {
 export const updateCard = (cardId, text) => {
   return (dispatch, getState) => {
     axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`, {
-      content: {
-        text: text
-      }
+        content: {
+            text: text
+        }
     }).then(response => dispatch(successfulUpdate(cardId)))
   }
 }
@@ -210,25 +210,23 @@ export const successfulColumnDelete = (columnId) => ({
 
 export const createBoard = (board) => {
     return (dispatch) => {
-        axios.post('/api/v1/boards', { name: board.name }, headers.json)
-            .then((response) => {
-                dispatch(receiveBoard({
-                    name: response.data.content.name,
-                    id: response.data.id,
-                    columns: []
-                }))
-                dispatch(push(`/board/${ response.data.id }`))
-            })
+        axios.post('/api/v1/boards', { name: board.name }, headers.json).then((response) => {
+            dispatch(receiveBoard({
+                name: response.data.content.name,
+                id: response.data.id,
+                columns: []
+            }))
+            dispatch(push(`/board/${ response.data.id }`))
+        })
     }
 }
 
 export const deleteBoard = (boardId) => {
     return (dispatch) => {
-        axios.delete(`/api/v1/boards/${ boardId }`)
-            .then((response) => {
-                dispatch(successfulDeleteBoard(boardId))
-                dispatch(push('/boards'))
-            })
+        axios.delete(`/api/v1/boards/${ boardId }`).then((response) => {
+            dispatch(successfulDeleteBoard(boardId))
+            dispatch(push('/boards'))
+        })
     }
 }
 
