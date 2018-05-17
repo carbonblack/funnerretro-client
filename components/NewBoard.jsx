@@ -19,10 +19,12 @@ const inner = css`
 
 const header = css`
     margin-bottom: 2rem;
+    text-transform: uppercase;
 `
 
 const content = css`
-    background: ${ colors.gray };
+    background: ${ colors.offWhite };
+    border: 4px solid ${ colors.black };
     padding: 2rem 4rem;
     border-radius: 2px;
 `

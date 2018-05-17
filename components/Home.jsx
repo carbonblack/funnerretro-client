@@ -1,8 +1,9 @@
 import React from 'react'
 import { css, cx } from 'react-emotion'
 import { Link } from 'react-router-dom'
+import { baseButton } from '../styles/button'
 import colors from '../styles/colors'
-import logoImg from '../assets/retro_spec@3x.png'
+import logoImg from '../assets/logo@3x.png'
 import BoardContainer from '../containers/BoardContainer';
 
 const container = css`
@@ -18,22 +19,16 @@ const container = css`
 const actions = css`
     display: flex;
     justify-content: center;
-    width: 20%;
+    width: 40%;
     margin-top: 1rem;
 `
 
 const button = css`
-    color: ${ colors.white };
-    background: ${ colors.pink };
-    border: 0;
-    border-radius: 2px;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.9rem;
-    text-decoration: none;
-
-    &:hover {
-        background: ${ colors.lightPink };
-    }
+    ${ baseButton }
+    border: 4px solid ${ colors.black };
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 0.75rem 1rem;
 `
 
 const firstButton = css`

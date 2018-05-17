@@ -4,8 +4,8 @@ const colors = {
     offWhite: '#fefefe',
     darkGray: '#333333',
     mediumGray: '#999999',
-    lightGray: '#cccccc',
     black: '#000000',
+    offBlack: '#111111',
 
     blue: '#14D0FE',
     lightBlue: '#54DDFF',

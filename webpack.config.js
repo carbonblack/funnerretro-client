@@ -39,9 +39,7 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 include: paths.SRC,
                 exclude: /node_modules/,
-                use: [
-                    'babel-loader',
-                ],
+                use: ['babel-loader'],
             },
             {
                 test: /\.(png|svg)$/,
@@ -52,6 +50,10 @@ module.exports = {
                         options: {}
                     }
                 ]
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader','css-loader']
             }
         ],
     },

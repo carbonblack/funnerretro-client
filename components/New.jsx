@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { css } from 'react-emotion'
+import { baseButton } from '../styles/button'
 import colors from '../styles/colors'
 
 const container = css`
@@ -12,18 +13,9 @@ const inputStyles = css`
     border: 1px solid ${ colors.mediumGray };
     margin-right: 0.5rem;
     padding: 0.5rem;
-`
 
-const submit = css`
-    color: ${ colors.white };
-    background: ${ colors.pink };
-    border: 0;
-    border-radius: 2px;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.9rem;
-
-    &:hover {
-        background: ${ colors.lightPink };
+    &:focus {
+        outline: none;
     }
 `
 
@@ -57,7 +49,7 @@ class New extends Component {
             <div>
                 <form className={ container } onSubmit={ () => false }>
                     <input value={ this.state.value } className={ inputStyles } placeholder={ placeholder } onChange={ e => this.onChange(e.target.value) } />
-                    <button className={ submit } onClick={ e => this.onSubmit(e) }>{ submitLabel }</button>
+                    <button className={ baseButton } onClick={ e => this.onSubmit(e) }>{ submitLabel }</button>
                 </form>
             </div>
         )

@@ -1,47 +1,54 @@
 import React from 'react'
 import { css } from 'react-emotion'
 import { Link } from 'react-router-dom'
+import brandLogo from '../assets/icon.png'
 import colors from '../styles/colors'
 
 const nav = css`
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem 3rem;
+    align-items: center;
+    padding: 0rem 3rem;
     margin-bottom: 1rem;
 
     background: ${ colors.offWhite };
-    box-shadow: 0px 1px 3px 0px ${ colors.lightGray };
+    border-bottom: 4px solid ${ colors.black };
 
     a {
-        color: ${ colors.pink };
+        color: ${ colors.black };
         text-decoration: none;
-        margin-left: 2rem;
         
         &:hover {
-            color: ${ colors.lightPink };
+            color: ${ colors.darkGray };
         }
     }
 `
 
 const links = css`
     display: flex;
-    align-items: center;
+
+    a {
+        padding: 0.75rem 1rem;
+        text-transform: uppercase;
+        font-weight: bold;
+
+        &:hover {
+            background: ${ colors.pink };
+            color: ${ colors.white };
+            transition: 0.2s;
+        }
+    }
 `
 
 const brand = css`
-    a {
-        margin-left: 0;
-    }
+    width: 1.5rem;
 `
 
 const TopNavigation = ({ isAuthenticated }) => (
     <div className={ nav }>
-        <h2 className={ brand }><Link to="/">Retro • Spec</Link></h2>
+        <Link to="/"><img src={ brandLogo } className={ brand } /></Link>
         <div className={ links }>
             <Link to="/boards">Boards</Link>
-            { !isAuthenticated &&
-                <Link to="/login">Login</Link>
-            }
         </div>
     </div>
 )
