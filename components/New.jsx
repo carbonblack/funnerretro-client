@@ -20,10 +20,10 @@ const inputStyles = css`
 `
 
 class New extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
-            value: ''
+            value: props.value
         }
     }
 

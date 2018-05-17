@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { css } from 'react-emotion'
 import colors from '../styles/colors'
 import FontAwesome from 'react-fontawesome'
 import CardContainer from '../containers/CardContainer'
 import New from './New'
+import ColumnHeader from './ColumnHeader'
 
 const columnContainer = css`
     display: flex;
@@ -20,48 +21,60 @@ const inner = css`
     border-radius: 2px;
 `
 
-const title = css`
-    margin-bottom: 1rem;
-`
+class Column extends Component {
+    constructor(props) {
+        super(props)
 
-const button = css`
-    font-size: 1rem;
-    color: ${ colors.mediumGray };
-    border: 0;
-    background: transparent;
-    margin-bottom: 1rem;
-
-    &:active, :focus, :visited {
-        outline: none;
+        this.state = {
+            name: props.column.name,
+            editing: false
+        }
     }
 
-    &:hover {
-        color: ${ colors.darkGray };
+    onChange(val) {
+        this.setState({
+            name: val
+        })
     }
-`
 
-const header = css`
-    display: flex;
-    justify-content: space-between;
-`
+    onEdit() {
+        this.setState({
+            editing: true
+        })
+    }
 
-const Column = ({ column, onNewCard, moveCard, onDelete }) => (
-    <div className={ columnContainer }>
-        <div className={ inner }>
-            <div className={ header }>
-                <h3 className={ title }>{ column.name }</h3>
-                <button onClick={ () => onDelete(column.id) } className={ button }>
-                    <FontAwesome name="trash-o" />
-                </button>
+    onSave() {
+        this.props.onNameChange(this.props.column.id, this.state.name)
+        this.setState({
+            editing: false
+        })
+    }
+
+    render() {
+        const { column, onNewCard, moveCard, onDelete } = this.props
+
+        return (
+            <div className={ columnContainer }>
+                <div className={ inner }>
+                    <ColumnHeader 
+                        name={ column.name }
+                        id={ column.id }
+                        editing={ this.state.editing }
+                        onDelete={ id => onDelete(id) }
+                        onChange={ val => this.onChange(val) }
+                        onSave={ () => this.onSave() }
+                        onEdit={ () => this.onEdit() }
+                    />
+                    { column.cards.map(((card, index) => (
+                        <CardContainer key={ `card-${card.id}` } card={ card } columnId={ column.id } moveCard={ (dragIndex, hoverIndex) => moveCard(card.id, column.id, dragIndex, hoverIndex) } index={ index } /> 
+                    )))}
+                    <div>
+                        <New placeholder="New card" submitLabel="Add" onSubmit={ (value) => onNewCard(value, column.id) } />
+                    </div>
+                </div>
             </div>
-            { column.cards.map(((card, index) => (
-                <CardContainer key={ `card-${card.id}` } card={ card } columnId={ column.id } moveCard={ (dragIndex, hoverIndex) => moveCard(card.id, column.id, dragIndex, hoverIndex) } index={ index } /> 
-            )))}
-            <div>
-                <New placeholder="New card" submitLabel="Add" onSubmit={ (value) => onNewCard(value, column.id) } />
-            </div>
-        </div>
-    </div>
-)
+        )
+    }
+}
 
 export default Column

@@ -251,3 +251,11 @@ export const successfulDeleteBoard = (boardId) => ({
     type: actionTypes.DELETE_BOARD,
     boardId
 })
+
+// TODO dispatch success action for this
+export const updateColumn = (columnId, data) => {
+    return (dispatch, getState) => {
+        axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ columnId }`, data, headers.json)
+            .then(response => console.log(response))
+    }
+}

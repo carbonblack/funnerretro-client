@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import { createCard, moveCard, deleteColumn } from '../actions/board'
+import { createCard, moveCard, deleteColumn, updateColumn } from '../actions/board'
 import Column from '../components/Column';
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -13,6 +13,13 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     },
     onDelete: (columnId) => {
         dispatch(deleteColumn(columnId))
+    },
+    onNameChange: (columnId, name) => {
+        dispatch(updateColumn(columnId, {
+            field: 'name',
+            value: name,
+            operation: 'SET'
+        }))
     }
 })
 
