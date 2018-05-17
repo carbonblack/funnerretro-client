@@ -26,15 +26,8 @@ class Column extends Component {
         super(props)
 
         this.state = {
-            name: props.column.name,
             editing: false
         }
-    }
-
-    onChange(val) {
-        this.setState({
-            name: val
-        })
     }
 
     onEdit() {
@@ -43,8 +36,8 @@ class Column extends Component {
         })
     }
 
-    onSave() {
-        this.props.onNameChange(this.props.column.id, this.state.name)
+    onSave(name) {
+        this.props.onNameChange(this.props.column.id, name)
         this.setState({
             editing: false
         })
@@ -61,8 +54,7 @@ class Column extends Component {
                         id={ column.id }
                         editing={ this.state.editing }
                         onDelete={ id => onDelete(id) }
-                        onChange={ val => this.onChange(val) }
-                        onSave={ () => this.onSave() }
+                        onSave={ val => this.onSave(val) }
                         onEdit={ () => this.onEdit() }
                     />
                     { column.cards.map(((card, index) => (

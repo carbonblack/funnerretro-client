@@ -33,7 +33,7 @@ const ColumnHeader = ({ name, id, editing, onDelete, onEdit, onSave, onChange })
     if(editing) {
         return (
             <div>
-                <New value={ name } onChange={ () => onChange() } onSubmit={ () => onSave() } submitLabel="Save" />
+                <New value={ name } onSubmit={ val => onSave(val) } submitLabel="Save" />
             </div>
         )
     }
