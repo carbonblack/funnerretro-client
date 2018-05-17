@@ -33,7 +33,7 @@ const links = css`
         font-weight: bold;
 
         &:hover {
-            background: ${ colors.pink };
+            background: ${ colors.lightPink };
             color: ${ colors.white };
             transition: 0.2s;
         }
