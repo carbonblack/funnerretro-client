@@ -43,7 +43,6 @@ class Card extends Component {
         super(props)
 
         this.state = {
-            text: props.card.text,
             editing: false
         }
     }
@@ -67,7 +66,7 @@ class Card extends Component {
         if(this.state.editing) {
             return (
                 <div className={ cardContainer(isDragging) }>
-                    <New value={ name } onSubmit={ val => this.onSave(val) } submitLabel="Save" />
+                    <New value={ card.text } onSubmit={ val => this.onSave(val) } submitLabel="Save" />
                 </div>
             )
         }
