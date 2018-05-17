@@ -23,13 +23,36 @@ const boardContainer = css`
     padding: 0 1rem;
 `
 
+const decoration = css`
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    background: ${ colors.lightPink };
+`
+
 const boardInner = css`
     display: flex;
     background: ${ colors.offWhite };
     border: 4px solid ${ colors.black };
     padding: 1rem 2rem;
     border-radius: 2px;
-    color: ${ colors.black };
+    position: relative;
+
+    a {
+        color: ${ colors.black };
+    }
+
+    &:before {
+        ${ decoration };
+        left: 0;
+    }
+
+    &:after {
+        ${ decoration };
+        right: 0;
+    }
 `
 
 const header = css`
@@ -78,7 +101,7 @@ class Boards extends Component {
                         <div key={ `board-${ board.id }` } className={ boardContainer }>
                             <div className={ boardInner }>
                                 <Link to={`/board/${ board.id }`}>
-                                    <h3>{ board.name }</h3>
+                                    <p>{ board.name }</p>
                                 </Link>
                                 <button onClick={ () => this.props.onDelete(board.id) } className={ button }>
                                     <FontAwesome name="trash-o" />
