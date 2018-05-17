@@ -135,10 +135,15 @@ const board = (state = initialState, action) => {
                     return {
                         ...column,
                         cards: column.cards.map((card) => {
-                            if(card.id !== action.cardId) return card
+                            if(card.id !== action.card.id) return card
+
                             return {
                                 ...card,
-                                text: card.text
+                                text: action.card.content.text,
+                                votes: action.card.content.votes,
+                                parent: action.card.parent,
+                                child: action.card.child,
+                                id: action.card.id
                             }
                         })
                     }

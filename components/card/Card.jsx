@@ -6,6 +6,7 @@ import { DragSource, DropTarget } from 'react-dnd'
 import FontAwesome from 'react-fontawesome'
 import colors from '../../styles/colors'
 import { vote } from '../../actions/board'
+import New from '../shared/New'
 
 const cardContainer = isDragging => css`
     background: ${ colors.white };
@@ -37,17 +38,56 @@ const button = css`
     }
 `
 
-const Card = ({ card, isDragging, onDelete, onVote }) => (
-    <div className={ cardContainer(isDragging) }>
-        <p className={ text }>{ card.text }</p>
-        <button className={ button } onClick={ () => onVote(card.id) }>
-            <FontAwesome name="thumbs-o-up" />
-            <span className={ votes }>{ card.votes }</span>
-        </button>
-        <button onClick={ () => onDelete(card.id) } className={ button }>
-            <FontAwesome name="trash-o" />
-        </button>
-    </div>
-)
+class Card extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            text: props.card.text,
+            editing: false
+        }
+    }
+
+    onEdit() {
+        this.setState({
+            editing: true
+        })
+    }
+
+    onSave(val) {
+        this.props.onTextChange(this.props.card.id, val)
+        this.setState({
+            editing: false
+        })
+    }
+
+    render() {
+        const { card, isDragging, onDelete, onVote, onSave } = this.props
+
+        if(this.state.editing) {
+            return (
+                <div className={ cardContainer(isDragging) }>
+                    <New value={ name } onSubmit={ val => this.onSave(val) } submitLabel="Save" />
+                </div>
+            )
+        }
+
+        return (
+            <div className={ cardContainer(isDragging) }>
+                <p className={ text }>{ card.text }</p>
+                <button className={ button } onClick={ () => onVote(card.id) }>
+                    <FontAwesome name="thumbs-o-up" />
+                    <span className={ votes }>{ card.votes }</span>
+                </button>
+                <button className={ button } onClick={ () => this.onEdit() }>
+                    <FontAwesome name="pencil" />
+                </button>
+                <button onClick={ () => onDelete(card.id) } className={ button }>
+                    <FontAwesome name="trash-o" />
+                </button>
+            </div>
+        )
+    }
+}
 
 export default Card
