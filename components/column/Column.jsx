@@ -11,6 +11,7 @@ const columnContainer = css`
     flex-direction: column;
     height: auto;
     margin-left: 1rem;
+    margin-bottom: 1rem;
     width: 325px;
 `
 
