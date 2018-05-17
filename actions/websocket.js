@@ -1,20 +1,21 @@
 import io from 'socket.io-client'
-import { successfulCardUpdate, successfulCardDelete, successfulColumnDelete, successfulDeleteBoard } from './board';
+import { successfulCardUpdate, successfulCardDelete, successfulColumnDelete, successfulDeleteBoard, successfulColumnUpdate } from './board';
 
 const socket = io(WEBSOCKET_SERVER_URI, { transports: ['websocket'] })
 
 export const init = (store) => {
     socket.on('node_update', (payload) => {
+        console.log(payload)
         payload.nodes.forEach(node => {
             switch(node.type) {
                 case 'ColumnHeader':
-                    dispatch(successfulCardUpdate(node))
+                    store.dispatch(successfulColumnUpdate(node))
                     break
                 case 'Board':
                     // currently not a thing
                     break
-                case 'ContentNode':
-                    dispatch(successfulCardUpdate(node))
+                case 'Content':
+                    store.dispatch(successfulCardUpdate(node))
                     break
             }
         })
@@ -24,13 +25,13 @@ export const init = (store) => {
         payload.nodes.forEach(node => {
             switch(node.type) {
                 case 'ColumnHeader':
-                    dispatch(successfulColumnDelete(node.id))
+                    store.dispatch(successfulColumnDelete(node.id))
                     break
                 case 'Board':
-                    dispatch(successfulDeleteBoard(node.id))
+                    store.dispatch(successfulDeleteBoard(node.id))
                     break
                 case 'ContentNode':
-                    dispatch(successfulCardDelete(node.id))
+                    store.dispatch(successfulCardDelete(node.id))
                     break
             }
         })
