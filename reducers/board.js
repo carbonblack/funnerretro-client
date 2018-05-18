@@ -158,7 +158,8 @@ const board = (state = initialState, action) => {
                                 parent: action.card.parent,
                                 child: action.card.child,
                                 id: action.card.id,
-                                column_header: action.card.column_header
+                                column_header: action.card.column_header,
+                                blur: action.card.content.blur
                             }
                         })
                     }

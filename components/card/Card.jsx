@@ -22,7 +22,6 @@ const cardContainer = isDragging => css`
 `
 
 const blurCard = css`
-    min-height: 100px;
     filter: blur(5px);
 `
 
@@ -47,6 +46,7 @@ class Card extends Component {
         this.setState({
             editing: true
         })
+        this.props.onEdit(this.props.card.id)
     }
 
     onSave(val) {

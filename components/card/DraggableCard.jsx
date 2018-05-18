@@ -70,7 +70,7 @@ const DragSourceConnector = DragSource('card', cardSource, (connect, monitor) =>
 
 class DraggableCard extends Component {
     render() {
-        const { connectDragSource, connectDropTarget, isDragging, card, onDelete, onVote, onUpdateText } = this.props
+        const { connectDragSource, connectDropTarget, isDragging, card, onDelete, onVote, onUpdateText, onEdit } = this.props
         
         return connectDragSource(connectDropTarget(
             <div>
@@ -80,6 +80,7 @@ class DraggableCard extends Component {
                     onDelete={ id => onDelete(id) }
                     onVote={ id => onVote(id) } 
 					onTextChange={ (id, val) => onUpdateText(id, val) }
+					onEdit={ id => onEdit(id) }
 				/>
             </div>
         ))

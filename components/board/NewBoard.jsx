@@ -10,11 +10,11 @@ const container = css`
     flex-direction: column;
     height: 100%;
     margin-top: -4rem;
+    width: 100%;
 `
 
 const inner = css`
     ${ container };
-    max-width: 50%;
 `
 
 const header = css`
@@ -27,6 +27,7 @@ const content = css`
     border: 4px solid ${ colors.black };
     padding: 2rem 4rem;
     border-radius: 2px;
+    width: 50%;
 `
 
 const templateContainer = css`
@@ -35,6 +36,11 @@ const templateContainer = css`
 
 const templateName = css`
     margin-left: 0.5rem;
+    margin-bottom: 0.5rem;
+`
+
+const description = css`
+    margin-left: 3rem;
 `
 
 class NewBoard extends Component {
@@ -66,8 +72,11 @@ class NewBoard extends Component {
                                     <div key={ `template-${ index }` } className={ templateContainer }>
                                         <input type="radio" id="radioButton" checked={ this.state.template === template.id } onChange={ () => this.setState({ template: template.id }) } />
                                         <span className={ templateName }>{ template.name }</span>
-                                        <p>{ template.description }</p>
-                                        {template.columns.length > 0 && <p>Columns: { template.columns.join(', ') }</p>}
+                                        {this.state.template === template.id &&
+                                            <div>
+                                                <p className={ description }>{ template.description }</p>
+                                            </div>
+                                        }
                                     </div>
                                 ))}
                             </div>

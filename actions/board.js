@@ -73,9 +73,13 @@ export const receiveColumn = column => ({
 export const vote = cardId => {
     return (dispatch, getState) => {
         axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`, {
-            field: 'votes',
-            value: 1,
-            operation: 'INCR'
+            operations: [
+                {
+                    field: 'votes',
+                    value: 1,
+                    operation: 'INCR'
+                }
+            ]
         })
     }
 }
@@ -130,7 +134,8 @@ export const getBoard = (boardId) => {
                             id: "id" in n ? n.id : null,
                             parent: n.parent,
                             column_header: n.column_header,
-                            votes: n.content.votes
+                            votes: n.content.votes,
+                            blur: n.content.blur
                         }))[0]
 
                         if(!card) break

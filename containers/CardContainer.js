@@ -11,9 +11,29 @@ const mapDispatchToProps = dispatch => ({
     },
     onUpdateText: (cardId, text) => {
         dispatch(updateCard(cardId, {
-            field: 'text',
-            value: text,
-            operation: 'SET'
+            operations: [
+                {
+                    field: 'text',
+                    value: text,
+                    operation: 'SET'
+                },
+                {
+                    field: 'blur',
+                    value: false,
+                    operation: 'SET'
+                }
+            ]
+        }))
+    },
+    onEdit: (cardId) => {
+        dispatch(updateCard(cardId, {
+            operations: [
+                {
+                    field: 'blur',
+                    value: true,
+                    operation: 'SET'
+                }
+            ]
         }))
     }
 })

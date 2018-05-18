@@ -22,6 +22,7 @@ const inner = css`
 
 const boardContainer = css`
     padding: 0 1rem;
+    margin-bottom: 2rem;
 `
 
 const decoration = css`

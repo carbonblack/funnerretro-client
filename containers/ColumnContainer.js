@@ -16,9 +16,13 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     },
     onNameChange: (columnId, name) => {
         dispatch(updateColumn(columnId, {
-            field: 'name',
-            value: name,
-            operation: 'SET'
+            operations: [
+                {
+                    field: 'name',
+                    value: name,
+                    operation: 'SET'
+                }
+            ]
         }))
     }
 })
