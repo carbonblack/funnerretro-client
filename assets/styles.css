@@ -13,7 +13,7 @@ p, span, a, button {
 
 body::after {
     content: "";
-    background-image: url('/assets/background.png');
+    background-image: url('background.png');
     position: fixed;
     top: 0;
     bottom: 0;
