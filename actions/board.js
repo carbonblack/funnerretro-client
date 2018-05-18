@@ -200,12 +200,15 @@ export const successfulColumnDelete = (columnId) => ({
 export const createBoard = (board) => {
     return (dispatch) => {
         axios.post('/api/v1/boards', { name: board.name }, headers.json).then((response) => {
-            dispatch(receiveBoard({
-                name: response.data.content.name,
-                id: response.data.id,
-                columns: []
-            }))
-            dispatch(push(`/board/${ response.data.id }`))
+            response.data.nodes.forEach((node) => {
+                dispatch(receiveBoard({
+                    name: node.content.name,
+                    id: node.id,
+                    columns: []
+                }))
+            })
+            // only care about the first board for redirecting
+            if(response.data.nodes.length > 0) dispatch(push(`/board/${ response.data.nodes[0].id }`))
         })
     }
 }
