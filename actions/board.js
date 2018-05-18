@@ -250,7 +250,7 @@ export const updateCard = (cardId, data) => {
     }
 }
   
-  export const successfulCardUpdate = card => ({
-      type: actionTypes.UPDATE_CARD,
-      card
-  })
+export const successfulCardUpdate = card => ({
+    type: actionTypes.UPDATE_CARD,
+    card
+})
