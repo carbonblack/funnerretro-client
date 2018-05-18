@@ -8,8 +8,7 @@ const paths = {
 }
 
 const proxyUrls = {
-    API: 'http://localhost:80',
-    WS: 'http://localhost:5124/websocket'
+    API: 'http://localhost:80'
 }
 
 module.exports = {
@@ -61,9 +60,6 @@ module.exports = {
      plugins: [
         new HtmlWebpackPlugin({
             template: path.join(paths.SRC, 'assets/index.html'),
-        }),
-        new webpack.DefinePlugin({
-            'WEBSOCKET_SERVER_URI': JSON.stringify(proxyUrls.WS)
         })
     ],
 }
