@@ -36,11 +36,11 @@ const templateContainer = css`
 
 const templateName = css`
     margin-left: 0.5rem;
-    margin-bottom: 0.5rem;
 `
 
 const description = css`
     margin-left: 3rem;
+    margin-top: 0.25rem;
 `
 
 class NewBoard extends Component {
