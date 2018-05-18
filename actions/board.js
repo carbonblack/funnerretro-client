@@ -199,7 +199,7 @@ export const successfulColumnDelete = (columnId) => ({
 
 export const createBoard = (board) => {
     return (dispatch) => {
-        axios.post('/api/v1/boards', { name: board.name }, headers.json).then((response) => {
+        axios.post('/api/v1/boards', board, headers.json).then((response) => {
             response.data.nodes.forEach((node) => {
                 dispatch(receiveBoard({
                     name: node.content.name,
