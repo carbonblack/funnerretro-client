@@ -18,7 +18,7 @@ const newColumnContainer = css`
 const inner = css`
     background: ${ colors.offWhite };
     border: 4px solid ${ colors.black };
-    padding: 1rem 0.5rem 0 0.5rem;
+    padding: 1rem 1rem 0 1rem;
     height: fit-content;
 `
 
