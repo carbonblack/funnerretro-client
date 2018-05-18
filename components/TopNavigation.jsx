@@ -28,7 +28,7 @@ const links = css`
     display: flex;
 
     a {
-        padding: 1rem;
+        padding: 1rem 2rem;
         text-transform: uppercase;
         font-weight: bold;
         font-family: 'Dosis', sans-serif;
@@ -52,7 +52,8 @@ const TopNavigation = ({ shouldShow }) => {
             <div className={ nav }>
                 <Link to="/"><img src={ brandLogo } className={ brand } /></Link>
                 <div className={ links }>
-                    <Link to="/boards">Boards</Link>
+                    <Link to="/boards">All Boards</Link>
+                    <Link to="/board/new">Create Board</Link>
                 </div>
             </div>
         )

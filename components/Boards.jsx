@@ -39,20 +39,6 @@ const boardInner = css`
     padding: 1rem 2rem;
     border-radius: 2px;
     position: relative;
-
-    a {
-        color: ${ colors.black };
-    }
-
-    &:before {
-        ${ decoration };
-        left: 0;
-    }
-
-    &:after {
-        ${ decoration };
-        right: 0;
-    }
 `
 
 const header = css`
@@ -85,6 +71,24 @@ const button = css`
     }
 `
 
+const boardLink = css`
+    color: ${ colors.black };
+
+    &:before {
+        ${ decoration };
+        left: 0;
+    }
+
+    &:after {
+        ${ decoration };
+        right: 0;
+    }
+`
+
+const createLink = css`
+    color: ${ colors.pink };
+`
+
 class Boards extends Component {
     componentDidMount() {
         this.props.load()
@@ -97,10 +101,17 @@ class Boards extends Component {
                     <h2 className={ headerInner }>All Retro Boards</h2>
                 </div>
                 <div className={ inner }>
+                    {this.props.boards.length < 1 &&
+                        <div className={ boardContainer }>
+                            <div className={ boardInner }>
+                                <p>There are no boards right now. Be the first to <Link className={ createLink } to="/board/new">create one</Link>!</p>
+                            </div>
+                        </div>
+                    }
                     {this.props.boards.map(board => (
                         <div key={ `board-${ board.id }` } className={ boardContainer }>
                             <div className={ boardInner }>
-                                <Link to={`/board/${ board.id }`}>
+                                <Link className={ boardLink } to={`/board/${ board.id }`}>
                                     <p>{ board.name }</p>
                                 </Link>
                                 <button onClick={ () => this.props.onDelete(board.id) } className={ button }>
