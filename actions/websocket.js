@@ -1,7 +1,7 @@
 import io from 'socket.io-client'
 import { successfulCardUpdate, successfulCardDelete, successfulColumnDelete, successfulDeleteBoard, successfulColumnUpdate, receiveColumn, receiveCard, reevaluateColumn } from './board';
 
-const socket = io(WEBSOCKET_SERVER_URI, { transports: ['websocket'] })
+const socket = io(location.protocol + "//" + document.domain + ":5124/websocket", { transports: ['websocket'] })
 
 export const init = (store) => {
     socket.on('node_update', (payload) => {
