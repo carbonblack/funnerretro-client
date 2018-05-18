@@ -217,15 +217,19 @@ export const deleteBoard = (boardId) => {
     return (dispatch) => {
         axios.delete(`/api/v1/boards/${ boardId }`).then((response) => {
             dispatch(successfulDeleteBoard(boardId))
-            dispatch(push('/boards'))
         })
     }
 }
 
-export const successfulDeleteBoard = boardId => ({
-    type: actionTypes.DELETE_BOARD,
-    boardId
-})
+export const successfulDeleteBoard = boardId => {
+    return (dispatch) => {
+        dispatch(push('/boards'))
+        dispatch({
+            type: actionTypes.DELETE_BOARD,
+            boardId
+        })
+    }
+}
 
 export const updateColumn = (columnId, data) => {
     return (dispatch, getState) => {
