@@ -6,6 +6,7 @@ import { DragSource, DropTarget } from 'react-dnd'
 import FontAwesome from 'react-fontawesome'
 import colors from '../../styles/colors'
 import { vote } from '../../actions/board'
+import { actionButton } from '../../styles/button'
 import New from '../shared/New'
 
 const baseCardContainer = css`
@@ -31,20 +32,6 @@ const text = css`
 
 const votes = css`
     margin-left: 0.25rem;
-`
-
-const button = css`
-    font-size: 0.9rem;
-    color: ${ colors.mediumGray };
-    border: 0;
-
-    &:active, :focus, :visited {
-        outline: none;
-    }
-
-    &:hover {
-        color: ${ colors.darkGray };
-    }
 `
 
 class Card extends Component {
@@ -92,14 +79,14 @@ class Card extends Component {
             <div className={ cx(baseCardContainer, cardContainer(isDragging)) }>
                 <p className={ text }>{ card.text }</p>
                 {/* <p className={ text }>{ card.id }</p> */}
-                <button className={ button } onClick={ () => onVote(card.id) }>
+                <button className={ actionButton } onClick={ () => onVote(card.id) }>
                     <FontAwesome name="thumbs-o-up" />
                     <span className={ votes }>{ card.votes }</span>
                 </button>
-                <button className={ button } onClick={ () => this.onEdit() }>
+                <button className={ actionButton } onClick={ () => this.onEdit() }>
                     <FontAwesome name="pencil" />
                 </button>
-                <button onClick={ () => onDelete(card.id) } className={ button }>
+                <button className={ actionButton } onClick={ () => onDelete(card.id) }>
                     <FontAwesome name="trash-o" />
                 </button>
             </div>

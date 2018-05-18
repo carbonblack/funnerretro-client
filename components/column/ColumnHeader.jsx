@@ -2,6 +2,7 @@ import React from 'react'
 import { css } from 'react-emotion'
 import FontAwesome from 'react-fontawesome'
 import colors from '../../styles/colors'
+import { actionButton } from '../../styles/button'
 import New from '../shared/New'
 
 const header = css`
@@ -15,19 +16,8 @@ const title = css`
 `
 
 const button = css`
-    font-size: 1rem;
-    color: ${ colors.mediumGray };
-    border: 0;
-    background: transparent;
+    ${ actionButton }
     margin-bottom: 1rem;
-
-    &:active, :focus, :visited {
-        outline: none;
-    }
-
-    &:hover {
-        color: ${ colors.darkGray };
-    }
 `
 
 const ColumnHeader = ({ name, id, editing, onDelete, onEdit, onSave, onChange }) => {

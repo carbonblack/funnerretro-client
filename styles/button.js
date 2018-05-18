@@ -15,3 +15,18 @@ export const baseButton = css`
         color: ${ colors.white };
     }
 `
+
+export const actionButton = css`
+    font-size: 0.9rem;
+    color: ${ colors.mediumGray };
+    border: 0;
+    background: transparent;
+
+    &:active, :focus, :visited {
+        outline: none;
+    }
+
+    &:hover {
+        color: ${ colors.darkGray };
+    }
+`

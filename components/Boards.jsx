@@ -3,6 +3,7 @@ import { css } from 'react-emotion'
 import FontAwesome from 'react-fontawesome'
 import { Link } from 'react-router-dom'
 import colors from '../styles/colors'
+import { actionButton } from '../styles/button'
 
 const container = css`
     display: flex;
@@ -56,21 +57,6 @@ const headerInner = css`
     text-transform: uppercase;
 `
 
-const button = css`
-    font-size: 0.9rem;
-    color: ${ colors.mediumGray };
-    border: 0;
-    background: transparent;
-
-    &:active, :focus, :visited {
-        outline: none;
-    }
-
-    &:hover {
-        color: ${ colors.darkGray };
-    }
-`
-
 const boardLink = css`
     color: ${ colors.black };
 
@@ -109,7 +95,7 @@ class Boards extends Component {
                                 <Link className={ boardLink } to={`/board/${ board.id }`}>
                                     <p>{ board.name }</p>
                                 </Link>
-                                <button onClick={ () => this.props.onDelete(board.id) } className={ button }>
+                                <button onClick={ () => this.props.onDelete(board.id) } className={ actionButton }>
                                     <FontAwesome name="trash-o" />
                                 </button>
                             </div>

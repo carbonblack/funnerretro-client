@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { css, cx } from 'react-emotion'
 import FontAwesome from 'react-fontawesome'
 import ColumnContainer from '../../containers/ColumnContainer'
+import { actionButton } from '../../styles/button'
 import New from '../shared/New'
 import colors from '../../styles/colors'
 
@@ -35,18 +36,8 @@ const innerHeader = css`
 `
 
 const button = css`
-    font-size: 1.1rem;
-    border: 0;
-    background: transparent;
+    ${ actionButton }
     margin-left: 1rem;
-
-    &:active, :focus, :visited {
-        outline: none;
-    }
-
-    &:hover {
-        color: ${ colors.darkGray };
-    }
 `
 
 class Board extends Component {
