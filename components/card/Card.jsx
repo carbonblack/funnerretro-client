@@ -14,6 +14,7 @@ const cardContainer = isDragging => css`
     padding: 0.5rem;
     cursor: move;
     opacity: ${ isDragging ? 0 : 1 };
+    border: 1px solid ${ colors.black };
 `
 
 const text = css`
@@ -74,6 +75,7 @@ class Card extends Component {
         return (
             <div className={ cardContainer(isDragging) }>
                 <p className={ text }>{ card.text }</p>
+                <p className={ text }>{ card.id }</p>
                 <button className={ button } onClick={ () => onVote(card.id) }>
                     <FontAwesome name="thumbs-o-up" />
                     <span className={ votes }>{ card.votes }</span>

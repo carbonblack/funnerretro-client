@@ -15,15 +15,13 @@ export const createCard = (value, columnId) => {
                 votes: 0
             }
         }, headers.json).then((response) => {
-            response.data.nodes.forEach(node => {
-                dispatch(receiveCard({
-                    text: node.content.text,
-                    id: node.id,
-                    parent: node.parent,
-                    column_header: node.column_header,
-                    votes: 0
-                }, columnId))
-            })
+            dispatch(receiveCard({
+                text: response.data.content.text,
+                id: response.data.id,
+                parent: response.data.parent,
+                column_header: response.data.column_header,
+                votes: 0
+            }, columnId))
         })
     }
 }
@@ -35,11 +33,13 @@ export const receiveCard = (card, columnId) => ({
 })
 
 // TODO change these indices to card ids
-export const moveCard = (cardId, columnId, dragIndex, hoverIndex) => {
+export const moveCard = (columnId, dragIndex, hoverIndex) => {
     return (dispatch, getState) => {
-        // TODO fix? maybe server issue?
-        // axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`, {
-        //     parent_id: getState().board.columns.filter(column => column.id === columnId)[0].cards[dragIndex].id
+        const dragCardId = getState().board.columns.filter(column => column.id === columnId)[0].cards[dragIndex].id
+        const hoverCardId = getState().board.columns.filter(column => column.id === columnId)[0].cards[hoverIndex].id
+        // console.log(`DRAG: ${ dragIndex }, HOVER: ${ hoverIndex }`)
+        // axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ dragCardId }`, {
+        //     parent_id: hoverCardId
         // }, headers.json).then(response => console.log(response))
         dispatch(receiveMovedCard(columnId, dragIndex, hoverIndex))
     }
@@ -83,7 +83,7 @@ export const vote = cardId => {
             field: 'votes',
             value: 1,
             operation: 'INCR'
-        }).then(response => dispatch(successfulVote(cardId)))
+        })
     }
 }
 

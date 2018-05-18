@@ -16,7 +16,7 @@ const columnContainer = css`
 `
 
 const inner = css`
-    background: ${ colors.gray };
+    background: ${ colors.offWhite };
     border: 4px solid ${ colors.black };
     padding: 1rem 0.5rem 0 0.5rem;
 `
@@ -62,7 +62,7 @@ class Column extends Component {
                             key={ `card-${card.id}` }
                             card={ card }
                             columnId={ column.id }
-                            moveCard={ (dragIndex, hoverIndex) => moveCard(card.id, column.id, dragIndex, hoverIndex) }
+                            moveCard={ (dragIndex, hoverIndex) => moveCard(column.id, dragIndex, hoverIndex) }
                             index={ index }
                         /> 
                     )))}
