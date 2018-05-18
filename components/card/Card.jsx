@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { css } from 'react-emotion'
+import { css, cx } from 'react-emotion'
 import { findDOMNode } from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
 import FontAwesome from 'react-fontawesome'
@@ -8,13 +8,21 @@ import colors from '../../styles/colors'
 import { vote } from '../../actions/board'
 import New from '../shared/New'
 
-const cardContainer = isDragging => css`
+const baseCardContainer = css`
     background: ${ colors.white };
     margin-bottom: 1rem;
     padding: 0.5rem;
+    border: 1px solid ${ colors.black };
+`
+
+const cardContainer = isDragging => css`
     cursor: move;
     opacity: ${ isDragging ? 0 : 1 };
-    border: 1px solid ${ colors.black };
+`
+
+const blurCard = css`
+    min-height: 100px;
+    filter: blur(5px);
 `
 
 const text = css`
@@ -66,16 +74,24 @@ class Card extends Component {
 
         if(this.state.editing) {
             return (
-                <div className={ cardContainer(isDragging) }>
+                <div className={ cx(baseCardContainer, cardContainer(isDragging)) }>
                     <New value={ card.text } onSubmit={ val => this.onSave(val) } submitLabel="Save" />
                 </div>
             )
         }
 
+        if(card.blur) {
+            return (
+                <div className={ cx(baseCardContainer, blurCard) }>
+                    <p className={ text }>{ card.text }</p>
+                </div>
+            )
+        }
+
         return (
-            <div className={ cardContainer(isDragging) }>
+            <div className={ cx(baseCardContainer, cardContainer(isDragging)) }>
                 <p className={ text }>{ card.text }</p>
-                <p className={ text }>{ card.id }</p>
+                {/* <p className={ text }>{ card.id }</p> */}
                 <button className={ button } onClick={ () => onVote(card.id) }>
                     <FontAwesome name="thumbs-o-up" />
                     <span className={ votes }>{ card.votes }</span>
