@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { css } from 'react-emotion'
 import New from '../shared/New'
 import colors from '../../styles/colors'
@@ -29,15 +29,54 @@ const content = css`
     border-radius: 2px;
 `
 
-const NewBoard = ({ onSubmit }) => (
-    <div className={ container }>
-        <div className={ inner }>
-            <div className={ content }>
-                <h2 className={ header }>Create a new retro board</h2>
-                <New placeholder="Board name" submitLabel="Create" onSubmit={ boardName => onSubmit(boardName) } />
+const templateContainer = css`
+    margin-top: 0.5rem;
+`
+
+const templateName = css`
+    margin-left: 0.5rem;
+`
+
+class NewBoard extends Component {
+    constructor() {
+        super()
+
+        this.state = {
+            template: 'empty'
+        }
+    }
+
+    componentDidMount() {
+        this.props.load()
+    }
+
+    render() {
+        const { onSubmit, templates } = this.props
+
+        return (
+            <div className={ container }>
+                <div className={ inner }>
+                    <div className={ content }>
+                        <h2 className={ header }>Create a new retro board</h2>
+                        <New placeholder="Board name" submitLabel="Create" onSubmit={ boardName => onSubmit(boardName, this.state.template) } />
+                        {templates.length > 0 && 
+                            <div>
+                                <h4>Choose a template</h4>
+                                {this.props.templates.map((template, index) => (
+                                    <div key={ `template-${ index }` } className={ templateContainer }>
+                                        <input type="radio" id="radioButton" checked={ this.state.template === template.id } onChange={ () => this.setState({ template: template.id }) } />
+                                        <span className={ templateName }>{ template.name }</span>
+                                        <p>{ template.description }</p>
+                                        <p>Columns: { template.columns.toString() }</p>
+                                    </div>
+                                ))}
+                            </div>
+                        }
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-)
+        )
+    }
+}
 
 export default NewBoard

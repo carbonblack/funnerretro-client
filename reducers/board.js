@@ -9,7 +9,8 @@ const initialState = {
     isFetchingBoards: false,
     boardsError: false,
     boards: [],
-    columns: []
+    columns: [],
+    templates: []
 }
 
 const board = (state = initialState, action) => {
@@ -177,6 +178,11 @@ const board = (state = initialState, action) => {
                         id: action.column.id
                     }
                 })
+            }
+        case actionTypes.RECEIVE_TEMPLATES:
+            return {
+                ...state,
+                templates: action.templates
             }
         default:
             return state
