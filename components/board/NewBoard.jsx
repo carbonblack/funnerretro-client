@@ -67,7 +67,7 @@ class NewBoard extends Component {
                                         <input type="radio" id="radioButton" checked={ this.state.template === template.id } onChange={ () => this.setState({ template: template.id }) } />
                                         <span className={ templateName }>{ template.name }</span>
                                         <p>{ template.description }</p>
-                                        <p>Columns: { template.columns.toString() }</p>
+                                        {template.columns.length > 0 && <p>Columns: { template.columns.join(', ') }</p>}
                                     </div>
                                 ))}
                             </div>

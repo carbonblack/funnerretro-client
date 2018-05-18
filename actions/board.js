@@ -201,11 +201,13 @@ export const createBoard = (board) => {
     return (dispatch) => {
         axios.post('/api/v1/boards', board, headers.json).then((response) => {
             response.data.nodes.forEach((node) => {
-                dispatch(receiveBoard({
-                    name: node.content.name,
-                    id: node.id,
-                    columns: []
-                }))
+                if(node.type === 'Board') {
+                    dispatch(receiveBoard({
+                        name: node.content.name,
+                        id: node.id,
+                        columns: []
+                    }))
+                }
             })
             // only care about the first board for redirecting
             if(response.data.nodes.length > 0) dispatch(push(`/board/${ response.data.nodes[0].id }`))
