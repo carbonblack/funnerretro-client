@@ -27,7 +27,7 @@ const decoration = css`
     content: "";
     position: absolute;
     top: 0;
-    width: 10px;
+    width: 15px;
     height: 100%;
     background: ${ colors.lightPink };
 `
@@ -77,11 +77,6 @@ const boardLink = css`
     &:before {
         ${ decoration };
         left: 0;
-    }
-
-    &:after {
-        ${ decoration };
-        right: 0;
     }
 `
 
