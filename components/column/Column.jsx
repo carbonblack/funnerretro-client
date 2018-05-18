@@ -44,7 +44,7 @@ class Column extends Component {
     }
 
     render() {
-        const { column, onNewCard, moveCard, onDelete } = this.props
+        const { column, onNewCard, moveCard, onDelete, hoverCard } = this.props
 
         return (
             <div className={ columnContainer }>

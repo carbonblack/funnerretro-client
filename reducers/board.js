@@ -184,6 +184,30 @@ const board = (state = initialState, action) => {
                 ...state,
                 templates: action.templates
             }
+        case actionTypes.REBUILD_COLUMN:
+            return {
+                ...state,
+                columns: state.columns.map((column) => {
+                    if(action.columnId !== column.id) return column
+
+                    return {
+                        ...column,
+                        cards: ((nodes, parent) => {
+                            let cards = []
+                            while(parent) {
+                                const card = nodes.filter(node => node.parent === parent)[0]
+
+                                if(!card) break
+
+                                cards.push(card)
+                                parent = cards[cards.length - 1].id
+                            }
+
+                            return cards
+                        })(column.cards, action.columnId)
+                    }
+                })
+            }
         default:
             return state
     }

@@ -78,7 +78,6 @@ class Card extends Component {
         return (
             <div className={ cx(baseCardContainer, cardContainer(isDragging)) }>
                 <p className={ text }>{ card.text }</p>
-                {/* <p className={ text }>{ card.id }</p> */}
                 <button className={ actionButton } onClick={ () => onVote(card.id) }>
                     <FontAwesome name="thumbs-o-up" />
                     <span className={ votes }>{ card.votes }</span>

@@ -32,25 +32,18 @@ export const receiveCard = (card, columnId) => ({
     columnId
 })
 
-// TODO change these indices to card ids
 export const moveCard = (columnId, dragIndex, hoverIndex) => {
     return (dispatch, getState) => {
-        const dragCardId = getState().board.columns.filter(column => column.id === columnId)[0].cards[dragIndex].id
-        const hoverCardId = getState().board.columns.filter(column => column.id === columnId)[0].cards[hoverIndex].id
-        // console.log(`DRAG: ${ dragIndex }, HOVER: ${ hoverIndex }`)
-        // axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ dragCardId }`, {
-        //     parent_id: hoverCardId
-        // }, headers.json).then(response => console.log(response))
-        dispatch(receiveMovedCard(columnId, dragIndex, hoverIndex))
+        const dragCard = getState().board.columns.filter(column => column.id === columnId)[0].cards[dragIndex]
+        const hoverCard = getState().board.columns.filter(column => column.id === columnId)[0].cards[hoverIndex]
+
+        const newParentId = dragIndex > hoverIndex ? hoverCard.parent : hoverCard.id
+
+        axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ dragCard.id }`, {
+            parent_id: newParentId
+        }, headers.json)
     }
 }
-
-export const receiveMovedCard = (columnId, dragIndex, hoverIndex) => ({
-    type: actionTypes.RECEIVE_MOVED_CARD,
-    columnId,
-    dragIndex,
-    hoverIndex
-})
 
 export const createColumn = (value) => {
     return (dispatch, getState) => {
@@ -266,4 +259,9 @@ export const getTemplates = () => {
 export const receiveTemplates =  templates => ({
     type: actionTypes.RECEIVE_TEMPLATES,
     templates
+})
+
+export const reevaluateColumn = columnId => ({
+    type: actionTypes.REBUILD_COLUMN,
+    columnId
 })

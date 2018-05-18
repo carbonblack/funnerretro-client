@@ -1,5 +1,5 @@
 import io from 'socket.io-client'
-import { successfulCardUpdate, successfulCardDelete, successfulColumnDelete, successfulDeleteBoard, successfulColumnUpdate, receiveColumn, receiveCard } from './board';
+import { successfulCardUpdate, successfulCardDelete, successfulColumnDelete, successfulDeleteBoard, successfulColumnUpdate, receiveColumn, receiveCard, reevaluateColumn } from './board';
 
 const socket = io(WEBSOCKET_SERVER_URI, { transports: ['websocket'] })
 
@@ -34,6 +34,10 @@ export const init = (store) => {
                     }
                     break
             }
+        })
+
+        payload.nodes.map(node => node.column_header).forEach((columnId) => {
+            store.dispatch(reevaluateColumn(columnId))
         })
     })
 
