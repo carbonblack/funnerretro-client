@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { css, cx } from 'react-emotion'
-import { findDOMNode } from 'react-dom'
-import { DragSource, DropTarget } from 'react-dnd'
 import FontAwesome from 'react-fontawesome'
 import colors from '../../styles/colors'
-import { vote } from '../../actions/board'
 import { actionButton } from '../../styles/button'
 import New from '../shared/New'
 
@@ -53,7 +49,7 @@ class Card extends Component {
     }
 
     render() {
-        const { card, isDragging, onDelete, onVote, onSave } = this.props
+        const { card, isDragging, onDelete, onVote } = this.props
 
         if(this.state.editing) {
             return (

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import NewBoard from '../components/board/NewBoard'
-import { createBoard, getTemplates } from '../actions/board';
+import { createBoard, getTemplates } from '../actions/board'
 
 const mapStateToProps = state => ({
     templates: state.board.templates

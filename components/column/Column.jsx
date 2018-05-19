@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { css } from 'react-emotion'
-import FontAwesome from 'react-fontawesome'
 import colors from '../../styles/colors'
 import CardContainer from '../../containers/CardContainer'
 import New from '../shared/New'
@@ -44,7 +43,7 @@ class Column extends Component {
     }
 
     render() {
-        const { column, onNewCard, moveCard, onDelete, hoverCard } = this.props
+        const { column, onNewCard, moveCard, onDelete } = this.props
 
         return (
             <div className={ columnContainer }>

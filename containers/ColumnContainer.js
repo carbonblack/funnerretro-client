@@ -1,8 +1,8 @@
-import { connect } from 'react-redux';
-import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
-import { createCard, moveCard, deleteColumn, updateColumn, hoverCard } from '../actions/board'
-import Column from '../components/column/Column';
+import { connect } from 'react-redux'
+import { DragDropContext } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
+import { createCard, moveCard, deleteColumn, updateColumn } from '../actions/board'
+import Column from '../components/column/Column'
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     onNewCard: (value) => {

@@ -1,7 +1,6 @@
 import React from 'react'
 import { css } from 'react-emotion'
 import FontAwesome from 'react-fontawesome'
-import colors from '../../styles/colors'
 import { actionButton } from '../../styles/button'
 import New from '../shared/New'
 
@@ -20,7 +19,7 @@ const button = css`
     margin-bottom: 1rem;
 `
 
-const ColumnHeader = ({ name, id, editing, onDelete, onEdit, onSave, onChange }) => {
+const ColumnHeader = ({ name, id, editing, onDelete, onEdit, onSave }) => {
     if(editing) {
         return (
             <div>

@@ -131,7 +131,7 @@ export const getBoard = (boardId) => {
                     while(parent) {
                         const card = nodes.filter(node => node.parent === parent).map(n => ({
                             content: n.content,
-                            id: "id" in n ? n.id : null,
+                            id: 'id' in n ? n.id : null,
                             parent: n.parent,
                             column_header: n.column_header,
                             orig_version: n.orig_version
@@ -173,7 +173,7 @@ export const getBoardError = error => ({
 export const deleteCard = (cardId) => {
     return (dispatch, getState) => {
         axios.delete(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`)
-            // .then(response => dispatch(successfulCardDelete(cardId)))
+        // .then(response => dispatch(successfulCardDelete(cardId)))
     }
 }
 
@@ -185,7 +185,7 @@ export const successfulCardDelete = (cardId) => ({
 export const deleteColumn = (columnId) => {
     return (dispatch, getState) => {
         axios.delete(`/api/v1/boards/${ getState().board.id }/nodes/${ columnId }?cascade=true`, headers.json)
-            // .then(response => dispatch(successfulColumnDelete(columnId)))
+        // .then(response => dispatch(successfulColumnDelete(columnId)))
     }
 }
 
@@ -214,7 +214,7 @@ export const createBoard = (board) => {
 
 export const deleteBoard = (boardId) => {
     return (dispatch) => {
-        axios.delete(`/api/v1/boards/${ boardId }`).then((response) => {
+        axios.delete(`/api/v1/boards/${ boardId }`).then(() => {
             dispatch(successfulDeleteBoard(boardId))
         })
     }
@@ -244,8 +244,8 @@ export const successfulColumnUpdate = column => ({
 
 export const updateCard = (cardId, data) => {
     return (dispatch, getState) => {
-      axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`, data, headers.json)
-        .then(response => dispatch(successfulCardUpdate(response.data)))
+        axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`, data, headers.json)
+            .then(response => dispatch(successfulCardUpdate(response.data)))
     }
 }
   
@@ -256,7 +256,7 @@ export const successfulCardUpdate = card => ({
 
 export const getTemplates = () => {
     return (dispatch) => {
-        axios.get(`/api/v1/templates`).then(response => dispatch(receiveTemplates(response.data.templates)))
+        axios.get('/api/v1/templates').then(response => dispatch(receiveTemplates(response.data.templates)))
     }
 }
 

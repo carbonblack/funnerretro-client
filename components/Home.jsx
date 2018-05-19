@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { baseButton } from '../styles/button'
 import colors from '../styles/colors'
 import logoImg from '../assets/logo.png'
-import BoardContainer from '../containers/BoardContainer';
 
 const container = css`
     display: flex;
@@ -34,7 +33,7 @@ const firstButton = css`
     margin-right: 1rem;
 `
 
-const Home = ({}) => (
+const Home = () => (
     <div className={ container }>
         <img src={ logoImg } />
         <div className={ actions }>
