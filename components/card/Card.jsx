@@ -49,7 +49,7 @@ class Card extends Component {
     }
 
     render() {
-        const { card, isDragging, onDelete, onUpVote, onDownVote, onSave } = this.props
+        const { card, isDragging, onDelete, onVote } = this.props
 
         if(this.state.editing) {
             return (

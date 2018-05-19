@@ -1,4 +1,3 @@
-import { createColumn } from '../actions/board'
 import { connect } from 'react-redux'
 import { getBoards, deleteBoard } from '../actions/board'
 import Boards from '../components/Boards'

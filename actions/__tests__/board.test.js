@@ -1,5 +1,5 @@
-import * as actions from './board'
-import * as actionTypes from '../constants/actionTypes'
+import * as actions from '../board'
+import * as actionTypes from '../../constants/actionTypes'
 
 test('should create an action to add a card to state', () => {
     const card = { name: 'test name' }
@@ -76,14 +76,6 @@ test('should create an action for fetching a board', () => {
 test('should create an action for fetching boards', () => {
     expect(actions.fetchBoards()).toEqual({
         type: actionTypes.FETCH_BOARDS
-    })
-})
-
-test('should create an action for deleting a board', () => {
-    const boardId = 'teuaysgd'
-    expect(actions.successfulDeleteBoard(boardId)).toEqual({
-        type: actionTypes.DELETE_BOARD,
-        boardId
     })
 })
 
