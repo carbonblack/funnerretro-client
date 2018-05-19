@@ -61,7 +61,8 @@
     "jest": {
         "collectCoverageFrom": [
             "**/*.{js,jsx}",
-            "!**/node_modules/**"
+            "!**/node_modules/**",
+            "!webpack.config.js"
         ],
         "transform": {
             "^.+\\.js[x]?$": "babel-jest"
