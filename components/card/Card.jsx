@@ -25,15 +25,6 @@ const text = css`
     margin-bottom: 0.25rem;
 `
 
-<<<<<<< HEAD
-const votes = css`
-    margin-left: 0.25rem;
-    font-style: bold;
-    font-size: 18px;
-`
-
-=======
->>>>>>> master
 class Card extends Component {
     constructor(props) {
         super(props)
