@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { upVote, downVote, deleteCard, updateCard } from '../actions/board'
+import { vote, deleteCard, updateCard } from '../actions/board'
 import DraggableCard from '../components/card/DraggableCard'
 
 const mapDispatchToProps = dispatch => ({
