@@ -3,7 +3,6 @@ import { css, cx } from 'react-emotion'
 import FontAwesome from 'react-fontawesome'
 import colors from '../../styles/colors'
 import CardContainer from '../../containers/CardContainer'
-import New from '../shared/New'
 import ColumnHeader from './ColumnHeader'
 
 const columnContainer = css`
@@ -76,8 +75,7 @@ class Column extends Component {
                         /> 
                     )))}
                     <div className={ cx(newCardContainer) }>
-                        { /*<New placeholder="New card" submitLabel="Add" onSubmit={ (value) => onNewCard(value, column.id) } /> */ }
-                        <button className={ newCardButton } onClick={ () => onNewCard("test jim", column.id) }>
+                        <button className={ newCardButton } onClick={ () => onNewCard('test jim', column.id) }>
                             <FontAwesome name="plus"/> New card
                         </button>
                     </div>

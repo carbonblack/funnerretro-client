@@ -55,7 +55,7 @@ const button = css`
 
 class Board extends Component {
     constructor() {
-        super();
+        super()
 
         this.state = {
             showNewColumnInput: false
@@ -90,7 +90,7 @@ class Board extends Component {
                             this.state.showNewColumnInput &&
                             <div className={newColumnCreateBox}>
                                 <New placeholder="New column" submitLabel="Create"
-                                     onSubmit={value => onNewColumn(value)}/>
+                                    onSubmit={value => onNewColumn(value)}/>
                             </div>
                         }
                         <button onClick={ () => this.setState({ showNewColumnInput: !this.state.showNewColumnInput }) } className={ newColumnInputButton }>
