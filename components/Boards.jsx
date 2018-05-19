@@ -94,7 +94,7 @@ class Boards extends Component {
                         <div key={ `board-${ board.id }` } className={ boardContainer }>
                             <div className={ boardInner }>
                                 <Link className={ boardLink } to={`/board/${ board.id }`}>
-                                    <p>{ board.name }</p>
+                                    <p>{ board.content.name }</p>
                                 </Link>
                                 <button onClick={ () => this.props.onDelete(board.id) } className={ actionButton }>
                                     <FontAwesome name="trash-o" />

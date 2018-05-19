@@ -50,7 +50,7 @@ class Column extends Component {
             <div className={ columnContainer }>
                 <div className={ inner }>
                     <ColumnHeader 
-                        name={ column.name }
+                        name={ column.content.name }
                         id={ column.id }
                         editing={ this.state.editing }
                         onDelete={ id => onDelete(id) }

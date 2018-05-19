@@ -5,13 +5,14 @@ const socket = io(location.protocol + "//" + document.domain + ":5124/websocket"
 
 export const init = (store) => {
     socket.on('node_update', (payload) => {
+        console.log(payload.nodes)
         payload.nodes.forEach(node => {
             switch(node.type) {
                 case 'ColumnHeader':
                     if(node.orig_version === node.version) {
                         store.dispatch(receiveColumn({
                             id: node.id,
-                            name: node.content.name,
+                            content: node.content,
                             parent_id: node.parent,
                             orig_version: node.orig_version,
                             cards: []
@@ -23,11 +24,11 @@ export const init = (store) => {
                 case 'Content':
                     if(node.orig_version === node.version) {
                         store.dispatch(receiveCard({
-                            text: node.content.text,
+                            content: node.content,
                             id: node.id,
                             parent: node.parent,
                             column_header: node.column_header,
-                            votes: 0
+                            orig_version: node.orig_version
                         }, node.column_header))
                     } else {
                         store.dispatch(successfulCardUpdate(node))

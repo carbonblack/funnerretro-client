@@ -16,7 +16,7 @@ export const createCard = (value, columnId) => {
             }
         }, headers.json).then((response) => {
             dispatch(receiveCard({
-                text: response.data.content.text,
+                content: response.data.content,
                 id: response.data.id,
                 parent: response.data.parent,
                 column_header: response.data.column_header,
@@ -56,7 +56,7 @@ export const createColumn = (value) => {
         }, headers.json).then((response) => {
             dispatch(receiveColumn({
                 id: response.data.id,
-                name: response.data.content.name,
+                contnet: response.data.content,
                 parent_id: response.data.parent,
                 orig_version: response.data.orig_version,
                 cards: []
@@ -94,7 +94,7 @@ export const getBoards = () => {
         dispatch(fetchBoards())
         axios.get('/api/v1/boards').then((response) => {
             dispatch(receiveBoards(response.data.boards.map(board => ({
-                name: board.content.name,
+                content: board.content,
                 id: board.id
             }))))
         }).catch(response => dispatch(getBoardsError(response.response.statusText)))
@@ -121,7 +121,7 @@ export const getBoard = (boardId) => {
         axios.get(`/api/v1/boards/${ boardId }`).then((response) => {
             const board = response.data.nodes.filter(node => node.id === boardId)[0]
             const columns = response.data.nodes.filter(node => node.parent === boardId).map((column) => ({
-                name: column.content.name,
+                content: column.content,
                 id: column.id,
                 parent: column.parent,
                 child: column.child,
@@ -130,12 +130,11 @@ export const getBoard = (boardId) => {
                     let cards = []
                     while(parent) {
                         const card = nodes.filter(node => node.parent === parent).map(n => ({
-                            text: n.content.text,
+                            content: n.content,
                             id: "id" in n ? n.id : null,
                             parent: n.parent,
                             column_header: n.column_header,
-                            votes: n.content.votes,
-                            blur: n.content.blur
+                            orig_version: n.orig_version
                         }))[0]
 
                         if(!card) break
@@ -149,7 +148,7 @@ export const getBoard = (boardId) => {
             })).sort((a, b) => a.orig_version > b.orig_version)
 
             dispatch(receiveBoard({
-                name: board.content.name,
+                content: board.content,
                 id: board.id,
                 columns: columns
             }))
@@ -174,7 +173,7 @@ export const getBoardError = error => ({
 export const deleteCard = (cardId) => {
     return (dispatch, getState) => {
         axios.delete(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`)
-            .then(response => dispatch(successfulCardDelete(cardId)))
+            // .then(response => dispatch(successfulCardDelete(cardId)))
     }
 }
 
@@ -186,7 +185,7 @@ export const successfulCardDelete = (cardId) => ({
 export const deleteColumn = (columnId) => {
     return (dispatch, getState) => {
         axios.delete(`/api/v1/boards/${ getState().board.id }/nodes/${ columnId }?cascade=true`, headers.json)
-            .then(response => dispatch(successfulColumnDelete(columnId)))
+            // .then(response => dispatch(successfulColumnDelete(columnId)))
     }
 }
 
@@ -201,7 +200,7 @@ export const createBoard = (board) => {
             response.data.nodes.forEach((node) => {
                 if(node.type === 'Board') {
                     dispatch(receiveBoard({
-                        name: node.content.name,
+                        content: node.content,
                         id: node.id,
                         columns: []
                     }))

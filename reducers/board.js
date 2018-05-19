@@ -2,7 +2,7 @@ import * as actionTypes from '../constants/actionTypes'
 import update from 'immutability-helper'
 
 const initialState = {
-    name: '',
+    content: {},
     id: '',
     isFetchingBoard: false,
     boardError: false,
@@ -59,7 +59,10 @@ const board = (state = initialState, action) => {
                             if(card.id !== action.cardId) return card
                             return {
                                 ...card,
-                                votes: card.votes + 1
+                                content: {
+                                    ...card.content,
+                                    votes: card.content.votes + 1
+                                }
                             }
                         })
                     }
@@ -75,7 +78,7 @@ const board = (state = initialState, action) => {
         case actionTypes.RECEIVE_BOARD:
             return {
                 ...state,
-                name: action.board.name,
+                content: action.board.content,
                 id: action.board.id,
                 columns: action.board.columns,
                 isFetchingBoard: false,
@@ -139,7 +142,7 @@ const board = (state = initialState, action) => {
             return {
                 ...state,
                 id: '',
-                name: '',
+                content: {},
                 columns: []
             }
         case actionTypes.UPDATE_CARD:
@@ -153,13 +156,11 @@ const board = (state = initialState, action) => {
 
                             return {
                                 ...card,
-                                text: action.card.content.text,
-                                votes: action.card.content.votes,
+                                content: action.card.content,
                                 parent: action.card.parent,
                                 child: action.card.child,
                                 id: action.card.id,
-                                column_header: action.card.column_header,
-                                blur: action.card.content.blur
+                                column_header: action.card.column_header
                             }
                         })
                     }
@@ -173,7 +174,7 @@ const board = (state = initialState, action) => {
 
                     return {
                         ...column,
-                        name: action.column.content.name,
+                        content: action.column.content,
                         parent: action.column.parent,
                         child: action.column.child,
                         id: action.column.id

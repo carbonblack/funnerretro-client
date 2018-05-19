@@ -5,7 +5,7 @@ import { subscribeToBoard, unsubscribeToBoard } from '../actions/websocket'
 import Board from '../components/board/Board'
 
 const mapStateToProps = state => ({
-    name: state.board.name,
+    name: state.board.content.name,
     id: state.board.id,
     columns: state.board.columns,
     isFetching: state.board.isFetchingBoard

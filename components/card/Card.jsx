@@ -62,7 +62,7 @@ class Card extends Component {
         if(this.state.editing) {
             return (
                 <div className={ cx(baseCardContainer, cardContainer(isDragging)) }>
-                    <New value={ card.text } onSubmit={ val => this.onSave(val) } submitLabel="Save" />
+                    <New value={ card.content.text } onSubmit={ val => this.onSave(val) } submitLabel="Save" />
                 </div>
             )
         }
@@ -70,17 +70,17 @@ class Card extends Component {
         if(card.blur) {
             return (
                 <div className={ cx(baseCardContainer, blurCard) }>
-                    <p className={ text }>{ card.text }</p>
+                    <p className={ text }>{ card.content.text }</p>
                 </div>
             )
         }
 
         return (
             <div className={ cx(baseCardContainer, cardContainer(isDragging)) }>
-                <p className={ text }>{ card.text }</p>
+                <p className={ text }>{ card.content.text }</p>
                 <button className={ actionButton } onClick={ () => onVote(card.id) }>
                     <FontAwesome name="thumbs-o-up" />
-                    <span className={ votes }>{ card.votes }</span>
+                    <span className={ votes }>{ card.content.votes }</span>
                 </button>
                 <button className={ actionButton } onClick={ () => this.onEdit() }>
                     <FontAwesome name="pencil" />
