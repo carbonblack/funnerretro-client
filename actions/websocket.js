@@ -55,8 +55,6 @@ export const init = (store) => {
                     break
             }
         })
-
-        payload.nodes.filter(node => node.type === 'Content').map(node => node.column_header).forEach(columnId => store.dispatch(reevaluateColumn(columnId)))
     })
 
     socket.on('subscribe_response', (payload) => {
