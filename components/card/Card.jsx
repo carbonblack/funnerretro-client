@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { css, cx } from 'react-emotion'
-import { findDOMNode } from 'react-dom'
-import { DragSource, DropTarget } from 'react-dnd'
 import FontAwesome from 'react-fontawesome'
 import colors from '../../styles/colors'
-import { vote } from '../../actions/board'
 import { actionButton } from '../../styles/button'
 import New from '../shared/New'
 
@@ -31,6 +27,8 @@ const text = css`
 
 const votes = css`
     margin-left: 0.25rem;
+    font-style: bold;
+    font-size: 18px;
 `
 
 class Card extends Component {
@@ -57,7 +55,7 @@ class Card extends Component {
     }
 
     render() {
-        const { card, isDragging, onDelete, onVote, onSave } = this.props
+        const { card, isDragging, onDelete, onUpVote, onDownVote, onSave } = this.props
 
         if(this.state.editing) {
             return (
@@ -78,9 +76,12 @@ class Card extends Component {
         return (
             <div className={ cx(baseCardContainer, cardContainer(isDragging)) }>
                 <p className={ text }>{ card.content.text }</p>
-                <button className={ actionButton } onClick={ () => onVote(card.id) }>
+                <span className={ votes }>{ card.content.votes }</span>
+                <button className={ actionButton } onClick={ () => onUpVote(card.id) }>
                     <FontAwesome name="thumbs-o-up" />
-                    <span className={ votes }>{ card.content.votes }</span>
+                </button>
+                <button className={ actionButton } onClick={ () => onDownVote(card.id) }>
+                    <FontAwesome name="thumbs-o-down" />
                 </button>
                 <button className={ actionButton } onClick={ () => this.onEdit() }>
                     <FontAwesome name="pencil" />

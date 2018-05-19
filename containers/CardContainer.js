@@ -1,10 +1,13 @@
 import { connect } from 'react-redux'
-import { vote, deleteCard, updateCard } from '../actions/board'
+import { upVote, downVote, deleteCard, updateCard } from '../actions/board'
 import DraggableCard from '../components/card/DraggableCard'
 
 const mapDispatchToProps = dispatch => ({
-    onVote: (cardId) => {
-        dispatch(vote(cardId))
+    onUpVote: (cardId) => {
+        dispatch(upVote(cardId))
+    },
+    onDownVote: (cardId) => {
+        dispatch(downVote(cardId))
     },
     onDelete: (cardId) => {
         dispatch(deleteCard(cardId))

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { css } from 'react-emotion'
+import { css, cx } from 'react-emotion'
 import FontAwesome from 'react-fontawesome'
 import colors from '../../styles/colors'
 import CardContainer from '../../containers/CardContainer'
@@ -19,6 +19,15 @@ const inner = css`
     background: ${ colors.offWhite };
     border: 4px solid ${ colors.black };
     padding: 1rem 1rem 0 1rem;
+`
+
+const newCardContainer = css`
+    display: flex;
+    margin-bottom: 1rem
+`
+
+const newCardButton = css`
+    font-size: 18px;
 `
 
 class Column extends Component {
@@ -66,8 +75,11 @@ class Column extends Component {
                             index={ index }
                         /> 
                     )))}
-                    <div>
-                        <New placeholder="New card" submitLabel="Add" onSubmit={ (value) => onNewCard(value, column.id) } />
+                    <div className={ cx(newCardContainer) }>
+                        { /*<New placeholder="New card" submitLabel="Add" onSubmit={ (value) => onNewCard(value, column.id) } /> */ }
+                        <button className={ newCardButton } onClick={ () => onNewCard("test jim", column.id) }>
+                            <FontAwesome name="plus"/> New card
+                        </button>
                     </div>
                 </div>
             </div>

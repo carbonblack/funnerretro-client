@@ -5,6 +5,7 @@ const socket = io(location.protocol + "//" + document.domain + ":5124/websocket"
 
 export const init = (store) => {
     socket.on('node_update', (payload) => {
+        console.log(payload.nodes)
         payload.nodes.forEach(node => {
             switch(node.type) {
                 case 'ColumnHeader':

@@ -12,7 +12,8 @@ export const createCard = (value, columnId) => {
             parent_id: parentCard ? parentCard.id : columnId,
             content: {
                 text: value,
-                votes: 0
+                votes: 0,
+                blur: false
             }
         }, headers.json).then((response) => {
             dispatch(receiveCard({
@@ -20,7 +21,8 @@ export const createCard = (value, columnId) => {
                 id: response.data.id,
                 parent: response.data.parent,
                 column_header: response.data.column_header,
-                votes: 0
+                votes: response.data.votes,
+                blur: response.data.content.blur
             }, columnId))
         })
     }
@@ -70,13 +72,22 @@ export const receiveColumn = column => ({
     column
 })
 
-export const vote = cardId => {
+
+export const upVote = cardId => {
+    return vote(cardId, 1)
+}
+
+export const downVote = cardId => {
+    return vote(cardId, -1)
+}
+
+const vote = (cardId, votes) => {
     return (dispatch, getState) => {
         axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`, {
             operations: [
                 {
                     field: 'votes',
-                    value: 1,
+                    value: votes,
                     operation: 'INCR'
                 }
             ]
