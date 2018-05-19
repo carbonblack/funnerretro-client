@@ -8,8 +8,6 @@ const container = css`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100%;
-    margin-top: -4rem;
     width: 100%;
 `
 
