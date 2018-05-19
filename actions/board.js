@@ -70,13 +70,13 @@ export const receiveColumn = column => ({
     column
 })
 
-export const vote = cardId => {
+export const vote = (cardId, v) => {
     return (dispatch, getState) => {
         axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`, {
             operations: [
                 {
                     field: 'votes',
-                    value: 1,
+                    value: v,
                     operation: 'INCR'
                 }
             ]

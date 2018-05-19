@@ -3,8 +3,8 @@ import { vote, deleteCard, updateCard } from '../actions/board'
 import DraggableCard from '../components/card/DraggableCard'
 
 const mapDispatchToProps = dispatch => ({
-    onVote: (cardId) => {
-        dispatch(vote(cardId))
+    onVote: (cardId, votes) => {
+        dispatch(vote(cardId, votes))
     },
     onDelete: (cardId) => {
         dispatch(deleteCard(cardId))

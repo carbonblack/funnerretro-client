@@ -29,10 +29,6 @@ const text = css`
     margin-bottom: 0.25rem;
 `
 
-const votes = css`
-    margin-left: 0.25rem;
-`
-
 class Card extends Component {
     constructor(props) {
         super(props)
@@ -78,9 +74,12 @@ class Card extends Component {
         return (
             <div className={ cx(baseCardContainer, cardContainer(isDragging)) }>
                 <p className={ text }>{ card.content.text }</p>
-                <button className={ actionButton } onClick={ () => onVote(card.id) }>
+                <button className={ actionButton } onClick={ () => onVote(card.id, 1) }>
                     <FontAwesome name="thumbs-o-up" />
-                    <span className={ votes }>{ card.content.votes }</span>
+                </button>
+                <span>{ card.content.votes }</span>
+                <button className={ actionButton } onClick={ () => onVote(card.id, -1) }>
+                    <FontAwesome name="thumbs-o-down" />
                 </button>
                 <button className={ actionButton } onClick={ () => this.onEdit() }>
                     <FontAwesome name="pencil" />
