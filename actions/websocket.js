@@ -5,6 +5,7 @@ const socket = io(location.protocol + "//" + document.domain + ":5124/websocket"
 
 export const init = (store) => {
     socket.on('node_update', (payload) => {
+        console.log(payload.nodes)
         payload.nodes.forEach(node => {
             switch(node.type) {
                 case 'ColumnHeader':
@@ -27,7 +28,8 @@ export const init = (store) => {
                             id: node.id,
                             parent: node.parent,
                             column_header: node.column_header,
-                            votes: 0
+                            votes: node.content.votes,
+                            blur: node.content.blur
                         }, node.column_header))
                     } else {
                         store.dispatch(successfulCardUpdate(node))

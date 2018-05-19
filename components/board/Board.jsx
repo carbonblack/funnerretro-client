@@ -13,7 +13,20 @@ const columnsContainer = css`
 `
 
 const newColumnContainer = css`
+    display: flex;
     margin-left: 1rem;
+    background-color: red;
+    padding: 1rem 1rem 0 1rem;
+`
+
+const newColumnInputButton = css`
+    color: blue;
+    font-size: 30px;
+    margin-bottom: 1rem;
+`
+
+const newColumnCreateBox = css`
+    margin-right: 0.2rem;
 `
 
 const inner = css`
@@ -41,6 +54,14 @@ const button = css`
 `
 
 class Board extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            showNewColumnInput: false
+        }
+    }
+
     componentDidMount() {
         this.props.load()
     }
@@ -65,7 +86,18 @@ class Board extends Component {
                 <div className={ columnsContainer }>
                     { columns.map(column => <ColumnContainer key={ `column-${column.id}` } column={ column } />) }
                     <div className={ cx(inner, newColumnContainer) }>
-                        <New placeholder="New column" submitLabel="Create" onSubmit={ value => onNewColumn(value) } />
+                        {
+                            this.state.showNewColumnInput &&
+                            <div className={newColumnCreateBox}>
+                                <New placeholder="New column" submitLabel="Create"
+                                     onSubmit={value => onNewColumn(value)}/>
+                            </div>
+                        }
+                        <button onClick={ () => this.setState({ showNewColumnInput: !this.state.showNewColumnInput }) } className={ newColumnInputButton }>
+                            {
+                                (this.state.showNewColumnInput && <FontAwesome name="close"/>) || <FontAwesome name="plus"/>
+                            }
+                        </button>
                     </div>
                 </div>
             </div>
