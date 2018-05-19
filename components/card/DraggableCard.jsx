@@ -78,9 +78,8 @@ class DraggableCard extends Component {
                     card={ card }
                     isDragging={ isDragging }
                     onDelete={ id => onDelete(id) }
-                    onUpVote={ id => onUpVote(id) }
-                    onDownVote={ id => onDownVote(id) }
-                    onTextChange={ (id, val) => onUpdateText(id, val) }
+                    onVote={ (id, votes) => onVote(id, votes) } 
+					onTextChange={ (id, val) => onUpdateText(id, val) }
 					onEdit={ id => onEdit(id) }
 				/>
             </div>
