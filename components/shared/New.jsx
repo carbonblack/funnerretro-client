@@ -6,11 +6,12 @@ import colors from '../../styles/colors'
 const container = css`
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 `
 
-const inputStyles = css`
+const inputStyles = error => css`
     flex-grow: 1;
-    border: 1px solid ${ colors.mediumGray };
+    border: 1px solid ${ error ? colors.pink : colors.mediumGray };
     margin-right: 0.5rem;
     padding: 0.5rem;
 
@@ -19,11 +20,18 @@ const inputStyles = css`
     }
 `
 
+const error = css`
+    color: ${ colors.pink };
+    flex-basis: 100%;
+    margin-top: 0.5rem;
+`
+
 class New extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            value: props.value ? props.value : ''
+            value: props.value ? props.value : '',
+            error: null
         }
     }
 
@@ -36,8 +44,17 @@ class New extends Component {
     onSubmit(e) {
         e.stopPropagation()
         e.preventDefault()
+
+        if(this.state.value === '') {
+            this.setState({
+                error: 'Field must not be empty'
+            })
+            return
+        }
+
         this.setState({
-            value: ''
+            value: '',
+            error: null
         })
         this.props.onSubmit(this.state.value)
     }
@@ -48,8 +65,9 @@ class New extends Component {
         return (
             <div>
                 <form className={ container } onSubmit={ () => false }>
-                    <input value={ this.state.value } className={ inputStyles } placeholder={ placeholder } onChange={ e => this.onChange(e.target.value) } />
+                    <input value={ this.state.value } className={ inputStyles(this.state.error) } placeholder={ placeholder } onChange={ e => this.onChange(e.target.value) } />
                     <button className={ baseButton } onClick={ e => this.onSubmit(e) }>{ submitLabel }</button>
+                    { this.state.error && <p className={ error }>{ this.state.error }</p> }
                 </form>
             </div>
         )
