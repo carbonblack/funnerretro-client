@@ -65,7 +65,7 @@ class NewBoard extends Component {
                         <New placeholder="Board name" submitLabel="Create" onSubmit={ boardName => onSubmit(boardName, this.state.template) } />
                         {templates.length > 0 && 
                             <div>
-                                <h4>Choose a template</h4>
+                                <h3>Choose a template</h3>
                                 {this.props.templates.map((template, index) => (
                                     <div key={ `template-${ index }` } className={ templateContainer }>
                                         <input type="radio" id={ `input-${ index }` } checked={ this.state.template === template.id } onChange={ () => this.setState({ template: template.id }) } />
