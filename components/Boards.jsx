@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { css } from 'react-emotion'
-import FontAwesome from 'react-fontawesome'
-import { Link } from 'react-router-dom'
 import colors from '../styles/colors'
-import { actionButton } from '../styles/button'
 import BoardsTable from './boards/BoardsTable'
 
 const container = css`
