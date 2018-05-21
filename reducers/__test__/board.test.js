@@ -284,4 +284,242 @@ describe('board reducers', () => {
             boardError: null
         })
     })
+
+    test('should receive card if the card doesn\'t exist', () => {
+        expect(reducer({
+            columns: [
+                {
+                    id: '1',
+                    cards: []
+                }
+            ]
+        }, {
+            type: actions.RECEIVE_CARD,
+            columnId: '1',
+            card: {
+                id: 'hi',
+                content: {
+                    text: 'gjgjg'
+                }
+            }
+        })).toEqual({
+            columns: [
+                {
+                    id: '1',
+                    cards: [
+                        {
+                            id: 'hi',
+                            content: {
+                                text: 'gjgjg'
+                            }
+                        }
+                    ]
+                }
+            ]
+        })
+    })
+
+    test('should not change the card if receiving a card that already exists', () => {
+        expect(reducer({
+            columns: [
+                {
+                    id: '1',
+                    cards: [
+                        {
+                            id: 'hi',
+                            content: {
+                                text: 'gjgjg'
+                            }
+                        }
+                    ]
+                }
+            ]
+        }, {
+            type: actions.RECEIVE_CARD,
+            columnId: '1',
+            card: {
+                id: 'hi',
+                content: {
+                    text: 'different text'
+                }
+            }
+        })).toEqual({
+            columns: [
+                {
+                    id: '1',
+                    cards: [
+                        {
+                            id: 'hi',
+                            content: {
+                                text: 'gjgjg'
+                            }
+                        }
+                    ]
+                }
+            ]
+        })
+    })
+
+    test('should not receive the card if columnId does not exist', () => {
+        expect(reducer({
+            columns: [
+                {
+                    id: '12',
+                    cards: []
+                }
+            ]
+        }, {
+            type: actions.RECEIVE_CARD,
+            columnId: '1',
+            card: {
+                id: 'hi',
+                content: {
+                    text: 'different text'
+                }
+            }
+        })).toEqual({
+            columns: [
+                {
+                    id: '12',
+                    cards: []
+                }
+            ]
+        })
+    })
+
+    test('should receive column if it doesn\'t exist', () => {
+        expect(reducer({
+            columns: []
+        }, {
+            type: actions.RECEIVE_COLUMN,
+            column: {
+                id: '11',
+                content: {
+                    text: 'hello'
+                },
+                cards: []
+            }
+        })).toEqual({
+            columns: [
+                {
+                    id: '11',
+                    content: {
+                        text: 'hello'
+                    },
+                    cards: []
+                }
+            ]
+        })
+    })
+
+    test('should not change column if receiving a column that already exists', () => {
+        expect(reducer({
+            columns: [
+                {
+                    id: '11',
+                    content: {
+                        text: 'hello'
+                    },
+                    cards: []
+                }
+            ]
+        }, {
+            type: actions.RECEIVE_COLUMN,
+            column: {
+                id: '11',
+                content: {
+                    text: 'different text'
+                },
+                cards: []
+            }
+        })).toEqual({
+            columns: [
+                {
+                    id: '11',
+                    content: {
+                        text: 'hello'
+                    },
+                    cards: []
+                }
+            ]
+        })
+    })
+
+    test('should delete column with given id', () => {
+        expect(reducer({
+            columns: [
+                {
+                    id: '12'
+                },
+                {
+                    id: '13'
+                },
+                {
+                    id: '14'
+                },
+                {
+                    id: '15'
+                }
+            ]
+        }, {
+            type: actions.DELETE_COLUMN,
+            columnId: '14'
+        })).toEqual({
+            columns: [
+                {
+                    id: '12'
+                },
+                {
+                    id: '13'
+                },
+                {
+                    id: '15'
+                }
+            ]
+        })
+    })
+
+    test('should delete card with given id', () => {
+        expect(reducer({
+            columns: [
+                {
+                    id: '1',
+                    cards: [
+                        {
+                            id: 'a',
+                        },
+                        {
+                            id: 'b',
+                        },
+                        {
+                            id: 'c',
+                        },
+                        {
+                            id: 'd',
+                        }
+                    ]
+                }
+            ]
+        }, {
+            type: actions.DELETE_CARD,
+            cardId: 'b'
+        })).toEqual({
+            columns: [
+                {
+                    id: '1',
+                    cards: [
+                        {
+                            id: 'a',
+                        },
+                        {
+                            id: 'c',
+                        },
+                        {
+                            id: 'd',
+                        }
+                    ]
+                }
+            ]
+        })
+    })
 })
