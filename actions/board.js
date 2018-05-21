@@ -84,11 +84,6 @@ export const vote = (cardId, v) => {
     }
 }
 
-export const successfulVote = cardId => ({
-    type: actionTypes.VOTE_ON_CARD,
-    cardId
-})
-
 export const getBoards = () => {
     return (dispatch) => {
         dispatch(fetchBoards())

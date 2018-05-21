@@ -7,9 +7,9 @@ describe('board reducers', () => {
             content: {},
             id: '',
             isFetchingBoard: false,
-            boardError: false,
+            boardError: null,
             isFetchingBoards: false,
-            boardsError: false,
+            boardsError: null,
             boards: [],
             columns: [],
             templates: []
@@ -198,7 +198,7 @@ describe('board reducers', () => {
             type: actions.FETCH_BOARDS
         })).toEqual({
             isFetchingBoards: true,
-            boardsError: false
+            boardsError: null
         })
     })
 
@@ -207,7 +207,81 @@ describe('board reducers', () => {
             type: actions.FETCH_BOARD
         })).toEqual({
             isFetchingBoard: true,
-            boardError: false
+            boardError: null
+        })
+    })
+
+    test('should set board error', () => {
+        expect(reducer({}, {
+            type: actions.FETCH_BOARD_ERROR,
+            error: 'hello'
+        })).toEqual({
+            boardError: 'hello',
+            isFetchingBoard: false
+        })
+    })
+
+    test('should set boards error', () => {
+        expect(reducer({}, {
+            type: actions.FETCH_BOARDS_ERROR,
+            error: 'hello'
+        })).toEqual({
+            boardsError: 'hello',
+            isFetchingBoards: false
+        })
+    })
+
+    test('should receive boards', () => {
+        expect(reducer({}, {
+            type: actions.RECEIVE_BOARDS,
+            boards: [
+                {
+                    id: '1',
+                    name: 'hi1',
+                    columns: []
+                },
+                {
+                    id: '2',
+                    name: 'hi2',
+                    columns: []
+                }
+            ]
+        })).toEqual({
+            boards: [
+                {
+                    id: '1',
+                    name: 'hi1',
+                    columns: []
+                },
+                {
+                    id: '2',
+                    name: 'hi2',
+                    columns: []
+                }
+            ],
+            isFetchingBoards: false,
+            boardsError: null
+        })
+    })
+
+    test('should receive board', () => {
+        expect(reducer({}, {
+            type: actions.RECEIVE_BOARD,
+            board: {
+                id: '1',
+                content: {
+                    name: 'hi1'
+                },
+                columns: []
+            }
+        })).toEqual({
+            id: '1',
+            content: {
+                name: 'hi1'
+            },
+            columns: [],
+            isFetchingBoard: false,
+            boardError: null
         })
     })
 })

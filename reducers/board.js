@@ -5,9 +5,9 @@ const initialState = {
     content: {},
     id: '',
     isFetchingBoard: false,
-    boardError: false,
+    boardError: null,
     isFetchingBoards: false,
-    boardsError: false,
+    boardsError: null,
     boards: [],
     columns: [],
     templates: []
@@ -49,31 +49,12 @@ const board = (state = initialState, action) => {
                 })
             })
         }
-    case actionTypes.VOTE_ON_CARD:
-        return {
-            ...state,
-            columns: state.columns.map((column) => {
-                return {
-                    ...column,
-                    cards: column.cards.map((card) => {
-                        if(card.id !== action.cardId) return card
-                        return {
-                            ...card,
-                            content: {
-                                ...card.content,
-                                votes: card.content.votes + 1
-                            }
-                        }
-                    })
-                }
-            })
-        }
     case actionTypes.RECEIVE_BOARDS:
         return {
             ...state,
             boards: action.boards,
             isFetchingBoards: false,
-            boardsError: false
+            boardsError: null
         }
     case actionTypes.RECEIVE_BOARD:
         return {
@@ -82,7 +63,7 @@ const board = (state = initialState, action) => {
             id: action.board.id,
             columns: action.board.columns,
             isFetchingBoard: false,
-            boardError: false
+            boardError: null
         }
     case actionTypes.FETCH_BOARDS_ERROR:
         return {
@@ -94,13 +75,13 @@ const board = (state = initialState, action) => {
         return {
             ...state,
             isFetchingBoards: true,
-            boardsError: false
+            boardsError: null
         }
     case actionTypes.FETCH_BOARD:
         return {
             ...state,
             isFetchingBoard: true,
-            boardError: false
+            boardError: null
         }
     case actionTypes.FETCH_BOARD_ERROR:
         return {
