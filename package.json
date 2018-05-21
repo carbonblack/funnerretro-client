@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "test": "jest",
+        "test:watch": "jest --watchAll",
         "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
         "build": "webpack",
         "lint": "eslint --ext .js --ext .jsx .",
