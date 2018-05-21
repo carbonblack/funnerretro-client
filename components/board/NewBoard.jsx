@@ -68,8 +68,8 @@ class NewBoard extends Component {
                                 <h4>Choose a template</h4>
                                 {this.props.templates.map((template, index) => (
                                     <div key={ `template-${ index }` } className={ templateContainer }>
-                                        <input type="radio" id="radioButton" checked={ this.state.template === template.id } onChange={ () => this.setState({ template: template.id }) } />
-                                        <span className={ templateName }>{ template.name }</span>
+                                        <input type="radio" id={ `input-${ index }` } checked={ this.state.template === template.id } onChange={ () => this.setState({ template: template.id }) } />
+                                        <label for={ `input-${ index }` } className={ templateName }>{ template.name }</label>
                                         {this.state.template === template.id &&
                                             <div>
                                                 <p className={ description }>{ template.description }</p>

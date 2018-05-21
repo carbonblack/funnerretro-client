@@ -7,7 +7,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Dosis", sans-serif;
 }
 
-p, span, a, button {
+p, span, a, button, label, input {
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
 }
 
