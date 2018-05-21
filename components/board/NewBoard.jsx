@@ -22,7 +22,7 @@ const header = css`
 
 const content = css`
     background: ${ colors.offWhite };
-    border: 4px solid ${ colors.black };
+    border: 5px solid ${ colors.black };
     padding: 2rem 4rem;
     border-radius: 2px;
     width: 50%;

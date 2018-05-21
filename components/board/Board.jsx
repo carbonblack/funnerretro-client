@@ -18,7 +18,7 @@ const newColumnContainer = css`
 
 const inner = css`
     background: ${ colors.offWhite };
-    border: 4px solid ${ colors.black };
+    border: 5px solid ${ colors.black };
     padding: 1rem 1rem 0 1rem;
     height: fit-content;
 `
@@ -31,7 +31,7 @@ const header = css`
 const innerHeader = css`
     display: flex;
     background: ${ colors.offWhite };
-    border: 4px solid ${ colors.black };
+    border: 5px solid ${ colors.black };
     padding: 1rem 2rem;
 `
 
