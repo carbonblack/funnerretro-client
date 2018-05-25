@@ -59,7 +59,7 @@ class Card extends Component {
             )
         }
 
-        if(card.blur) {
+        if(card.content.blur) {
             return (
                 <div className={ cx(baseCardContainer, blurCard) }>
                     <p className={ text }>{ card.content.text }</p>
