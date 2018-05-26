@@ -10,6 +10,10 @@ const baseCardContainer = css`
     margin-bottom: 1rem;
     padding: 0.5rem;
     border: 1px solid ${ colors.black };
+
+    form {
+        margin: 0;
+    }
 `
 
 const cardContainer = isDragging => css`
@@ -61,8 +65,10 @@ class Card extends Component {
 
         if(card.content.blur) {
             return (
-                <div className={ cx(baseCardContainer, blurCard) }>
-                    <p className={ text }>{ card.content.text }</p>
+                <div className={ baseCardContainer }>
+                    <div className={ blurCard }>
+                        <p className={ text }>{ card.content.text }</p>
+                    </div>
                 </div>
             )
         }
