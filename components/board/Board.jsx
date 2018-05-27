@@ -33,13 +33,50 @@ const button = css`
     margin-left: 1rem;
 `
 
+const actions = css`
+    position: relative;
+    margin-left: 2rem;
+    display: flex;
+    align-content: center;
+`
+
+const action = css`
+    ${ actionButton }
+    padding: 0.5rem 0.25rem;
+`
+
+const actionsInner = css`
+    position: absolute;
+    top: 1.5rem;
+    right: 0;
+    background: ${ colors.white };
+    box-shadow: 0px 2px 5px 2px ${ colors.gray };
+    padding: 0.5rem 1rem;
+`
+
 class Board extends Component {
+    constructor() {
+        super()
+
+        this.state = {
+            shouldShowActions: false
+        }
+    }
+
     componentDidMount() {
         this.props.load()
     }
 
     componentWillUnmount() {
         this.props.unload()
+    }
+
+    onDelete(id) {
+        this.setState({
+            shouldShowActions: false
+        })
+
+        this.props.onDelete(id)
     }
 
     render() {
@@ -50,9 +87,16 @@ class Board extends Component {
                 <div className={ header }>
                     <div className={ innerHeader }>
                         <h2>{ name }</h2>
-                        <button onClick={ () => this.props.onDelete(id) } className={ button }>
-                            <FontAwesome name="trash-o" />
-                        </button>
+                        <div className={ actions }>
+                            <button onClick={ () => this.setState({ shouldShowActions: !this.state.shouldShowActions }) } className={ actionButton }>
+                                <FontAwesome name="ellipsis-v" />
+                            </button>
+                            {this.state.shouldShowActions && 
+                                <div className={ actionsInner }>
+                                    <button onClick={ () => this.onDelete(id) } className={ action }>Delete</button>
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
                 <div className={ columnsContainer }>
