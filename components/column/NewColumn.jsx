@@ -3,15 +3,10 @@ import { css, cx } from 'react-emotion'
 import { baseButton } from '../../styles/button'
 import colors from '../../styles/colors'
 
-const newColumnButton = css`
-    border: 4px solid ${ colors.black };
-`
-
 const container = css`
     display: flex;
     flex-direction: column;
     background: ${ colors.offWhite };
-    border: 5px solid ${ colors.black };
     padding: 1rem;
     height: fit-content;
 `
@@ -24,7 +19,6 @@ const form = css`
 
 const inputStyles = error => css`
     flex-grow: 1;
-    border: 1px solid ${ error ? colors.pink : colors.mediumGray };
     margin-right: 0.5rem;
     padding: 0.75rem;
 
@@ -102,7 +96,7 @@ class NewColumn extends Component {
             )
         } else {
             return (
-                <button className={ cx(baseButton, newColumnButton) } onClick={ () => this.setState({ shouldShowNewColumnInput: true }) }>Create a new column</button>
+                <button className={ baseButton } onClick={ () => this.setState({ shouldShowNewColumnInput: true }) }>Create a new column</button>
             )
         }
     }

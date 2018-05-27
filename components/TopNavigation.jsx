@@ -11,34 +11,26 @@ const nav = css`
     padding: 0rem 3rem;
     margin-bottom: 2rem;
 
-    background: ${ colors.offWhite };
-    border-bottom: 4px solid ${ colors.black };
+    background: ${ colors.blue };
 
     a {
-        color: ${ colors.black };
+        color: ${ colors.white };
         text-decoration: none;
+        font-family: 'Dosis', sans-serif;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 1rem 2rem;
         
         &:hover {
-            color: ${ colors.darkGray };
+            background: ${ colors.lightBlue };
+            color: ${ colors.white };
+            transition: 0.2s;
         }
     }
 `
 
 const links = css`
     display: flex;
-
-    a {
-        padding: 1rem 2rem;
-        text-transform: uppercase;
-        font-weight: bold;
-        font-family: 'Dosis', sans-serif;
-
-        &:hover {
-            background: ${ colors.lightPink };
-            color: ${ colors.white };
-            transition: 0.2s;
-        }
-    }
 `
 
 const brand = css`
@@ -50,7 +42,7 @@ const TopNavigation = ({ shouldShow }) => {
     if(shouldShow) {
         return (
             <div className={ nav }>
-                <Link to="/"><img src={ brandLogo } className={ brand } /></Link>
+                <Link to="/">RetroSpec</Link>
                 <div className={ links }>
                     <Link to="/boards">All Boards</Link>
                     <Link to="/board/new">Create Board</Link>
