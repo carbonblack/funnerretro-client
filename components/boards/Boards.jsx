@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { css } from 'react-emotion'
-import colors from '../styles/colors'
-import BoardsTable from './boards/BoardsTable'
+import colors from '../../styles/colors'
+import BoardsTable from './BoardsTable'
 
 const container = css`
     display: flex;
