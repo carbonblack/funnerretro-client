@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { css, cx } from 'react-emotion'
+import { css } from 'react-emotion'
 import FontAwesome from 'react-fontawesome'
 import ColumnContainer from '../../containers/ColumnContainer'
 import { actionButton } from '../../styles/button'
-import New from '../shared/New'
+import NewColumn from '../column/NewColumn'
 import colors from '../../styles/colors'
 
 const columnsContainer = css`
@@ -14,13 +14,6 @@ const columnsContainer = css`
 
 const newColumnContainer = css`
     margin-left: 1rem;
-`
-
-const inner = css`
-    background: ${ colors.offWhite };
-    border: 5px solid ${ colors.black };
-    padding: 1rem 1rem 0 1rem;
-    height: fit-content;
 `
 
 const header = css`
@@ -64,8 +57,8 @@ class Board extends Component {
                 </div>
                 <div className={ columnsContainer }>
                     { columns.map(column => <ColumnContainer key={ `column-${column.id}` } column={ column } />) }
-                    <div className={ cx(inner, newColumnContainer) }>
-                        <New placeholder="New column" submitLabel="Create" onSubmit={ value => onNewColumn(value) } />
+                    <div className={ newColumnContainer }>
+                        <NewColumn placeholder="Column name" submitLabel="Create" onSubmit={ value => onNewColumn(value) } />
                     </div>
                 </div>
             </div>
