@@ -12,7 +12,7 @@ const table = css`
     justify-content: flex-start;
     padding: 2rem 4rem;
     background: ${ colors.white };
-    border: 5px solid ${ colors.black };
+    border-radius: 4px;
 `
 
 const row = css`
@@ -30,7 +30,6 @@ const boardContainer = css`
 const boardInner = css`
     display: flex;
     background: ${ colors.offWhite };
-    border: 5px solid ${ colors.black };
     padding: 1rem 2rem;
     border-radius: 2px;
     position: relative;

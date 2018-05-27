@@ -8,8 +8,8 @@ import New from '../shared/New'
 const baseCardContainer = css`
     background: ${ colors.white };
     margin-bottom: 1rem;
-    padding: 0.5rem;
-    border: 1px solid ${ colors.black };
+    padding: 1rem 2rem;
+    border-radius: 4px;
 
     form {
         margin: 0;
@@ -26,7 +26,8 @@ const blurCard = css`
 `
 
 const text = css`
-    margin-bottom: 0.25rem;
+    margin-bottom: 1rem;
+    padding: 0 0.5rem;
 `
 
 class Card extends Component {

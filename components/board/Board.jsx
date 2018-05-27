@@ -18,14 +18,12 @@ const newColumnContainer = css`
 
 const header = css`
     display: flex;
-    justify-content: center;
 `
 
 const innerHeader = css`
     display: flex;
-    background: ${ colors.offWhite };
-    border: 5px solid ${ colors.black };
     padding: 1rem 2rem;
+    margin: 0 1rem;
 `
 
 const button = css`

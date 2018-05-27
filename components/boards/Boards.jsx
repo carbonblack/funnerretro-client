@@ -26,8 +26,6 @@ const header = css`
 `
 
 const headerInner = css`
-    background: ${ colors.offWhite };
-    border: 5px solid ${ colors.black };
     padding: 1rem 2rem;
     border-radius: 2px;
     text-transform: uppercase;

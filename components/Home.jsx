@@ -23,7 +23,6 @@ const actions = css`
 
 const button = css`
     ${ baseButton }
-    border: 5px solid ${ colors.black };
     text-transform: uppercase;
     font-weight: bold;
     padding: 0.75rem 1rem;
