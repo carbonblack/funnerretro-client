@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { css } from 'react-emotion'
 import New from '../shared/New'
 import Actions from '../shared/Actions'
