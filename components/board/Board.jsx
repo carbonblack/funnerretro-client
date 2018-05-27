@@ -7,7 +7,6 @@ import Actions from '../shared/Actions'
 
 const columnsContainer = css`
     display: flex;
-    overflow-x: auto;
     margin-top: 2rem;
 `
 
@@ -42,7 +41,7 @@ class Board extends Component {
         const { name, id, columns, onNewColumn } = this.props
 
         const actions = [
-            { text: 'Delete', action: (id) => this.props.onDelete(id) }
+            { text: 'Delete', action: () => this.props.onDelete(id) }
         ]
 
         return (
@@ -50,7 +49,7 @@ class Board extends Component {
                 <div className={ header }>
                     <div className={ innerHeader }>
                         <h2>{ name }</h2>
-                        <Actions id={ id } actions={ actions } />
+                        <Actions actions={ actions } />
                     </div>
                 </div>
                 <div className={ columnsContainer }>

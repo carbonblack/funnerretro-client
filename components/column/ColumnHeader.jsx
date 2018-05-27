@@ -10,30 +10,26 @@ const header = css`
     margin-bottom: 1rem;
 `
 
-class ColumnHeader extends Component {
-    render() {
-        const { name, id, editing, onSave } = this.props
+const ColumnHeader = ({ name, id, editing, onSave, onEdit, onDelete }) => {
+    const actions = [
+        { text: 'Edit', action: () => onEdit(id) },
+        { text: 'Delete', action: () => onDelete(id) }
+    ]
 
-        const actions = [
-            { text: 'Edit', action: (id) => this.props.onEdit(id) },
-            { text: 'Delete', action: (id) => this.props.onDelete(id) }
-        ]
-
-        if(editing) {
-            return (
-                <div>
-                    <New value={ name } onSubmit={ val => onSave(val) } submitLabel="Save" />
-                </div>
-            )
-        }
-    
+    if(editing) {
         return (
-            <div className={ header }>
-                <h3>{ name }</h3>
-                <Actions id={ id } actions={ actions } />
+            <div>
+                <New value={ name } onSubmit={ val => onSave(val) } submitLabel="Save" />
             </div>
         )
     }
+
+    return (
+        <div className={ header }>
+            <h3>{ name }</h3>
+            <Actions actions={ actions } />
+        </div>
+    )
 }
 
 export default ColumnHeader

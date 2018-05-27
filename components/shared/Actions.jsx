@@ -12,7 +12,12 @@ const actions = css`
 
 const action = css`
     ${ actionButton }
-    padding: 0.5rem 0.25rem;
+    padding: 0.5rem 0rem;
+`
+
+const actionToggle = css`
+    ${ actionButton }
+    padding: 0;
 `
 
 const actionsInner = css`
@@ -33,18 +38,18 @@ class Actions extends Component {
         }
     }
 
-    onActionClick(action) {
+    onActionClick(a) {
         this.setState({
             shouldShowActions: false
         })
 
-        action.action(this.props.id)
+        a.action()
     }
 
     render() {
         return (
             <div className={ actions }>
-                <button onClick={ () => this.setState({ shouldShowActions: !this.state.shouldShowActions }) } className={ actionButton }>
+                <button onClick={ () => this.setState({ shouldShowActions: !this.state.shouldShowActions }) } className={ actionToggle }>
                     <FontAwesome name="ellipsis-v" />
                 </button>
                 {this.state.shouldShowActions &&

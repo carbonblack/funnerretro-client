@@ -54,7 +54,7 @@ export const createColumn = (value) => {
         }, headers.json).then((response) => {
             dispatch(receiveColumn({
                 id: response.data.id,
-                contnet: response.data.content,
+                content: response.data.content,
                 parent_id: response.data.parent,
                 orig_version: response.data.orig_version,
                 cards: []
