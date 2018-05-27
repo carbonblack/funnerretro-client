@@ -9,7 +9,7 @@ export const createCard = (value, columnId) => {
         const cardsInColumn = getState().board.columns.filter(column => column.id === columnId)[0].cards
         const parentCard = cardsInColumn[cardsInColumn.length - 1]
         axios.post(`/api/v1/boards/${ boardId }/nodes`, {
-            parent_id: parentCard ? parentCard.id : columnId,
+            parent_id: columnId,
             content: {
                 text: value,
                 votes: 0

@@ -56,6 +56,9 @@ class Column extends Component {
                         onSave={ val => this.onSave(val) }
                         onEdit={ () => this.onEdit() }
                     />
+                    <div>
+                        <New placeholder="New card" submitLabel="Add" onSubmit={ (value) => onNewCard(value, column.id) } />
+                    </div>
                     { column.cards.map(((card, index) => (
                         <CardContainer
                             key={ `card-${card.id}` }
@@ -65,9 +68,6 @@ class Column extends Component {
                             index={ index }
                         /> 
                     )))}
-                    <div>
-                        <New placeholder="New card" submitLabel="Add" onSubmit={ (value) => onNewCard(value, column.id) } />
-                    </div>
                 </div>
             </div>
         )
