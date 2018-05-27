@@ -6,8 +6,6 @@ import { push } from 'react-router-redux'
 export const createCard = (value, columnId) => {
     return (dispatch, getState) => {
         const boardId = getState().board.id
-        const cardsInColumn = getState().board.columns.filter(column => column.id === columnId)[0].cards
-        const parentCard = cardsInColumn[cardsInColumn.length - 1]
         axios.post(`/api/v1/boards/${ boardId }/nodes`, {
             parent_id: columnId,
             content: {
