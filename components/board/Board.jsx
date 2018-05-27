@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { css } from 'react-emotion'
-import FontAwesome from 'react-fontawesome'
 import ColumnContainer from '../../containers/ColumnContainer'
-import { actionButton } from '../../styles/button'
 import NewColumn from '../column/NewColumn'
 import colors from '../../styles/colors'
+import Actions from '../shared/Actions'
 
 const columnsContainer = css`
     display: flex;
@@ -23,46 +22,14 @@ const header = css`
 
 const innerHeader = css`
     display: flex;
+    justify-content: space-between;
+    min-width: 10%;
     background: ${ colors.offWhite };
     border: 5px solid ${ colors.black };
     padding: 1rem 2rem;
 `
 
-const button = css`
-    ${ actionButton }
-    margin-left: 1rem;
-`
-
-const actions = css`
-    position: relative;
-    margin-left: 2rem;
-    display: flex;
-    align-content: center;
-`
-
-const action = css`
-    ${ actionButton }
-    padding: 0.5rem 0.25rem;
-`
-
-const actionsInner = css`
-    position: absolute;
-    top: 1.5rem;
-    right: 0;
-    background: ${ colors.white };
-    box-shadow: 0px 2px 5px 2px ${ colors.gray };
-    padding: 0.5rem 1rem;
-`
-
 class Board extends Component {
-    constructor() {
-        super()
-
-        this.state = {
-            shouldShowActions: false
-        }
-    }
-
     componentDidMount() {
         this.props.load()
     }
@@ -71,32 +38,19 @@ class Board extends Component {
         this.props.unload()
     }
 
-    onDelete(id) {
-        this.setState({
-            shouldShowActions: false
-        })
-
-        this.props.onDelete(id)
-    }
-
     render() {
         const { name, id, columns, onNewColumn } = this.props
+
+        const actions = [
+            { text: 'Delete', action: (id) => this.props.onDelete(id) }
+        ]
 
         return (
             <div>
                 <div className={ header }>
                     <div className={ innerHeader }>
                         <h2>{ name }</h2>
-                        <div className={ actions }>
-                            <button onClick={ () => this.setState({ shouldShowActions: !this.state.shouldShowActions }) } className={ actionButton }>
-                                <FontAwesome name="ellipsis-v" />
-                            </button>
-                            {this.state.shouldShowActions && 
-                                <div className={ actionsInner }>
-                                    <button onClick={ () => this.onDelete(id) } className={ action }>Delete</button>
-                                </div>
-                            }
-                        </div>
+                        <Actions id={ id } actions={ actions } />
                     </div>
                 </div>
                 <div className={ columnsContainer }>
