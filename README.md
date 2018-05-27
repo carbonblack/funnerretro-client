@@ -1,7 +1,8 @@
 # RetroSpec Client
 
-[![Build Status](https://travis-ci.org/carbonblack/retrospec-client.svg?branch=master)](https://travis-ci.org/carbonblack/retrospec-client)
-![Coverage Status](https://img.shields.io/coveralls/github/carbonblack/retrospec-client.svg)
+
+[![Build Status](https://img.shields.io/travis/carbonblack/retrospec-client.svg)](https://travis-ci.org/carbonblack/retrospec-client)
+[![Coverage Status](https://img.shields.io/coveralls/github/carbonblack/retrospec-client.svg)](https://coveralls.io/github/carbonblack/retrospec-client)
 
 
 This is the UI for RetroSpec.
