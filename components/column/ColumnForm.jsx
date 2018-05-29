@@ -3,7 +3,7 @@ import { css, cx } from 'react-emotion'
 import { baseButton } from '../../styles/button'
 import colors from '../../styles/colors'
 
-const newColumnButton = css`
+const ColumnFormButton = css`
     border: 4px solid ${ colors.black };
 `
 
@@ -43,12 +43,12 @@ const error = css`
     margin-top: 1rem;
 `
 
-class NewColumn extends Component {
+class ColumnForm extends Component {
     constructor() {
         super()
 
         this.state = {
-            shouldShowNewColumnInput: false,
+            shouldShowColumnFormInput: false,
             name: '',
             error: null
         }
@@ -56,7 +56,7 @@ class NewColumn extends Component {
 
     onCancel() {
         this.setState({ 
-            shouldShowNewColumnInput: false, 
+            shouldShowColumnFormInput: false, 
             error: null, 
             name: '' 
         })
@@ -84,7 +84,7 @@ class NewColumn extends Component {
     render() {
         const { placeholder, submitLabel } = this.props
 
-        if(this.state.shouldShowNewColumnInput) {
+        if(this.state.shouldShowColumnFormInput) {
             return (
                 <div className={ container }>
                     <form className={ form } onSubmit={ () => false }>
@@ -102,10 +102,10 @@ class NewColumn extends Component {
             )
         } else {
             return (
-                <button className={ cx(baseButton, newColumnButton) } onClick={ () => this.setState({ shouldShowNewColumnInput: true }) }>Create a new column</button>
+                <button className={ cx(baseButton, ColumnFormButton) } onClick={ () => this.setState({ shouldShowColumnFormInput: true }) }>Create a new column</button>
             )
         }
     }
 }
 
-export default NewColumn
+export default ColumnForm

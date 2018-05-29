@@ -3,7 +3,7 @@ import { Route, Switch, withRouter } from 'react-router-dom'
 import Home from './Home'
 import BoardsContainer from '../containers/BoardsContainer'
 import BoardContainer from '../containers/BoardContainer'
-import NewBoardContainer from '../containers/NewBoardContainer'
+import BoardFormContainer from '../containers/BoardFormContainer'
 import TopNavigation from './TopNavigation'
 
 const Routes = ({ location }) => (
@@ -12,7 +12,7 @@ const Routes = ({ location }) => (
         <div>
             <Switch>
                 <Route exact path="/" component={ Home } />
-                <Route path="/board/new" component={ NewBoardContainer } />
+                <Route path="/board/new" component={ BoardFormContainer } />
                 <Route path="/board/:id" component={ BoardContainer } />
                 <Route path="/boards" component={ BoardsContainer } />
             </Switch>

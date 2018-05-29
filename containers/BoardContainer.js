@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    onNewColumn: (value) => {
+    onColumnForm: (value) => {
         dispatch(createColumn(value))
     },
     load: () => {

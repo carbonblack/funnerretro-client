@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { css } from 'react-emotion'
 import ColumnContainer from '../../containers/ColumnContainer'
-import NewColumn from '../column/NewColumn'
+import ColumnForm from '../column/ColumnForm'
 import colors from '../../styles/colors'
 import Actions from '../shared/Actions'
 
@@ -10,7 +10,7 @@ const columnsContainer = css`
     margin-top: 2rem;
 `
 
-const newColumnContainer = css`
+const ColumnFormContainer = css`
     margin-left: 1rem;
 `
 
@@ -38,7 +38,7 @@ class Board extends Component {
     }
 
     render() {
-        const { name, id, columns, onNewColumn } = this.props
+        const { name, id, columns, onColumnForm } = this.props
 
         const actions = [
             { text: 'Delete', action: () => this.props.onDelete(id) }
@@ -54,8 +54,8 @@ class Board extends Component {
                 </div>
                 <div className={ columnsContainer }>
                     { columns.map(column => <ColumnContainer key={ `column-${column.id}` } column={ column } />) }
-                    <div className={ newColumnContainer }>
-                        <NewColumn placeholder="Column name" submitLabel="Create" onSubmit={ value => onNewColumn(value) } />
+                    <div className={ ColumnFormContainer }>
+                        <ColumnForm placeholder="Column name" submitLabel="Create" onSubmit={ value => onColumnForm(value) } />
                     </div>
                 </div>
             </div>

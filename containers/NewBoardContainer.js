@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import NewBoard from '../components/board/NewBoard'
+import BoardForm from '../components/board/BoardForm'
 import { createBoard, getTemplates } from '../actions/board'
 
 const mapStateToProps = state => ({
@@ -18,4 +18,4 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewBoard)
+export default connect(mapStateToProps, mapDispatchToProps)(BoardForm)

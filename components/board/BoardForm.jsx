@@ -41,7 +41,7 @@ const description = css`
     margin-top: 0.25rem;
 `
 
-class NewBoard extends Component {
+class BoardForm extends Component {
     constructor() {
         super()
 
@@ -86,4 +86,4 @@ class NewBoard extends Component {
     }
 }
 
-export default NewBoard
+export default BoardForm
