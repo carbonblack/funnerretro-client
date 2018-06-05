@@ -479,6 +479,31 @@ describe('board reducers', () => {
         })
     })
 
+    test('should leave board unchanged when deleting a column that does not exist', () => {
+        expect(reducer({
+            columns: [
+                {
+                    id: '12'
+                },
+                {
+                    id: '13'
+                }
+            ]
+        }, {
+            type: actions.DELETE_COLUMN,
+            columnId: 'random'
+        })).toEqual({
+            columns: [
+                {
+                    id: '12'
+                },
+                {
+                    id: '13'
+                }
+            ]
+        })
+    })
+
     test('should delete card with given id', () => {
         expect(reducer({
             columns: [
@@ -516,6 +541,41 @@ describe('board reducers', () => {
                         },
                         {
                             id: 'd',
+                        }
+                    ]
+                }
+            ]
+        })
+    })
+
+    test('should leave column unchanged when deleting a card that does not exist in the column', () => {
+        expect(reducer({
+            columns: [
+                {
+                    id: '1',
+                    cards: [
+                        {
+                            id: 'a',
+                        },
+                        {
+                            id: 'b',
+                        }
+                    ]
+                }
+            ]
+        }, {
+            type: actions.DELETE_CARD,
+            cardId: 'random'
+        })).toEqual({
+            columns: [
+                {
+                    id: '1',
+                    cards: [
+                        {
+                            id: 'a',
+                        },
+                        {
+                            id: 'b',
                         }
                     ]
                 }
