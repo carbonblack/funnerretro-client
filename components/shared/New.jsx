@@ -35,13 +35,9 @@ class New extends Component {
         }
     }
 
-    onChange(value) {
-        this.setState({
-            value: value
-        })
-    }
+    onChange = value => this.setState({ value: value })
 
-    onSubmit(e) {
+    onSubmit = (e) => {
         e.stopPropagation()
         e.preventDefault()
 

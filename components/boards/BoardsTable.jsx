@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import FontAwesome from 'react-fontawesome'
 import { Link } from 'react-router-dom'
@@ -72,6 +73,15 @@ const BoardsTable = ({ boards, onDelete }) => {
             ))}
         </div>
     )
+}
+
+BoardsTable.propTypes = {
+    boards: PropTypes.array,
+    onDelete: PropTypes.func.isRequired
+}
+
+BoardsTable.defaultProps = {
+    boards: []
 }
 
 export default BoardsTable

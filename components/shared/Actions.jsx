@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import FontAwesome from 'react-fontawesome'
 import { actionButton } from '../../styles/button'
@@ -60,6 +61,14 @@ class Actions extends Component {
             </div>
         )
     }
+}
+
+Actions.propTypes = {
+    actions: PropTypes.array
+}
+
+Actions.defaultProps = {
+    actions: []
 }
 
 export default Actions

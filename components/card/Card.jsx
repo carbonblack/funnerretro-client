@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { css, cx } from 'react-emotion'
 import FontAwesome from 'react-fontawesome'
 import colors from '../../styles/colors'
@@ -103,6 +104,15 @@ class Card extends Component {
             </div>
         )
     }
+}
+
+Card.propTypes = {
+    onEdit: PropTypes.func.isRequired,
+    card: PropTypes.object.isRequired,
+    onTextChange: PropTypes.func.isRequired,
+    isDragging: PropTypes.bool.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onVote: PropTypes.func.isRequired
 }
 
 export default Card
