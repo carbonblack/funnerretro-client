@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import colors from '../../styles/colors'
 import CardContainer from '../../containers/CardContainer'
@@ -68,6 +69,18 @@ class Column extends Component {
             </div>
         )
     }
+}
+
+Column.propTypes = {
+    onNameChange: PropTypes.func.isRequired,
+    column: PropTypes.object,
+    onNewCard: PropTypes.func.isRequired,
+    moveCard: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
+}
+
+Column.defaultProps = {
+    column: {}
 }
 
 export default Column

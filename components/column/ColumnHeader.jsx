@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import New from '../shared/New'
 import Actions from '../shared/Actions'
@@ -30,6 +31,20 @@ const ColumnHeader = ({ name, id, editing, onSave, onEdit, onDelete }) => {
             <Actions actions={ actions } />
         </div>
     )
+}
+
+ColumnHeader.propTypes = {
+    name: PropTypes.string,
+    id: PropTypes.string.isRequired,
+    editing: PropTypes.bool,
+    onSave: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired
+}
+
+ColumnHeader.defaultProps = {
+    name: '',
+    editing: false
 }
 
 export default ColumnHeader

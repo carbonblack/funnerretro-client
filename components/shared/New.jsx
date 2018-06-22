@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import { baseButton } from '../../styles/button'
 import colors from '../../styles/colors'
@@ -68,6 +69,19 @@ class New extends Component {
             </div>
         )
     }
+}
+
+New.propTypes = {
+    value: PropTypes.string,
+    onSubmit: PropTypes.func.isRequired,
+    placeholder: PropTypes.string,
+    submitLabel: PropTypes.string
+}
+
+New.defaultProps = {
+    value: '',
+    placeholder: '',
+    submitLabel: ''
 }
 
 export default New
