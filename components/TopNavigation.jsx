@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import { Link } from 'react-router-dom'
 import brandLogo from '../assets/icon.png'
@@ -60,6 +61,10 @@ const TopNavigation = ({ shouldShow }) => {
     }
 
     return null
+}
+
+TopNavigation.propTypes = {
+    shouldShow: PropTypes.bool
 }
 
 export default TopNavigation

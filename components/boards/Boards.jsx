@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import colors from '../../styles/colors'
 import BoardsTable from './BoardsTable'
@@ -50,6 +51,16 @@ class Boards extends Component {
             </div>
         )
     }
+}
+
+Boards.propTypes = {
+    load: PropTypes.func.isRequired,
+    boards: PropTypes.array,
+    onDelete: PropTypes.func.isRequired
+}
+
+Boards.defaultProps = {
+    boards: []
 }
 
 export default Boards

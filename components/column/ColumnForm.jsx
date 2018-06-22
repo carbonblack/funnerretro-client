@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { css, cx } from 'react-emotion'
 import { baseButton } from '../../styles/button'
 import colors from '../../styles/colors'
@@ -44,14 +45,10 @@ const error = css`
 `
 
 class ColumnForm extends Component {
-    constructor() {
-        super()
-
-        this.state = {
-            shouldShowColumnFormInput: false,
-            name: '',
-            error: null
-        }
+    state = {
+        shouldShowColumnFormInput: false,
+        name: '',
+        error: null
     }
 
     onCancel() {
@@ -106,6 +103,17 @@ class ColumnForm extends Component {
             )
         }
     }
+}
+
+ColumnForm.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    placeholder: PropTypes.string,
+    submitLabel: PropTypes.string
+}
+
+ColumnForm.defaultProps = {
+    placeholder: '',
+    submitLabel: ''
 }
 
 export default ColumnForm

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import ColumnContainer from '../../containers/ColumnContainer'
 import ColumnForm from '../column/ColumnForm'
@@ -61,6 +62,21 @@ class Board extends Component {
             </div>
         )
     }
+}
+
+Board.propTypes = {
+    load: PropTypes.func.isRequired,
+    unload: PropTypes.func.isRequired,
+    name: PropTypes.string,
+    id: PropTypes.string.isRequired,
+    columns: PropTypes.array,
+    onColumnForm: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired
+}
+
+Board.defaultProps = {
+    name: '',
+    columns: []
 }
 
 export default Board

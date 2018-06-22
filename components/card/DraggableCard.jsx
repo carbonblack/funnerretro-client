@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom' // TODO probably want to use callback refs instead
 import { DragSource, DropTarget } from 'react-dnd'
 import Card from './Card'
@@ -85,6 +86,17 @@ class DraggableCard extends Component {
             </div>
         ))
     }
+}
+
+DraggableCard.propTypes = {
+    connectDragSource: PropTypes.func.isRequired,
+    connectDropTarget: PropTypes.func.isRequired,
+    card: PropTypes.object.isRequired,
+    isDragging: PropTypes.bool.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onVote: PropTypes.func.isRequired,
+    onUpdateText: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired
 }
 
 export default DropTargetConnector(DragSourceConnector(DraggableCard))

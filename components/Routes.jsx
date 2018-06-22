@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import Home from './Home'
 import BoardsContainer from '../containers/BoardsContainer'
@@ -19,5 +20,9 @@ const Routes = ({ location }) => (
         </div>
     </div>
 )
+
+Routes.propTypes = {
+    location: PropTypes.object.isRequired
+}
 
 export default withRouter(Routes)

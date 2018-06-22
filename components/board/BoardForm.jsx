@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import New from '../shared/New'
 import colors from '../../styles/colors'
@@ -42,12 +43,8 @@ const description = css`
 `
 
 class BoardForm extends Component {
-    constructor() {
-        super()
-
-        this.state = {
-            template: 'empty'
-        }
+    state = {
+        template: 'empty'
     }
 
     componentDidMount() {
@@ -84,6 +81,16 @@ class BoardForm extends Component {
             </div>
         )
     }
+}
+
+BoardForm.propTypes = {
+    load: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    templates: PropTypes.array
+}
+
+BoardForm.defaultProps = {
+    templates: []
 }
 
 export default BoardForm
