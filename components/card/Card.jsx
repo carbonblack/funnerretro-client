@@ -41,12 +41,8 @@ const firstActionButton = css`
 `
 
 class Card extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            editing: false
-        }
+    state = {
+        editing: false
     }
 
     onEdit() {

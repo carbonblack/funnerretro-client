@@ -44,14 +44,10 @@ const error = css`
 `
 
 class ColumnForm extends Component {
-    constructor() {
-        super()
-
-        this.state = {
-            shouldShowColumnFormInput: false,
-            name: '',
-            error: null
-        }
+    state = {
+        shouldShowColumnFormInput: false,
+        name: '',
+        error: null
     }
 
     onCancel() {

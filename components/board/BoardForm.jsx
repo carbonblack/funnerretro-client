@@ -42,12 +42,8 @@ const description = css`
 `
 
 class BoardForm extends Component {
-    constructor() {
-        super()
-
-        this.state = {
-            template: 'empty'
-        }
+    state = {
+        template: 'empty'
     }
 
     componentDidMount() {

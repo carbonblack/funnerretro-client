@@ -21,12 +21,8 @@ const inner = css`
 `
 
 class Column extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            editing: false
-        }
+    state = {
+        editing: false
     }
 
     onEdit() {

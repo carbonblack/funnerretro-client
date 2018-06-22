@@ -30,12 +30,8 @@ const actionsInner = css`
 `
 
 class Actions extends Component {
-    constructor() {
-        super()
-
-        this.state = {
-            shouldShowActions: false
-        }
+    state = {
+        shouldShowActions: false
     }
 
     onActionClick(a) {
