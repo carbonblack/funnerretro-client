@@ -10,6 +10,7 @@ const actions = css`
     position: relative;
     display: flex;
     align-content: center;
+    padding: 0 0.25rem;
 `
 
 const action = css`
