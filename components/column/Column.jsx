@@ -21,6 +21,11 @@ const inner = css`
     padding: 1rem 1rem 0 1rem;
 `
 
+const cards = css`
+    overflow-y: auto;
+    max-height: 61vh;
+`
+
 class Column extends Component {
     state = {
         editing: false
@@ -56,15 +61,17 @@ class Column extends Component {
                     <div>
                         <New placeholder="New card" submitLabel="Add" onSubmit={ (value) => onNewCard(value, column.id) } />
                     </div>
-                    { column.cards.map(((card, index) => (
-                        <CardContainer
-                            key={ `card-${card.id}` }
-                            card={ card }
-                            columnId={ column.id }
-                            moveCard={ (dragIndex, hoverIndex) => moveCard(column.id, dragIndex, hoverIndex) }
-                            index={ index }
-                        /> 
-                    )))}
+                    <div className={ cards }>
+                        { column.cards.map(((card, index) => (
+                            <CardContainer
+                                key={ `card-${card.id}` }
+                                card={ card }
+                                columnId={ column.id }
+                                moveCard={ (dragIndex, hoverIndex) => moveCard(column.id, dragIndex, hoverIndex) }
+                                index={ index }
+                            />
+                        )))}
+                    </div>
                 </div>
             </div>
         )
