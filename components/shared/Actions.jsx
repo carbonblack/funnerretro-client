@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
-import onClickOutside from "react-onclickoutside";
+import onClickOutside from 'react-onclickoutside'
 import FontAwesome from 'react-fontawesome'
 import { actionButton } from '../../styles/button'
 import colors from '../../styles/colors'
