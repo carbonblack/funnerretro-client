@@ -18,7 +18,7 @@ export const baseButton = css`
 
 export const actionButton = css`
     font-size: 0.9rem;
-    color: ${ colors.mediumGray };
+    color: ${ colors.offBlack };
     border: 0;
     background: transparent;
 
@@ -27,6 +27,6 @@ export const actionButton = css`
     }
 
     &:hover {
-        color: ${ colors.darkGray };
+        color: ${ colors.mediumGray };
     }
 `

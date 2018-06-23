@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
+import onClickOutside from "react-onclickoutside";
 import FontAwesome from 'react-fontawesome'
 import { actionButton } from '../../styles/button'
 import colors from '../../styles/colors'
@@ -35,7 +36,13 @@ class Actions extends Component {
         shouldShowActions: false
     }
 
-    onActionClick(a) {
+    handleClickOutside = () => {
+        this.setState({
+            shouldShowActions: false
+        })
+    }
+
+    onActionClick = a => {
         this.setState({
             shouldShowActions: false
         })
@@ -71,4 +78,4 @@ Actions.defaultProps = {
     actions: []
 }
 
-export default Actions
+export default onClickOutside(Actions)
