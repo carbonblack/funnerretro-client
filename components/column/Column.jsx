@@ -87,7 +87,13 @@ Column.propTypes = {
 }
 
 Column.defaultProps = {
-    column: {}
+    column: {
+        id: '',
+        content: {
+            name: ''
+        },
+        cards: []
+    }
 }
 
 export default Column

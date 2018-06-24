@@ -14,12 +14,12 @@ const actions = css`
 `
 
 const action = css`
-    ${ actionButton }
+    ${ actionButton };
     padding: 0.5rem 0rem;
 `
 
 const actionToggle = css`
-    ${ actionButton }
+    ${ actionButton };
     padding: 0;
 `
 
@@ -78,5 +78,7 @@ Actions.propTypes = {
 Actions.defaultProps = {
     actions: []
 }
+
+export { Actions }
 
 export default onClickOutside(Actions)
