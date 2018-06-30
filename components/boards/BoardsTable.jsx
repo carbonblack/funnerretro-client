@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import FontAwesome from 'react-fontawesome'
 import { Link } from 'react-router-dom'
-import colors from '../../styles/colors'
-import { actionButton } from '../../styles/button'
+import colors from 'styles/colors'
+import { actionButton } from 'styles/button'
 
 const table = css`
     display: flex;

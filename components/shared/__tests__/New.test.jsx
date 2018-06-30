@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import New from '../New'
+import New from 'components/shared/New'
 
 describe('New test', () => {
     it('should render with the required props', () => {

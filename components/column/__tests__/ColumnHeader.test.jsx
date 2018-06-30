@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import ColumnHeader from '../ColumnHeader'
+import ColumnHeader from 'components/column/ColumnHeader'
 
 describe('ColumnHeader test', () => {
     it('should render with the required props', () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import Column from '../Column'
+import Column from 'components/column/Column'
 
 describe('Column test', () => {
     it('should render with the required props', () => {

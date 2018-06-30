@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import Boards from '../Boards'
+import Boards from 'components/boards/Boards'
 
 describe('Boards test', () => {
     it('should render with the required props', () => {

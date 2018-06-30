@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
-import reducers from '../reducers'
+import reducers from 'reducers'
 import { routerMiddleware } from 'react-router-redux'
-import history from '../history'
+import history from 'history'
 
 const configureStore = () => {
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

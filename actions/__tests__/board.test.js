@@ -1,7 +1,7 @@
-import * as actions from '../board'
-import * as actionTypes from '../../constants/actionTypes'
+import * as actions from 'actions/board'
+import * as actionTypes from 'constants/actionTypes'
 
-describe('boards actions', () => {
+describe('boards synchronous actions', () => {
     test('should create an action to add a card to state', () => {
         const card = { name: 'test name' }
         const columnId = '1'

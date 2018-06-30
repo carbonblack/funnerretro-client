@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
-import New from '../shared/New'
-import Actions from '../shared/Actions'
+import New from 'components/shared/New'
+import Actions from 'components/shared/Actions'
 
 const header = css`
     display: flex;

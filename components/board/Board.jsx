@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
-import ColumnContainer from '../../containers/ColumnContainer'
-import ColumnForm from '../column/ColumnForm'
-import colors from '../../styles/colors'
-import Actions from '../shared/Actions'
+import ColumnContainer from 'containers/ColumnContainer'
+import ColumnForm from 'components/column/ColumnForm'
+import colors from 'styles/colors'
+import Actions from 'components/shared/Actions'
 
 const columnsContainer = css`
     display: flex;

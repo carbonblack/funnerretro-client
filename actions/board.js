@@ -1,5 +1,5 @@
-import * as actionTypes from '../constants/actionTypes'
-import * as headers from '../constants/headers'
+import * as actionTypes from 'constants/actionTypes'
+import * as headers from 'constants/headers'
 import axios from 'axios'
 import { push } from 'react-router-redux'
 

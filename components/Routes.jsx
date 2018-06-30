@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Route, Switch, withRouter } from 'react-router-dom'
-import Home from './Home'
-import BoardsContainer from '../containers/BoardsContainer'
-import BoardContainer from '../containers/BoardContainer'
-import BoardFormContainer from '../containers/NewBoardContainer'
-import TopNavigation from './TopNavigation'
+import Home from 'components/Home'
+import BoardsContainer from 'containers/BoardsContainer'
+import BoardContainer from 'containers/BoardContainer'
+import BoardFormContainer from 'containers/NewBoardContainer'
+import TopNavigation from 'components/TopNavigation'
 
 const Routes = ({ location }) => (
     <div>

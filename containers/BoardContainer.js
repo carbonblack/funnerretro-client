@@ -1,8 +1,8 @@
-import { createColumn } from '../actions/board'
+import { createColumn } from 'actions/board'
 import { connect } from 'react-redux'
-import { getBoard, deleteBoard } from '../actions/board'
-import { subscribeToBoard, unsubscribeToBoard } from '../actions/websocket'
-import Board from '../components/board/Board'
+import { getBoard, deleteBoard } from 'actions/board'
+import { subscribeToBoard, unsubscribeToBoard } from 'actions/websocket'
+import Board from 'components/board/Board'
 
 const mapStateToProps = state => ({
     name: state.board.content.name,

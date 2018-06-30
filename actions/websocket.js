@@ -1,5 +1,5 @@
 import io from 'socket.io-client'
-import { successfulCardUpdate, successfulCardDelete, successfulColumnDelete, successfulDeleteBoard, successfulColumnUpdate, receiveColumn, receiveCard, reevaluateColumn } from './board'
+import { successfulCardUpdate, successfulCardDelete, successfulColumnDelete, successfulDeleteBoard, successfulColumnUpdate, receiveColumn, receiveCard, reevaluateColumn } from 'actions/board'
 
 const socket = io(location.protocol + '//' + document.domain + ':5124/websocket', { transports: ['websocket'] })
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
-import colors from '../../styles/colors'
-import BoardsTable from './BoardsTable'
+import colors from 'styles/colors'
+import BoardsTable from 'components/boards/BoardsTable'
 
 const container = css`
     display: flex;

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom' // TODO probably want to use callback refs instead
 import { DragSource, DropTarget } from 'react-dnd'
-import Card from './Card'
+import Card from 'components/card/Card'
 
 const cardSource = {
     beginDrag(props) {

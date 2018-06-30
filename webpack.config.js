@@ -27,6 +27,10 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.jsx'],
+        modules: [
+            paths.SRC,
+            path.resolve('./node_modules')
+        ]
     },
     output: {
         path: paths.DIST,

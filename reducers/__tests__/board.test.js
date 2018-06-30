@@ -1,5 +1,5 @@
-import * as actions from '../../constants/actionTypes'
-import reducer from '../board'
+import * as actions from 'constants/actionTypes'
+import reducer from 'reducers/board'
 
 describe('board reducers', () => {
     test('should return initial state for undefined action', () => {

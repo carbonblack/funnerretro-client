@@ -1,9 +1,9 @@
 import React from 'react'
 import { css, cx } from 'react-emotion'
 import { Link } from 'react-router-dom'
-import { baseButton } from '../styles/button'
-import colors from '../styles/colors'
-import logoImg from '../assets/logo.png'
+import { baseButton } from 'styles/button'
+import colors from 'styles/colors'
+import logoImg from 'assets/logo.png'
 
 const container = css`
     display: flex;

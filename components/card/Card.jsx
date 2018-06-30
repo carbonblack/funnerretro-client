@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css, cx } from 'react-emotion'
 import FontAwesome from 'react-fontawesome'
-import colors from '../../styles/colors'
-import { actionButton } from '../../styles/button'
-import New from '../shared/New'
-import Actions from '../shared/Actions'
+import colors from 'styles/colors'
+import { actionButton } from 'styles/button'
+import New from 'components/shared/New'
+import Actions from 'components/shared/Actions'
 
 const baseCardContainer = css`
     background: ${ colors.white };

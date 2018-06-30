@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css, cx } from 'react-emotion'
-import { baseButton } from '../../styles/button'
-import colors from '../../styles/colors'
+import { baseButton } from 'styles/button'
+import colors from 'styles/colors'
 
 const ColumnFormButton = css`
     border: 4px solid ${ colors.black };

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
-import colors from '../../styles/colors'
-import CardContainer from '../../containers/CardContainer'
-import New from '../shared/New'
-import ColumnHeader from './ColumnHeader'
+import colors from 'styles/colors'
+import CardContainer from 'containers/CardContainer'
+import New from 'components/shared/New'
+import ColumnHeader from 'components/column/ColumnHeader'
 
 const columnContainer = css`
     display: flex;
