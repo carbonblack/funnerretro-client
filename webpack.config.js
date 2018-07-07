@@ -13,7 +13,7 @@ const proxyUrls = {
 
 module.exports = {
     entry: {
-        index: path.join(paths.SRC, 'index.jsx')
+        index: path.join(paths.SRC, 'components/Index.jsx')
     },
     devServer: {
         contentBase: paths.SRC,
