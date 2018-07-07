@@ -6,10 +6,12 @@ import history from 'history'
 import Routes from 'components/Routes'
 
 const Root = ({ store }) => (
-    <Provider store={ store }>
-        <Router history={ history }>
-            <Routes />
-        </Router>
+    <Provider store={store}>
+        <div>
+            <Router history={ history }>
+                <Routes />
+            </Router>
+        </div>
     </Provider>
 )
 

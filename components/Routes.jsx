@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import Home from 'components/Home'
@@ -8,7 +8,7 @@ import BoardFormContainer from 'containers/NewBoardContainer'
 import TopNavigation from 'components/TopNavigation'
 
 const Routes = ({ location }) => (
-    <Fragment>
+    <div>
         <TopNavigation shouldShow={ location.pathname !== '/' } />
         <div>
             <Switch>
@@ -18,7 +18,7 @@ const Routes = ({ location }) => (
                 <Route path="/boards" component={ BoardsContainer } />
             </Switch>
         </div>
-    </Fragment>
+    </div>
 )
 
 Routes.propTypes = {

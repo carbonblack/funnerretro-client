@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom' // TODO probably want to use callback refs instead
 import { DragSource, DropTarget } from 'react-dnd'
@@ -74,7 +74,7 @@ class DraggableCard extends Component {
         const { connectDragSource, connectDropTarget, isDragging, card, onDelete, onVote, onUpdateText, onEdit } = this.props
         
         return connectDragSource(connectDropTarget(
-            <Fragment>
+            <div>
                 <Card
                     card={ card }
                     isDragging={ isDragging }
@@ -83,7 +83,7 @@ class DraggableCard extends Component {
                     onTextChange={ (id, val) => onUpdateText(id, val) }
                     onEdit={ id => onEdit(id) }
                 />
-            </Fragment>
+            </div>
         ))
     }
 }
