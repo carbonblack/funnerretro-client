@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 import Home from 'components/Home'
 import BoardsContainer from 'containers/BoardsContainer'
 import BoardContainer from 'containers/BoardContainer'
@@ -25,4 +25,4 @@ Routes.propTypes = {
     location: PropTypes.object.isRequired
 }
 
-export default Routes
+export default withRouter(Routes)
