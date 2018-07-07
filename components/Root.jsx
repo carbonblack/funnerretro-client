@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
 import { Router } from 'react-router-dom'
-import history from 'history'
+import history from '../history'
 import Routes from 'components/Routes'
 
 const Root = ({ store }) => (
     <Provider store={ store }>
-        <Router history={ history }>
-            <Routes />
-        </Router>
+        <Fragment>
+            <Router history={ history }>
+                <Routes location={ history.location } />
+            </Router>
+        </Fragment>
     </Provider>
 )
 
