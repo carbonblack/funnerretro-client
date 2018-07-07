@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import ColumnContainer from 'containers/ColumnContainer'
@@ -46,7 +46,7 @@ class Board extends Component {
         ]
 
         return (
-            <div>
+            <Fragment>
                 <div className={ header }>
                     <div className={ innerHeader }>
                         <h2>{ name }</h2>
@@ -59,7 +59,7 @@ class Board extends Component {
                         <ColumnForm placeholder="Column name" submitLabel="Create" onSubmit={ value => onColumnForm(value) } />
                     </div>
                 </div>
-            </div>
+            </Fragment>
         )
     }
 }

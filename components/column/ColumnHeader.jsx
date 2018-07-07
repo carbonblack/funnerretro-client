@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import New from 'components/shared/New'
@@ -19,9 +19,9 @@ const ColumnHeader = ({ name, id, editing, onSave, onEdit, onDelete }) => {
 
     if(editing) {
         return (
-            <div>
+            <Fragment>
                 <New value={ name } onSubmit={ val => onSave(val) } submitLabel="Save" />
-            </div>
+            </Fragment>
         )
     }
 
