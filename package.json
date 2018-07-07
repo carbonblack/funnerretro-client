@@ -72,7 +72,7 @@
             "!webpack.config.js"
         ],
         "moduleNameMapper": {
-            "\\.(png|svg)$": "<rootDir>/testing/fileMock.js",
+            "\\.(png)$": "<rootDir>/testing/fileMock.js",
             "^actions/(.*)": "<rootDir>/actions/$1",
             "^assets/(.*)": "<rootDir>/assets/$1",
             "^components/(.*)": "<rootDir>/components/$1",
