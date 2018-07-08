@@ -21,7 +21,7 @@ const inputStyles = error => css`
     }
 `
 
-const error = css`
+const errorContainer = css`
     color: ${ colors.pink };
     flex-basis: 100%;
     margin-top: 0.5rem;
@@ -61,7 +61,7 @@ class New extends Component {
             <form className={ container } onSubmit={ () => false }>
                 <input value={ value } className={ inputStyles(error) } placeholder={ placeholder } onChange={ e => this.onChange(e.target.value) } />
                 <button className={ baseButton } onClick={ e => this.onSubmit(e) }>{ submitLabel }</button>
-                { error && <p className={ error }>{ error }</p> }
+                { error && <p className={ errorContainer }>{ error }</p> }
             </form>
         )
     }

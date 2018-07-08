@@ -38,7 +38,7 @@ const cancelButton = css`
     margin-right: 0.5rem;
 `
 
-const error = css`
+const errorContainer = css`
     color: ${ colors.pink };
     flex-basis: 100%;
     margin-top: 1rem;
@@ -98,7 +98,7 @@ class ColumnForm extends Component {
                         <a className={ cx(baseButton, cancelButton) } onClick={ this.onCancel }>Cancel</a>
                         <button className={ baseButton } onClick={ e => this.onSubmit(e) }>{ submitLabel }</button>
                     </form>
-                    { error && <p className={ error }>{ error }</p> }
+                    { error && <p className={ errorContainer }>{ error }</p> }
                 </div>
             )
         } else {
