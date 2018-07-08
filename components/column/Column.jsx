@@ -33,7 +33,9 @@ class Column extends Component {
     onEdit = () =>  this.setState({ editing: true })
 
     onSave = (name) => {
-        this.props.onNameChange(this.props.column.id, name)
+        const { column, onNameChange } = this.props
+
+        onNameChange(column.id, name)
         this.setState({
             editing: false
         })
@@ -41,6 +43,7 @@ class Column extends Component {
 
     render() {
         const { column, onNewCard, moveCard, onDelete } = this.props
+        const { editing } = this.state
 
         return (
             <div className={ columnContainer }>
@@ -48,10 +51,10 @@ class Column extends Component {
                     <ColumnHeader 
                         name={ column.content.name }
                         id={ column.id }
-                        editing={ this.state.editing }
+                        editing={ editing }
                         onDelete={ id => onDelete(id) }
                         onSave={ val => this.onSave(val) }
-                        onEdit={ () => this.onEdit() }
+                        onEdit={ this.onEdit }
                     />
                     <div>
                         <New placeholder="New card" submitLabel="Add" onSubmit={ value => onNewCard(value, column.id) } />

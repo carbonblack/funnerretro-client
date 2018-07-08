@@ -13,9 +13,7 @@ const mapDispatchToProps = dispatch => ({
             template: template
         }))
     },
-    load: () => {
-        dispatch(getTemplates())
-    }
+    load: () => dispatch(getTemplates())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BoardForm)

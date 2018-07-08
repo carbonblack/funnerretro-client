@@ -8,12 +8,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    load: () => {
-        dispatch(getBoards())
-    },
-    onDelete: (boardId) => {
-        dispatch(deleteBoard(boardId))
-    }
+    load: () => dispatch(getBoards()),
+    onDelete: (boardId) => dispatch(deleteBoard(boardId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Boards)

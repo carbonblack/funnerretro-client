@@ -63,7 +63,10 @@ class ColumnForm extends Component {
         e.stopPropagation()
         e.preventDefault()
 
-        if(this.state.name === '') {
+        const { onSubmit } = this.props
+        const { name } = this.state
+
+        if(name === '') {
             this.setState({
                 error: 'Column name must not be empty'
             })
@@ -75,26 +78,27 @@ class ColumnForm extends Component {
             error: null
         })
 
-        this.props.onSubmit(this.state.name)
+        onSubmit(name)
     }
 
     render() {
         const { placeholder, submitLabel } = this.props
+        const { shouldShowColumnFormInput, name, error } = this.state
 
-        if(this.state.shouldShowColumnFormInput) {
+        if(shouldShowColumnFormInput) {
             return (
                 <div className={ container }>
                     <form className={ form } onSubmit={ () => false }>
                         <input
-                            className={ inputStyles(this.state.error) }
-                            value={ this.state.name }
+                            className={ inputStyles(error) }
+                            value={ name }
                             placeholder={ placeholder } 
                             onChange={ e => this.setState({ name: e.target.value }) } 
                         />
-                        <a className={ cx(baseButton, cancelButton) } onClick={ () => this.onCancel() }>Cancel</a>
+                        <a className={ cx(baseButton, cancelButton) } onClick={ this.onCancel }>Cancel</a>
                         <button className={ baseButton } onClick={ e => this.onSubmit(e) }>{ submitLabel }</button>
                     </form>
-                    { this.state.error && <p className={ error }>{ this.state.error }</p> }
+                    { error && <p className={ error }>{ error }</p> }
                 </div>
             )
         } else {
