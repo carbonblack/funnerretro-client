@@ -22,7 +22,6 @@ const inner = css`
 `
 
 const cards = css`
-    overflow-y: auto;
     max-height: 61vh;
 `
 
@@ -31,13 +30,9 @@ class Column extends Component {
         editing: false
     }
 
-    onEdit() {
-        this.setState({
-            editing: true
-        })
-    }
+    onEdit = () =>  this.setState({ editing: true })
 
-    onSave(name) {
+    onSave = (name) => {
         this.props.onNameChange(this.props.column.id, name)
         this.setState({
             editing: false
@@ -59,7 +54,7 @@ class Column extends Component {
                         onEdit={ () => this.onEdit() }
                     />
                     <div>
-                        <New placeholder="New card" submitLabel="Add" onSubmit={ (value) => onNewCard(value, column.id) } />
+                        <New placeholder="New card" submitLabel="Add" onSubmit={ value => onNewCard(value, column.id) } />
                     </div>
                     <div className={ cards }>
                         { column.cards.map(((card, index) => (

@@ -46,14 +46,16 @@ class Card extends Component {
         editing: false
     }
 
-    onEdit() {
+    onEdit = () => {
+        const { card, onEdit } = this.props
+
         this.setState({
             editing: true
         })
-        this.props.onEdit(this.props.card.id)
+        onEdit(card.id)
     }
 
-    onSave(val) {
+    onSave = val => {
         this.setState({
             editing: false
         })
@@ -64,7 +66,7 @@ class Card extends Component {
         const { card, isDragging, onDelete, onVote } = this.props
 
         const actions = [
-            { text: 'Edit', action: () => this.onEdit(card.id) },
+            { text: 'Edit', action: this.onEdit },
             { text: 'Delete', action: () => onDelete(card.id) }
         ]
 

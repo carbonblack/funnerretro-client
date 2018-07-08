@@ -28,12 +28,9 @@ const error = css`
 `
 
 class New extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            value: props.value ? props.value : '',
-            error: null
-        }
+    state = {
+        value: this.props.value ? this.props.value : '',
+        error: null
     }
 
     onChange = value => this.setState({ value: value })
@@ -58,15 +55,14 @@ class New extends Component {
 
     render() {
         const { placeholder, submitLabel } = this.props
+        const { value, error } = this.state
 
         return (
-            <div>
-                <form className={ container } onSubmit={ () => false }>
-                    <input value={ this.state.value } className={ inputStyles(this.state.error) } placeholder={ placeholder } onChange={ e => this.onChange(e.target.value) } />
-                    <button className={ baseButton } onClick={ e => this.onSubmit(e) }>{ submitLabel }</button>
-                    { this.state.error && <p className={ error }>{ this.state.error }</p> }
-                </form>
-            </div>
+            <form className={ container } onSubmit={ () => false }>
+                <input value={ value } className={ inputStyles(error) } placeholder={ placeholder } onChange={ e => this.onChange(e.target.value) } />
+                <button className={ baseButton } onClick={ e => this.onSubmit(e) }>{ submitLabel }</button>
+                { error && <p className={ error }>{ error }</p> }
+            </form>
         )
     }
 }

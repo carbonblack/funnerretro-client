@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import { Link } from 'react-router-dom'
-import brandLogo from '../assets/icon.png'
-import colors from '../styles/colors'
+import brandLogo from 'assets/icon.png'
+import colors from 'styles/colors'
 
 const nav = css`
     display: flex;
@@ -48,7 +48,7 @@ const brand = css`
 `
 
 const TopNavigation = ({ shouldShow }) => {
-    if(shouldShow) {
+    if(shouldShow)
         return (
             <div className={ nav }>
                 <Link to="/"><img src={ brandLogo } className={ brand } /></Link>
@@ -58,7 +58,6 @@ const TopNavigation = ({ shouldShow }) => {
                 </div>
             </div>
         )
-    }
 
     return null
 }

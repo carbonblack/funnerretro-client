@@ -7,11 +7,9 @@ import Routes from 'components/Routes'
 
 const Root = ({ store }) => (
     <Provider store={store}>
-        <div>
-            <Router history={ history }>
-                <Routes />
-            </Router>
-        </div>
+        <Router history={ history }>
+            <Routes />
+        </Router>
     </Provider>
 )
 

@@ -40,13 +40,15 @@ class Boards extends Component {
     }
 
     render() {
+        const { boards, onDelete } = this.props
+        
         return (
             <div className={ container }>
                 <div className={ header }>
                     <h2 className={ headerInner }>All Retro Boards</h2>
                 </div>
                 <div className={ inner }>
-                    <BoardsTable boards={ this.props.boards } onDelete={ (id) => this.props.onDelete(id) } />
+                    <BoardsTable boards={ boards } onDelete={ (id) => onDelete(id) } />
                 </div>
             </div>
         )

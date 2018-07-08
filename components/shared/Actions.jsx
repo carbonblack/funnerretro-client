@@ -37,17 +37,12 @@ class Actions extends Component {
         shouldShowActions: false
     }
 
-    handleClickOutside = () => {
-        this.setState({
-            shouldShowActions: false
-        })
-    }
+    handleClickOutside = () => this.setState({ shouldShowActions: false })
 
     onActionClick = a => {
         this.setState({
             shouldShowActions: false
         })
-
         a.action()
     }
 
