@@ -9,8 +9,7 @@ const initialState = {
     isFetchingBoards: false,
     boardsError: null,
     boards: [],
-    columns: [],
-    templates: []
+    columns: []
 }
 
 const board = (state = initialState, action) => {
@@ -30,9 +29,8 @@ const board = (state = initialState, action) => {
             })
         }
     case actionTypes.RECEIVE_COLUMN:
-        if(state.columns.some(column => column.id === action.column.id)) {
-            return state
-        }
+        if(state.columns.some(column => column.id === action.column.id)) return state
+
         return {
             ...state,
             columns: [...state.columns, action.column]
@@ -161,11 +159,6 @@ const board = (state = initialState, action) => {
                     id: action.column.id
                 }
             })
-        }
-    case actionTypes.RECEIVE_TEMPLATES:
-        return {
-            ...state,
-            templates: action.templates
         }
     case actionTypes.REBUILD_COLUMN:
         return {

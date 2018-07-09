@@ -247,17 +247,6 @@ export const successfulCardUpdate = card => ({
     card
 })
 
-export const getTemplates = () => {
-    return (dispatch) => {
-        axios.get('/api/v1/templates').then(response => dispatch(receiveTemplates(response.data.templates)))
-    }
-}
-
-export const receiveTemplates =  templates => ({
-    type: actionTypes.RECEIVE_TEMPLATES,
-    templates
-})
-
 export const reevaluateColumn = columnId => ({
     type: actionTypes.REBUILD_COLUMN,
     columnId

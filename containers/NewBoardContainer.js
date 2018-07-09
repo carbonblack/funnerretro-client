@@ -1,9 +1,10 @@
 import { connect } from 'react-redux'
 import BoardForm from 'components/board/BoardForm'
-import { createBoard, getTemplates } from 'actions/board'
+import { createBoard } from 'actions/board'
+import { getTemplates } from 'actions/template'
 
 const mapStateToProps = state => ({
-    templates: state.board.templates
+    templates: state.template.templates
 })
 
 const mapDispatchToProps = dispatch => ({
