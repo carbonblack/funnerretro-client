@@ -1,7 +1,7 @@
 import * as actions from 'constants/actionTypes'
-import reducer from 'reducers/template'
+import reducer from 'reducers/templates'
 
-describe('template reducers', () => {
+describe('templates reducers', () => {
     test('should return initial state for undefined action', () => {
         expect(reducer(undefined, {})).toEqual({
             templates: []

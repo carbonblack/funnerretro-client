@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 import board from 'reducers/board'
-import template from 'reducers/template'
+import templates from 'reducers/templates'
 
 const reducers = combineReducers({
     board,
-    template,
+    templates,
     routing: routerReducer
 })
   

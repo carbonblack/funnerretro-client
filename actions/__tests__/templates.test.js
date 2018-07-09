@@ -1,4 +1,4 @@
-import * as actions from 'actions/template'
+import * as actions from 'actions/templates'
 import * as actionTypes from 'constants/actionTypes'
 
 describe('boards synchronous actions', () => {
