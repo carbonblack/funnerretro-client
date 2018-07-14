@@ -51,7 +51,7 @@ class ColumnForm extends Component {
         error: null
     }
 
-    onCancel() {
+    onCancel = () => {
         this.setState({ 
             shouldShowColumnFormInput: false, 
             error: null, 
@@ -59,7 +59,7 @@ class ColumnForm extends Component {
         })
     }
 
-    onSubmit(e) {
+    onSubmit = (e) => {
         e.stopPropagation()
         e.preventDefault()
 

@@ -8,7 +8,7 @@ const store = configureStore()
 
 websocketInit(store)
 
-render (
+render(
     <Root store={ store } />,
     document.getElementById('app')
 )
