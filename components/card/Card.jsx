@@ -12,6 +12,7 @@ const baseCardContainer = css`
     margin-bottom: 1rem;
     padding: 0.5rem 1rem;
     border: 1px solid ${ colors.black };
+    word-break: break-all;
     user-select: text;
 
     form {
