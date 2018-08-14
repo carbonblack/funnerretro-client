@@ -9,4 +9,14 @@ describe('BoardsTable test', () => {
         />
         expect(shallow(component).exists()).toBe(true)
     })
+
+    it('should call onDelete when clicking button', () => {
+        const func = jest.fn()
+        const component = shallow(<BoardsTable
+            boards={ [{ id: 'board_id', content:{ name: 'hi board' } }] }
+            onDelete={ func }
+        />)
+        component.find('button').simulate('click')
+        expect(func).toBeCalledWith('board_id')
+    })
 })
