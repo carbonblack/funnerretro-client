@@ -11,6 +11,7 @@ module.exports = {
         '^components/(.*)': '<rootDir>/components/$1',
         '^constants/(.*)': '<rootDir>/constants/$1',
         '^containers/(.*)': '<rootDir>/containers/$1',
+        '^history': '<rootDir>/history',
         '^reducers/(.*)': '<rootDir>/reducers/$1',
         '^reducers': '<rootDir>/reducers/',
         '^styles/(.*)': '<rootDir>/styles/$1'
