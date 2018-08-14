@@ -12,13 +12,13 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    onColumnForm: (value) => dispatch(createColumn(value)),
+    onColumnForm: value => dispatch(createColumn(value)),
     load: () => {
         subscribeToBoard(ownProps.match.params.id)
         dispatch(getBoard(ownProps.match.params.id))
     },
     unload: () => unsubscribeToBoard(ownProps.match.params.id),
-    onDelete: (boardId) => dispatch(deleteBoard(boardId))
+    onDelete: boardId => dispatch(deleteBoard(boardId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board)

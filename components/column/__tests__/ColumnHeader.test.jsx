@@ -6,9 +6,9 @@ describe('ColumnHeader test', () => {
     it('should render with the required props', () => {
         const component = <ColumnHeader
             id="1"
-            onSave={() => {}}
-            onEdit={() => {}}
-            onDelete={() => {}}
+            onSave={ () => {} }
+            onEdit={ () => {} }
+            onDelete={ () => {} }
         />
         expect(shallow(component).exists()).toBe(true)
     })

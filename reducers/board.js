@@ -38,7 +38,7 @@ const board = (state = initialState, action) => {
     case actionTypes.RECEIVE_MOVED_CARD:
         return {
             ...state,
-            columns: state.columns.map((column) => {
+            columns: state.columns.map(column => {
                 if(column.id !== action.columnId) return column
                 return update(column, {
                     cards: {
@@ -90,7 +90,7 @@ const board = (state = initialState, action) => {
     case actionTypes.DELETE_CARD:
         return {
             ...state,
-            columns: state.columns.map((column) => {
+            columns: state.columns.map(column => {
                 if(column.cards.some(card => card.id === action.cardId)) {
                     const index = column.cards.map(card => card.id).indexOf(action.cardId)
                     return {
@@ -127,10 +127,10 @@ const board = (state = initialState, action) => {
     case actionTypes.UPDATE_CARD:
         return {
             ...state,
-            columns: state.columns.map((column) => {
+            columns: state.columns.map(column => {
                 return {
                     ...column,
-                    cards: column.cards.map((card) => {
+                    cards: column.cards.map(card => {
                         if(card.id !== action.card.id) return card
 
                         return {
@@ -148,7 +148,7 @@ const board = (state = initialState, action) => {
     case actionTypes.UPDATE_COLUMN:
         return {
             ...state,
-            columns: state.columns.map((column) => {
+            columns: state.columns.map(column => {
                 if(action.column.id !== column.id) return column
 
                 return {
@@ -163,13 +163,13 @@ const board = (state = initialState, action) => {
     case actionTypes.REBUILD_COLUMN:
         return {
             ...state,
-            columns: state.columns.map((column) => {
+            columns: state.columns.map(column => {
                 if(action.columnId !== column.id) return column
 
                 return {
                     ...column,
                     cards: ((nodes, parent) => {
-                        let cards = []
+                        const cards = []
                         while(parent) {
                             const card = nodes.filter(node => node.parent === parent)[0]
 

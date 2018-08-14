@@ -23,23 +23,20 @@
         "react"
     ],
     "rules": {
-        "indent": [
-            "error",
-            4
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "never"
-        ],
+        "arrow-parens": ["error", "as-needed"],
+        "arrow-spacing": ["error", { "before": true, "after": true }],
+        "eqeqeq": "error",
+        "indent": ["error", 4],
+        "linebreak-style": ["error", "unix"],
+        "no-unreachable": "error",
+        "object-curly-spacing": ["error", "always"],
+        "prefer-const": "error",
+        "quotes": ["error", "single"],
+        "react/jsx-curly-spacing": [2, "always", {
+            "allowMultiline": true
+        }],
+        "react/no-find-dom-node": "warn",
         "react/prop-types": "warn",
-        "react/no-find-dom-node": "warn"
+        "semi": ["error", "never"]
     }
 }

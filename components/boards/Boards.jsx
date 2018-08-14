@@ -48,7 +48,7 @@ class Boards extends Component {
                     <h2 className={ headerInner }>All Retro Boards</h2>
                 </div>
                 <div className={ inner }>
-                    <BoardsTable boards={ boards } onDelete={ (id) => onDelete(id) } />
+                    <BoardsTable boards={ boards } onDelete={ id => onDelete(id) } />
                 </div>
             </div>
         )

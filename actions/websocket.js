@@ -3,8 +3,8 @@ import { successfulCardUpdate, successfulCardDelete, successfulColumnDelete, suc
 
 const socket = io(location.protocol + '//' + document.domain + ':5124/websocket', { transports: ['websocket'] })
 
-export const init = (store) => {
-    socket.on('node_update', (payload) => {
+export const init = store => {
+    socket.on('node_update', payload => {
         payload.nodes.forEach(node => {
             switch(node.type) {
             case 'ColumnHeader':
@@ -36,12 +36,12 @@ export const init = (store) => {
             }
         })
 
-        payload.nodes.map(node => node.column_header).forEach((columnId) => {
+        payload.nodes.map(node => node.column_header).forEach(columnId => {
             store.dispatch(reevaluateColumn(columnId))
         })
     })
 
-    socket.on('node_del', (payload) => {
+    socket.on('node_del', payload => {
         payload.nodes.forEach(node => {
             switch(node.type) {
             case 'ColumnHeader':

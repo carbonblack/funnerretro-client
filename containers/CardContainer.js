@@ -4,7 +4,7 @@ import DraggableCard from 'components/card/DraggableCard'
 
 const mapDispatchToProps = dispatch => ({
     onVote: (cardId, votes) => dispatch(vote(cardId, votes)),
-    onDelete: (cardId) => dispatch(deleteCard(cardId)),
+    onDelete: cardId => dispatch(deleteCard(cardId)),
     onUpdateText: (cardId, text) => {
         dispatch(updateCard(cardId, {
             operations: [
@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => ({
             ]
         }))
     },
-    onEdit: (cardId) => {
+    onEdit: cardId => {
         dispatch(updateCard(cardId, {
             operations: [
                 {

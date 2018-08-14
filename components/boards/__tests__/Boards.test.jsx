@@ -5,8 +5,8 @@ import Boards from 'components/boards/Boards'
 describe('Boards test', () => {
     it('should render with the required props', () => {
         const component = <Boards 
-            load={() => {}}
-            onDelete={() => {}}
+            load={ () => {} }
+            onDelete={ () => {} }
         />
         expect(shallow(component).exists()).toBe(true)
     })

@@ -63,7 +63,7 @@ const BoardsTable = ({ boards, onDelete }) => {
             </div>
             {boards.map(board => (
                 <div key={ `boards-row-${ board.id }` } className={ row }>
-                    <Link className={ boardLink } to={`/board/${ board.id }`}>
+                    <Link className={ boardLink } to={ `/board/${ board.id }` }>
                         <p>{ board.content.name }</p>
                     </Link>
                     <button onClick={ () => onDelete(board.id) } className={ actionButton }>

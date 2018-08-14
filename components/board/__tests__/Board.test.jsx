@@ -5,11 +5,11 @@ import Board from 'components/board/Board'
 describe('Board test', () => {
     it('should render with the required props', () => {
         const component = <Board 
-            load={() => {}}
-            unload={() => {}}
+            load={ () => {} }
+            unload={ () => {} }
             id='1'
-            onColumnForm={() => {}}
-            onDelete={() => {}}
+            onColumnForm={ () => {} }
+            onDelete={ () => {} }
         />
         expect(shallow(component).exists()).toBe(true)
     })

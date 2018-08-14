@@ -32,7 +32,7 @@ class Column extends Component {
 
     onEdit = () =>  this.setState({ editing: true })
 
-    onSave = (name) => {
+    onSave = name => {
         const { column, onNameChange } = this.props
 
         onNameChange(column.id, name)

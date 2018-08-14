@@ -59,7 +59,7 @@ class ColumnForm extends Component {
         })
     }
 
-    onSubmit = (e) => {
+    onSubmit = e => {
         e.stopPropagation()
         e.preventDefault()
 
