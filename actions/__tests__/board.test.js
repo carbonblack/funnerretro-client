@@ -1,5 +1,10 @@
 import * as actions from 'actions/board'
 import * as actionTypes from 'constants/actionTypes'
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+import moxios from 'moxios'
+
+const mockStore = configureMockStore([thunk])
 
 describe('boards synchronous actions', () => {
     test('should create an action to add a card to state', () => {
@@ -86,5 +91,34 @@ describe('boards synchronous actions', () => {
             type: actionTypes.UPDATE_COLUMN,
             column
         })
+    })
+})
+
+describe('boards asynchronous actions', () => {
+    beforeEach(() => {
+        moxios.install()
+    })
+    
+    afterEach(() => {
+        moxios.uninstall()
+    })
+
+    it('should get boards', () => {
+        const expectedActions = [
+            { type: actionTypes.FETCH_BOARDS },
+            { type: actionTypes.RECEIVE_BOARDS, boards: [{ id: 'something', content: { name: 'hi' } }] }
+        ]
+        const store = mockStore({ boards: [] })
+        
+        moxios.stubRequest('/api/v1/boards', {
+            status: 200,
+            response: {
+                boards: [
+                    { id: 'something', content: { name: 'hi' } }
+                ]
+            }
+        })
+
+        return store.dispatch(actions.getBoards()).then(() => expect(store.getActions()).toEqual(expectedActions))
     })
 })
