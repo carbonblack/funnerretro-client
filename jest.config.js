@@ -2,7 +2,8 @@ module.exports = {
     'collectCoverageFrom': [
         '**/*.{js,jsx}',
         '!**/node_modules/**',
-        '!webpack.config.js'
+        '!webpack.config.js',
+        '!jest.config.js'
     ],
     'moduleNameMapper': {
         '\\.(png|svg)$': '<rootDir>/testing/fileMock',

@@ -1,3 +1,5 @@
 import createHistory from 'history/createHashHistory'
 
-export default createHistory()
+const history = createHistory()
+
+export default history
