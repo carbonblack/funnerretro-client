@@ -121,4 +121,69 @@ describe('boards asynchronous actions', () => {
 
         return store.dispatch(actions.getBoards()).then(() => expect(store.getActions()).toEqual(expectedActions))
     })
+
+    it('should create a column', () => {
+        const expectedActions = [
+            {
+                type: actionTypes.RECEIVE_COLUMN,
+                column: {
+                    id: 'column id',
+                    content: { name: 'hello' },
+                    parent_id: 'hi',
+                    orig_version: 1,
+                    cards: []
+                }
+            }
+        ]
+        const store = mockStore({ board: { id: 'hi', columns: [] } })
+        
+        moxios.stubRequest('/api/v1/boards/hi/nodes', {
+            status: 200,
+            response: {
+                id: 'column id',
+                content: { name: 'hello' },
+                parent: 'hi',
+                orig_version: 1,
+                cards: []
+            }
+        })
+
+        return store.dispatch(actions.createColumn('hello')).then(() => expect(store.getActions()).toEqual(expectedActions))
+    })
+
+    it('should create a card', () => {
+        const expectedActions = [
+            {
+                type: actionTypes.RECEIVE_CARD,
+                card: {
+                    id: 'card id',
+                    content: { text: 'card value', votes: 0 },
+                    parent: 'column id',
+                    column_header: 'column id'
+                },
+                columnId: 'column id'
+            }
+        ]
+        const store = mockStore({
+            board: {
+                id: 'hi',
+                columns: [
+                    { id: 'column id', parent_id: 'hi', orig_version: 1, content: { name: 'hello' }, cards: [] } 
+                ]
+            }
+        })
+        
+        moxios.stubRequest('/api/v1/boards/hi/nodes', {
+            status: 200,
+            response: {
+                id: 'card id',
+                content: { text: 'card value', votes: 0 },
+                parent: 'column id',
+                orig_version: 1,
+                column_header: 'column id'
+            }
+        })
+
+        return store.dispatch(actions.createCard('card value', 'column id')).then(() => expect(store.getActions()).toEqual(expectedActions))
+    })
 })

@@ -5,7 +5,7 @@ import { push } from 'react-router-redux'
 
 export const createCard = (value, columnId) => (dispatch, getState) => {
     const boardId = getState().board.id
-    axios.post(`/api/v1/boards/${ boardId }/nodes`, {
+    return axios.post(`/api/v1/boards/${ boardId }/nodes`, {
         parent_id: columnId,
         content: {
             text: value,
@@ -16,8 +16,7 @@ export const createCard = (value, columnId) => (dispatch, getState) => {
             content: response.data.content,
             id: response.data.id,
             parent: response.data.parent,
-            column_header: response.data.column_header,
-            votes: 0
+            column_header: response.data.column_header
         }, columnId))
     })
 }
@@ -41,7 +40,7 @@ export const moveCard = (columnId, dragIndex, hoverIndex) => (dispatch, getState
 
 export const createColumn = value => (dispatch, getState) => {
     const boardId = getState().board.id
-    axios.post(`/api/v1/boards/${ boardId }/nodes`, {
+    return axios.post(`/api/v1/boards/${ boardId }/nodes`, {
         parent_id: boardId,
         content: {
             name: value
