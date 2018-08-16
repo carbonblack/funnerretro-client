@@ -335,7 +335,7 @@ describe('boards asynchronous actions', () => {
             }
         })
 
-        return store.dispatch(actions.updateColumn('columnid', { operations: [{ field: 'name', value: 'hi', operation: 'SET' }]})).then(() => expect(store.getActions()).toEqual(expectedActions))
+        return store.dispatch(actions.updateColumn('columnid', { operations: [{ field: 'name', value: 'hi', operation: 'SET' }] })).then(() => expect(store.getActions()).toEqual(expectedActions))
     })
 
     it('should update card', () => {
@@ -369,6 +369,6 @@ describe('boards asynchronous actions', () => {
             }
         })
 
-        return store.dispatch(actions.updateCard('1', { operations: [{ field: 'text', value: 'hi there', operation: 'SET' }]})).then(() => expect(store.getActions()).toEqual(expectedActions))
+        return store.dispatch(actions.updateCard('1', { operations: [{ field: 'text', value: 'hi there', operation: 'SET' }] })).then(() => expect(store.getActions()).toEqual(expectedActions))
     })
 })
