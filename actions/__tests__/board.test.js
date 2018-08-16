@@ -122,6 +122,21 @@ describe('boards asynchronous actions', () => {
         return store.dispatch(actions.getBoards()).then(() => expect(store.getActions()).toEqual(expectedActions))
     })
 
+    it('should error when the get boards API errors', () => {
+        const expectedActions = [
+            { type: actionTypes.FETCH_BOARDS },
+            { type: actionTypes.FETCH_BOARDS_ERROR, error: 'error' }
+        ]
+        const store = mockStore({ boards: [] })
+        
+        moxios.stubRequest('/api/v1/boards', {
+            status: 500,
+            statusText: 'error'
+        })
+
+        return store.dispatch(actions.getBoards()).then(() => expect(store.getActions()).toEqual(expectedActions))
+    })
+
     it('should create a column', () => {
         const expectedActions = [
             {
@@ -185,5 +200,175 @@ describe('boards asynchronous actions', () => {
         })
 
         return store.dispatch(actions.createCard('card value', 'column id')).then(() => expect(store.getActions()).toEqual(expectedActions))
+    })
+
+    it('should vote', () => {
+        const expectedActions = []
+        const store = mockStore({
+            board: {
+                id: 'hi',
+                columns: [
+                    {
+                        id: 'column id',
+                        parent_id: 'hi',
+                        orig_version: 1,
+                        content: { name: 'hello' },
+                        cards: [
+                            { id: '1', content: { text: 'hi', votes: 0 } }
+                        ]
+                    } 
+                ]
+            }
+        })
+
+        moxios.stubRequest('/api/v1/boards/hi/nodes/1', { status: 200 })
+
+        return store.dispatch(actions.vote('1', 1)).then(() => expect(store.getActions()).toEqual(expectedActions))
+    })
+
+    it('should delete card', () => {
+        const expectedActions = [
+            { type: actionTypes.DELETE_CARD, cardId: '1' }
+        ]
+        const store = mockStore({
+            board: {
+                id: 'hi',
+                columns: [
+                    {
+                        id: 'column id',
+                        parent_id: 'hi',
+                        orig_version: 1,
+                        content: { name: 'hello' },
+                        cards: [
+                            { id: '1', content: { text: 'hi', votes: 0 } }
+                        ]
+                    } 
+                ]
+            }
+        })
+
+        moxios.stubRequest('/api/v1/boards/hi/nodes/1', { status: 200 })
+
+        return store.dispatch(actions.deleteCard('1')).then(() => expect(store.getActions()).toEqual(expectedActions))
+    })
+
+    it('should delete column', () => {
+        const expectedActions = [
+            { type: actionTypes.DELETE_COLUMN, columnId: 'columnid' }
+        ]
+        const store = mockStore({
+            board: {
+                id: 'hi',
+                columns: [
+                    {
+                        id: 'columnid',
+                        parent_id: 'hi',
+                        orig_version: 1,
+                        content: { name: 'hello' },
+                        cards: [
+                            { id: '1', content: { text: 'hi', votes: 0 } }
+                        ]
+                    } 
+                ]
+            }
+        })
+
+        moxios.stubRequest('/api/v1/boards/hi/nodes/columnid?cascade=true', { status: 200 })
+
+        return store.dispatch(actions.deleteColumn('columnid')).then(() => expect(store.getActions()).toEqual(expectedActions))
+    })
+
+    it('should delete board', () => {
+        const expectedActions = [
+            { type: actionTypes.FETCH_BOARDS }
+        ]
+        const store = mockStore({
+            board: {
+                id: 'hi',
+                columns: [
+                    {
+                        id: 'columnid',
+                        parent_id: 'hi',
+                        orig_version: 1,
+                        content: { name: 'hello' },
+                        cards: [
+                            { id: '1', content: { text: 'hi', votes: 0 } }
+                        ]
+                    } 
+                ]
+            }
+        })
+
+        moxios.stubRequest('/api/v1/boards/hi', { status: 200 })
+
+        return store.dispatch(actions.deleteBoard('hi')).then(() => expect(store.getActions()).toEqual(expectedActions))
+    })
+
+    it('should update column', () => {
+        const expectedActions = [
+            { type: actionTypes.UPDATE_COLUMN, column: { id: 'columnid', content: { name: 'hi' } } }
+        ]
+        const store = mockStore({
+            board: {
+                id: 'hi',
+                columns: [
+                    {
+                        id: 'columnid',
+                        parent_id: 'hi',
+                        orig_version: 1,
+                        content: { name: 'hello' },
+                        cards: [
+                            { id: '1', content: { text: 'hi', votes: 0 } }
+                        ]
+                    } 
+                ]
+            }
+        })
+
+        moxios.stubRequest('/api/v1/boards/hi/nodes/columnid', {
+            status: 200,
+            response: {
+                id: 'columnid',
+                content: {
+                    name: 'hi'
+                }
+            }
+        })
+
+        return store.dispatch(actions.updateColumn('columnid', { operations: [{ field: 'name', value: 'hi', operation: 'SET' }]})).then(() => expect(store.getActions()).toEqual(expectedActions))
+    })
+
+    it('should update card', () => {
+        const expectedActions = [
+            { type: actionTypes.UPDATE_CARD, card: { id: '1', content: { text: 'hi there' } } }
+        ]
+        const store = mockStore({
+            board: {
+                id: 'hi',
+                columns: [
+                    {
+                        id: 'columnid',
+                        parent_id: 'hi',
+                        orig_version: 1,
+                        content: { name: 'hello' },
+                        cards: [
+                            { id: '1', content: { text: 'hi', votes: 0 } }
+                        ]
+                    } 
+                ]
+            }
+        })
+
+        moxios.stubRequest('/api/v1/boards/hi/nodes/1', {
+            status: 200,
+            response: {
+                id: '1',
+                content: {
+                    text: 'hi there'
+                }
+            }
+        })
+
+        return store.dispatch(actions.updateCard('1', { operations: [{ field: 'text', value: 'hi there', operation: 'SET' }]})).then(() => expect(store.getActions()).toEqual(expectedActions))
     })
 })
