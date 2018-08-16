@@ -38,5 +38,10 @@
         "react/no-find-dom-node": "warn",
         "react/prop-types": "warn",
         "semi": ["error", "never"]
+    },
+    "settings": {
+        "react": {
+            "version": "16.3.2"
+        }
     }
 }
