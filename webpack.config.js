@@ -45,7 +45,7 @@ module.exports = {
                 use: ['babel-loader'],
             },
             {
-                test: /\.(png|svg)$/,
+                test: /\.(png|svg|eot|svg|ttf|woff|woff2)$/,
                 include: path.join(paths.SRC, 'assets'),
                 use: [
                     {

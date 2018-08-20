@@ -16,6 +16,6 @@ body {
 }
 
 @font-face {
-    font-family: Graphique;
-    src: url("Graphique.otf") format("opentype");
+    font-family: 'GraphiqueProNextCo';
+    src: url('Graphique.eot?#iefix') format('embedded-opentype'), url('Graphique.woff2') format('woff2'), url('Graphique.woff') format('woff'), url('Graphique.ttf') format('truetype');
 }

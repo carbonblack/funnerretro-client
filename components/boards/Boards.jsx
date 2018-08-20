@@ -46,9 +46,9 @@ const header = css`
 
     h1 {
         color: ${ colors.logoOrange };
-        font-family: 'Graphique';
+        font-family: 'GraphiqueProNextCo';
     }
-`;
+`
 
 class Boards extends Component {
     componentDidMount() {
