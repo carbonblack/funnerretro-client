@@ -3,7 +3,8 @@ module.exports = {
         '**/*.{js,jsx}',
         '!**/node_modules/**',
         '!webpack.config.js',
-        '!jest.config.js'
+        '!jest.config.js',
+        '!components/Index.jsx'
     ],
     'moduleNameMapper': {
         '\\.(png|svg)$': '<rootDir>/testing/fileMock',
@@ -19,6 +20,7 @@ module.exports = {
     'setupFiles': [
         '<rootDir>/testing/setup.js'
     ],
+    'testURL': 'http://localhost',
     'transform': {
         '^.+\\.js[x]?$': 'babel-jest'
     }
