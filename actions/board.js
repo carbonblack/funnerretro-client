@@ -5,7 +5,7 @@ import { push } from 'react-router-redux'
 
 export const createCard = (value, columnId) => (dispatch, getState) => {
     const boardId = getState().board.id
-    axios.post(`/api/v1/boards/${ boardId }/nodes`, {
+    return axios.post(`/api/v1/boards/${ boardId }/nodes`, {
         parent_id: columnId,
         content: {
             text: value,
@@ -16,8 +16,7 @@ export const createCard = (value, columnId) => (dispatch, getState) => {
             content: response.data.content,
             id: response.data.id,
             parent: response.data.parent,
-            column_header: response.data.column_header,
-            votes: 0
+            column_header: response.data.column_header
         }, columnId))
     })
 }
@@ -41,7 +40,7 @@ export const moveCard = (columnId, dragIndex, hoverIndex) => (dispatch, getState
 
 export const createColumn = value => (dispatch, getState) => {
     const boardId = getState().board.id
-    axios.post(`/api/v1/boards/${ boardId }/nodes`, {
+    return axios.post(`/api/v1/boards/${ boardId }/nodes`, {
         parent_id: boardId,
         content: {
             name: value
@@ -62,7 +61,7 @@ export const receiveColumn = column => ({
     column
 })
 
-export const vote = (cardId, v) => (dispatch, getState) => {
+export const vote = (cardId, v) => (dispatch, getState) => (
     axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`, {
         operations: [
             {
@@ -72,11 +71,11 @@ export const vote = (cardId, v) => (dispatch, getState) => {
             }
         ]
     })
-}
+)
 
 export const getBoards = () => dispatch => {
     dispatch(fetchBoards())
-    axios.get('/api/v1/boards').then(response => {
+    return axios.get('/api/v1/boards').then(response => {
         dispatch(receiveBoards(response.data.boards.map(board => ({
             content: board.content,
             id: board.id
@@ -151,27 +150,27 @@ export const getBoardError = error => ({
     error
 })
 
-export const deleteCard = cardId => (dispatch, getState) => {
+export const deleteCard = cardId => (dispatch, getState) => (
     axios.delete(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`)
         .then(() => dispatch(successfulCardDelete(cardId)))
-}
+)
 
 export const successfulCardDelete = cardId => ({
     type: actionTypes.DELETE_CARD,
     cardId
 })
 
-export const deleteColumn = columnId => (dispatch, getState) => {
+export const deleteColumn = columnId => (dispatch, getState) => (
     axios.delete(`/api/v1/boards/${ getState().board.id }/nodes/${ columnId }?cascade=true`, headers.json)
         .then(() => dispatch(successfulColumnDelete(columnId)))
-}
+)
 
 export const successfulColumnDelete = columnId => ({
     type: actionTypes.DELETE_COLUMN,
     columnId
 })
 
-export const createBoard = board => dispatch => {
+export const createBoard = board => dispatch => (
     axios.post('/api/v1/boards', board, headers.json).then(response => {
         response.data.nodes.forEach(node => {
             if(node.type === 'Board') {
@@ -185,13 +184,13 @@ export const createBoard = board => dispatch => {
         // only care about the first board for redirecting
         if(response.data.nodes.length > 0) dispatch(push(`/board/${ response.data.nodes[0].id }`))
     })
-}
+)
 
-export const deleteBoard = boardId => dispatch => {
+export const deleteBoard = boardId => dispatch => (
     axios.delete(`/api/v1/boards/${ boardId }`).then(() => {
         dispatch(getBoards())
     })
-}
+)
 
 export const successfulDeleteBoard = boardId => dispatch => {
     dispatch(push('/boards'))
@@ -201,21 +200,21 @@ export const successfulDeleteBoard = boardId => dispatch => {
     })
 }
 
-export const updateColumn = (columnId, data) => (dispatch, getState) => {
+export const updateColumn = (columnId, data) => (dispatch, getState) => (
     axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ columnId }`, data, headers.json)
         .then(response => dispatch(successfulColumnUpdate(response.data)))
-}
+)
 
 export const successfulColumnUpdate = column => ({
     type: actionTypes.UPDATE_COLUMN,
     column
 })
 
-export const updateCard = (cardId, data) => (dispatch, getState) => {
+export const updateCard = (cardId, data) => (dispatch, getState) => (
     axios.put(`/api/v1/boards/${ getState().board.id }/nodes/${ cardId }`, data, headers.json)
         .then(response => dispatch(successfulCardUpdate(response.data)))
-}
-  
+)
+
 export const successfulCardUpdate = card => ({
     type: actionTypes.UPDATE_CARD,
     card
