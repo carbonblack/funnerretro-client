@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { getBoards, deleteBoard } from 'actions/board'
+import { getBoards } from 'actions/board'
 import Boards from 'components/boards/Boards'
 
 const mapStateToProps = state => ({
@@ -7,9 +7,8 @@ const mapStateToProps = state => ({
     isFetching: state.board.isFetchingBoards
 })
 
-const mapDispatchToProps = dispatch => ({
-    load: () => dispatch(getBoards()),
-    onDelete: boardId => dispatch(deleteBoard(boardId))
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    load: () => dispatch(getBoards(ownProps.match.params.id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Boards)

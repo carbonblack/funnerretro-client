@@ -73,7 +73,7 @@ export const vote = (cardId, v) => (dispatch, getState) => (
     })
 )
 
-export const getBoards = () => dispatch => {
+export const getBoards = (id) => dispatch => {
     dispatch(fetchBoards())
     return axios.get('/api/v1/boards').then(response => {
         dispatch(receiveBoards(response.data.boards.map(board => ({

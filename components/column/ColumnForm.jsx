@@ -23,15 +23,22 @@ const form = css`
     margin: 0;
 `
 
-const inputStyles = error => css`
+const inputStyles = css`
     flex-grow: 1;
-    border: 1px solid ${ error ? colors.pink : colors.mediumGray };
     margin-right: 0.5rem;
     padding: 0.75rem;
 
     &:focus {
         outline: none;
     }
+`
+
+const pinkBorder = css`
+    border: 1px solid ${ colors.pink };
+`
+
+const grayBorder = css`
+    border: 1px solid ${ colors.mediumGray };
 `
 
 const cancelButton = css`
@@ -90,7 +97,7 @@ class ColumnForm extends Component {
                 <div className={ container }>
                     <form className={ form } onSubmit={ () => false }>
                         <input
-                            className={ inputStyles(error) }
+                            className={ cx(inputStyles, { [pinkBorder]: error, [grayBorder]: !error }) }
                             value={ name }
                             placeholder={ placeholder } 
                             onChange={ e => this.setState({ name: e.target.value }) } 
