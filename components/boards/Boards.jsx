@@ -41,6 +41,15 @@ const addBoard = css`
     background: ${ colors.darkBlue };
 `
 
+const header = css`
+    width: 100%;
+
+    h1 {
+        color: ${ colors.logoOrange };
+        font-family: 'Graphique';
+    }
+`;
+
 class Boards extends Component {
     componentDidMount() {
         this.props.load()
@@ -52,6 +61,9 @@ class Boards extends Component {
         return (
             <div className={ container }>
                 <div className={ inner }>
+                    <div className={ header }>
+                         <h1>Hello</h1>
+                    </div>
                     <div className={ boardContainer }>
                         <Link to="/board/new">
                             <div className={ cx(boardInner, addBoard) }>
