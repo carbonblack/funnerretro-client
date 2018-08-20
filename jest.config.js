@@ -20,6 +20,7 @@ module.exports = {
     'setupFiles': [
         '<rootDir>/testing/setup.js'
     ],
+    'testURL': 'http://localhost',
     'transform': {
         '^.+\\.js[x]?$': 'babel-jest'
     }
