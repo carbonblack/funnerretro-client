@@ -26,7 +26,6 @@
         "arrow-parens": ["error", "as-needed"],
         "arrow-spacing": ["error", { "before": true, "after": true }],
         "eqeqeq": "error",
-        "indent": ["error", 4],
         "linebreak-style": ["error", "unix"],
         "no-unreachable": "error",
         "object-curly-spacing": ["error", "always"],
