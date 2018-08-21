@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
 import { css, cx } from 'react-emotion'
 import { Link } from 'react-router-dom'
 import colors from 'styles/colors'
@@ -59,6 +60,10 @@ const BoardsGrid = ({ boards }) => {
             )) }
         </Fragment>
     )
+}
+
+BoardsGrid.propTypes = {
+    boards: PropTypes.array.isRequired
 }
 
 export default BoardsGrid

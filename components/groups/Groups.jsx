@@ -44,7 +44,7 @@ class Groups extends Component {
             <div className={ styles.container }>
                 <h1 className={ styles.headerText }>Workspaces</h1>
                 <ul className={ styles.groupsContainer }>
-                    <Link className={ styles.link } to={ `/boards/0` }><li>My Boards</li></Link>
+                    <Link className={ styles.link } to='/boards/0'><li>My Boards</li></Link>
                     { groups.map(group => (
                         <li key={ `group-${ group.id }` }><Link className={ styles.link } to={ `/boards/${ group.id }` }>{ group.content.name }</Link></li>
                     )) }
@@ -57,7 +57,8 @@ class Groups extends Component {
 Groups.propTypes = {
     groups: PropTypes.array.isRequired,
     isFetching: PropTypes.bool.isRequired,
-    fetchingErrors: PropTypes.string
+    fetchingErrors: PropTypes.string,
+    load: PropTypes.func.isRequired
 }
 
 export default Groups

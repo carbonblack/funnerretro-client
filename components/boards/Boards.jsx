@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import colors from 'styles/colors'
 import BoardsGrid from 'components/boards/BoardsGrid'
-import GroupsContainer from 'containers/GroupsContainer';
+import GroupsContainer from 'containers/GroupsContainer'
 
 const styles = {
     container: css`

@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import { getBoards } from 'actions/board'
-import { getGroups } from 'actions/groups'
 import Boards from 'components/boards/Boards'
 
 const mapStateToProps = state => ({
