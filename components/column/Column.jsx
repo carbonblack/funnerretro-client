@@ -6,24 +6,23 @@ import CardContainer from 'containers/CardContainer'
 import New from 'components/shared/New'
 import ColumnHeader from 'components/column/ColumnHeader'
 
-const columnContainer = css`
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    margin-left: 1rem;
-    margin-bottom: 1rem;
-    width: 325px;
-`
-
-const inner = css`
-    background: ${ colors.offWhite };
-    border: 5px solid ${ colors.black };
-    padding: 1rem 1rem 0 1rem;
-`
-
-const cards = css`
-    max-height: 61vh;
-`
+const styles = {
+    columnContainer: css`
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        margin: 0 0.5rem 1rem;
+        width: 325px;
+    `,
+    inner: css`
+        background: ${ colors.white };
+        padding: 1rem 1rem 0 1rem;
+        border-radius: 7px;
+    `,
+    cards: css`
+        max-height: 61vh;
+    `
+}
 
 class Column extends Component {
     state = {
@@ -46,8 +45,8 @@ class Column extends Component {
         const { editing } = this.state
 
         return (
-            <div className={ columnContainer }>
-                <div className={ inner }>
+            <div className={ styles.columnContainer }>
+                <div className={ styles.inner }>
                     <ColumnHeader 
                         name={ column.content.name }
                         id={ column.id }
@@ -59,7 +58,7 @@ class Column extends Component {
                     <div>
                         <New placeholder="New card" submitLabel="Add" onSubmit={ value => onNewCard(value, column.id) } />
                     </div>
-                    <div className={ cards }>
+                    <div className={ styles.cards }>
                         { column.cards.map(((card, index) => (
                             <CardContainer
                                 key={ `card-${card.id}` }

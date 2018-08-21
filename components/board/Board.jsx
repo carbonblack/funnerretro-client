@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import ColumnContainer from 'containers/ColumnContainer'
@@ -6,28 +6,30 @@ import ColumnForm from 'components/column/ColumnForm'
 import colors from 'styles/colors'
 import Actions from 'components/shared/Actions'
 
-const columnsContainer = css`
-    display: flex;
-    margin-top: 2rem;
-`
+const styles = {
+    container: css`
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 2.1rem 2rem;
+    `,
+    header: css`
+        display: flex;
+        width: 100%;
+        color: ${ colors.logoOrange };
+        margin: 0 0.5rem;
 
-const ColumnFormContainer = css`
-    margin-left: 1rem;
-`
-
-const header = css`
-    display: flex;
-    justify-content: center;
-`
-
-const innerHeader = css`
-    display: flex;
-    justify-content: space-between;
-    min-width: 10%;
-    background: ${ colors.offWhite };
-    border: 5px solid ${ colors.black };
-    padding: 1rem 2rem;
-`
+        h1 {
+            font-size: 3rem;
+        }
+    `,
+    columnsContainer: css`
+        display: flex;
+        margin-top: 2rem;
+    `,
+    columnFormContainer: css`
+        margin-left: 1rem
+    `
+}
 
 class Board extends Component {
     componentDidMount() {
@@ -41,25 +43,18 @@ class Board extends Component {
     render() {
         const { name, id, columns, onColumnForm, onDelete } = this.props
 
-        const actions = [
-            { text: 'Delete', action: () => onDelete(id) }
-        ]
-
         return (
-            <Fragment>
-                <div className={ header }>
-                    <div className={ innerHeader }>
-                        <h2>{ name }</h2>
-                        <Actions actions={ actions } />
-                    </div>
+            <div className={ styles.container }>
+                <div className={ styles.header }>
+                    <h1>{ name }</h1>
                 </div>
-                <div className={ columnsContainer }>
+                <div className={ styles.columnsContainer }>
                     { columns.map(column => <ColumnContainer key={ `column-${column.id}` } column={ column } />) }
-                    <div className={ ColumnFormContainer }>
+                    <div className={ styles.columnFormContainer }>
                         <ColumnForm placeholder="Column name" submitLabel="Create" onSubmit={ value => onColumnForm(value) } />
                     </div>
                 </div>
-            </Fragment>
+            </div>
         )
     }
 }
