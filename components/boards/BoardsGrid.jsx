@@ -32,7 +32,7 @@ const styles = {
 }
 
 const BoardsGrid = ({ boards }) => {
-    const numberOfBlankBoards = boards.length > 15 ? 0 : 14 - boards.length
+    const numberOfBlankBoards = boards.length > 14 ? boards.length % 5 : 14 - boards.length
 
     return (
         <Fragment>
