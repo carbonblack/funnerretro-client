@@ -1,7 +1,12 @@
 import * as actionTypes from 'constants/actionTypes'
 
+// TODO clear groups
 const initialState = {
-    groups: [],
+    groups: [
+        { id: '1', content: { name: 'Nic Cage' } },
+        { id: '2', content: { name: '404' } },
+        { id: '3', content: { name: 'Ifrit' } },
+    ],
     isFetching: false,
     fetchingError: null
 }
