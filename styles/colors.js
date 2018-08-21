@@ -18,6 +18,13 @@ const colors = {
     orange: '#FC6215',
     lightOrange: '#FFE6CF',
     mediumOrange: '#FD8824',
+
+    mediumBlue: '#306A8C',
+    darkBlue: '#043552',
+    lightBlueNew: '#5990B1',
+    blueTextButton: '#8EC2FF',
+
+    logoOrange: '#F1B600'
 }
 
 export default colors

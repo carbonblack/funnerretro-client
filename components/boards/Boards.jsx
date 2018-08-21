@@ -2,37 +2,47 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import colors from 'styles/colors'
-import BoardsTable from 'components/boards/BoardsTable'
+import BoardsGrid from 'components/boards/BoardsGrid'
+import GroupsContainer from 'containers/GroupsContainer'
 
-const container = css`
-    display: flex;
-    flex-direction: column;
+const styles = {
+    container: css`
+        display: flex;
+        margin: 0 2.6rem 2rem;
 
-    a {
-        text-decoration: none;
-    }
-`
+        a {
+            text-decoration: none;
+        }
+    `,
+    inner: css`
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    `,
+    header: css`
+        width: 100%;
+        color: ${ colors.white };
+        padding: 0 0.5rem;
+        display: flex;
+        justify-content: space-between;
 
-const inner = css`
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-`
+        p {
+            font-size: 1.2rem;
+        }
+    `,
+    headerText: css`
+        color: ${ colors.logoOrange };
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    `,
+    sorting: css`
+        color: ${ colors.blueTextButton };
 
-const header = css`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 2rem;
-`
-
-const headerInner = css`
-    background: ${ colors.offWhite };
-    border: 5px solid ${ colors.black };
-    padding: 1rem 2rem;
-    border-radius: 2px;
-    text-transform: uppercase;
-`
+        span {
+            padding-left: 1rem;
+        }
+    `
+}
 
 class Boards extends Component {
     componentDidMount() {
@@ -40,15 +50,20 @@ class Boards extends Component {
     }
 
     render() {
-        const { boards, onDelete } = this.props
-        
+        const { boards } = this.props
+
         return (
-            <div className={ container }>
-                <div className={ header }>
-                    <h2 className={ headerInner }>All Retro Boards</h2>
-                </div>
-                <div className={ inner }>
-                    <BoardsTable boards={ boards } onDelete={ id => onDelete(id) } />
+            <div className={ styles.container }>
+                <GroupsContainer />
+                <div className={ styles.inner }>
+                    <div className={ styles.header }>
+                         <h1 className={ styles.headerText }>Nic Cage</h1>
+                    </div>
+                    <div className={ styles.header }>
+                        <p>Boards</p>
+                        <p className={ styles.sorting }>Most Recent <span>A-Z</span></p>
+                    </div>
+                    <BoardsGrid boards={ boards } />
                 </div>
             </div>
         )
@@ -57,8 +72,7 @@ class Boards extends Component {
 
 Boards.propTypes = {
     load: PropTypes.func.isRequired,
-    boards: PropTypes.array,
-    onDelete: PropTypes.func.isRequired
+    boards: PropTypes.array
 }
 
 Boards.defaultProps = {
