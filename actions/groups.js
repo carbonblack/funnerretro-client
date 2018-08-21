@@ -8,7 +8,7 @@ export const getGroups = () => dispatch => {
             content: group.content,
             id: group.id
         }))))
-    }).catch(error => dispatch(getGroupsError(error)))
+    }).catch(response => dispatch(getGroupsError(response.response.statusText)))
 }
 
 export const fetchGroups = () => ({

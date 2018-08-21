@@ -61,4 +61,19 @@ describe('groups async actions', () => {
 
         return store.dispatch(actions.getGroups()).then(() => expect(store.getActions()).toEqual(expectedActions))
     })
+
+    it('should error if the API request errors', () => {
+        const expectedActions = [
+            { type: actionTypes.FETCH_GROUPS },
+            { type: actionTypes.FETCH_GROUPS_ERROR, error: 'error' }
+        ]
+        const store = mockStore({ groups: [], isFetching: false, fetchingError: null })
+        
+        moxios.stubRequest('/api/v1/groups', {
+            status: 500,
+            statusText: 'error'
+        })
+
+        return store.dispatch(actions.getGroups()).then(() => expect(store.getActions()).toEqual(expectedActions))
+    })
 })
