@@ -4,7 +4,6 @@ import { css } from 'react-emotion'
 import ColumnContainer from 'containers/ColumnContainer'
 import ColumnForm from 'components/column/ColumnForm'
 import colors from 'styles/colors'
-import Actions from 'components/shared/Actions'
 
 const styles = {
     container: css`
@@ -41,7 +40,7 @@ class Board extends Component {
     }
 
     render() {
-        const { name, id, columns, onColumnForm, onDelete } = this.props
+        const { name, columns, onColumnForm } = this.props
 
         return (
             <div className={ styles.container }>
