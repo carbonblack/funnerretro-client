@@ -33,7 +33,7 @@ const styles = {
         height: 7rem;
         border-radius: 7px;
         text-transform: uppercase;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         overflow: hidden;
         word-break: break-all;
     `,
@@ -50,6 +50,10 @@ const styles = {
         padding: 0 0.5rem;
         display: flex;
         justify-content: space-between;
+
+        p {
+            font-size: 1.2rem;
+        }
     `,
     headerText: css`
         color: ${ colors.logoOrange };
@@ -81,13 +85,13 @@ class Boards extends Component {
                          <h1 className={ styles.headerText }>Nic Cage</h1>
                     </div>
                     <div className={ styles.header }>
-                        <h3>Boards</h3>
-                        <h3 className={ styles.sorting }>Most Recent <span>A-Z</span></h3>
+                        <p>Boards</p>
+                        <p className={ styles.sorting }>Most Recent <span>A-Z</span></p>
                     </div>
                     <div className={ styles.boardContainer }>
                         <Link to="/board/new">
                             <div className={ cx(styles.boardInner, styles.addBoard) }>
-                                <h2>+ Add board</h2>
+                                <p>+ Add board</p>
                             </div>
                         </Link>
                     </div>
@@ -95,7 +99,7 @@ class Boards extends Component {
                         <div key={ `board-${ board.id }` } className={ styles.boardContainer }>
                             <Link to={ `/board/${ board.id }` }>
                                 <div className={ styles.boardInner }>
-                                    <h2>{ board.content.name }</h2>
+                                    <p>{ board.content.name }</p>
                                 </div>
                             </Link>
                         </div>
