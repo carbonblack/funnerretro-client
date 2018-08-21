@@ -22,6 +22,7 @@ const colors = {
     mediumBlue: '#306A8C',
     darkBlue: '#043552',
     lightBlueNew: '#5990B1',
+    blueTextButton: '#8EC2FF',
 
     logoOrange: '#F1B600'
 }

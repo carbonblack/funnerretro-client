@@ -4,18 +4,13 @@ body, h1, h2, h3, h4, h5, h6, p, span {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Abel", sans-serif;
+    font-family: "Abel", Arial, Helvetica, sans-serif;
 }
 
 p, span, a, button, label, input {
-    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-family: "Abel", Arial, Helvetica, sans-serif;
 }
 
 body {
     background-color: #306A8C;
-}
-
-@font-face {
-    font-family: 'GraphiqueProNextCo';
-    src: url('Graphique.eot?#iefix') format('embedded-opentype'), url('Graphique.woff2') format('woff2'), url('Graphique.woff') format('woff'), url('Graphique.ttf') format('truetype');
 }

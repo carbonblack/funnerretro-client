@@ -14,7 +14,7 @@ const Routes = ({ location }) => (
             <Route exact path="/" component={ Home } />
             <Route path="/board/new" component={ BoardFormContainer } />
             <Route path="/board/:id" component={ BoardContainer } />
-            <Route path="/boards/:id" component={ BoardsContainer } />
+            <Route path="/boards/:id?" component={ BoardsContainer } />
         </Switch>
     </Fragment>
 )
