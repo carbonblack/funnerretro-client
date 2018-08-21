@@ -1,5 +1,4 @@
 import * as actionTypes from 'constants/actionTypes'
-import * as headers from 'constants/headers'
 import axios from 'axios'
 
 export const getGroups = () => dispatch => {
