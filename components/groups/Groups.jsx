@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import colors from 'styles/colors'
 
 const styles = {
@@ -24,6 +24,13 @@ const styles = {
         }
     `,
     link: css`
+        color: ${ colors.lightBlueNew };
+
+        :hover, :visited, :active, :focus {
+            color: ${ colors.lightBlueNew };
+        } 
+    `,
+    linkActive: css`
         color: ${ colors.white };
 
         :hover, :visited, :active, :focus {
@@ -44,9 +51,13 @@ class Groups extends Component {
             <div className={ styles.container }>
                 <h1 className={ styles.headerText }>Workspaces</h1>
                 <ul className={ styles.groupsContainer }>
-                    <Link className={ styles.link } to='/boards/0'><li>My Boards</li></Link>
+                    <NavLink activeClassName={ styles.linkActive } className={ styles.link } to='/boards/0'><li>My Boards</li></NavLink>
                     { groups.map(group => (
-                        <li key={ `group-${ group.id }` }><Link className={ styles.link } to={ `/boards/${ group.id }` }>{ group.content.name }</Link></li>
+                        <li key={ `group-${ group.id }` }>
+                            <NavLink activeClassName={ styles.linkActive } className={ styles.link } to={ `/boards/${ group.id }` }>
+                                { group.content.name }
+                            </NavLink>
+                        </li>
                     )) }
                 </ul>
             </div>
