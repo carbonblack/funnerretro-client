@@ -4,37 +4,14 @@ body, h1, h2, h3, h4, h5, h6, p, span, ul, li {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "League Gothic", Arial, Helvetica, sans-serif;
+    font-family: "Teko", Arial, Helvetica, sans-serif;
 }
 
 p, span, a, button, label, input, li {
-    font-family: "Abel", Arial, Helvetica, sans-serif;
+    font-family: "Oswald", Arial, Helvetica, sans-serif;
+    font-weight: 300;
 }
 
 body {
     background-color: #306A8C;
-}
-
-/* Regular */
-@font-face {
-    font-family: 'League Gothic';
-    src: url('fonts/leaguegothic-regular-webfont.eot');
-    src: url('fonts/leaguegothic-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/leaguegothic-regular-webfont.woff') format('woff'),
-         url('fonts/leaguegothic-regular-webfont.ttf') format('truetype'),
-         url('fonts/leaguegothic-regular-webfont.svg#league_gothicregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-/* Italic */
-@font-face {
-    font-family: 'League Gothic';
-    src: url('fonts/leaguegothic-italic-webfont.eot');
-    src: url('fonts/leaguegothic-italic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/leaguegothic-italic-webfont.woff') format('woff'),
-         url('fonts/leaguegothic-italic-webfont.ttf') format('truetype'),
-         url('fonts/leaguegothic-italic-webfont.svg#league_gothic_italicregular') format('svg');
-    font-weight: normal;
-    font-style: italic;
 }

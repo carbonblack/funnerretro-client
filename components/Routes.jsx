@@ -1,15 +1,14 @@
 import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
-import { Route, Switch, withRouter } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Home from 'components/Home'
 import BoardsContainer from 'containers/BoardsContainer'
 import BoardContainer from 'containers/BoardContainer'
 import BoardFormContainer from 'containers/NewBoardContainer'
 import TopNavigation from 'components/navigation/TopNavigation'
 
-const Routes = ({ location }) => (
+const Routes = () => (
     <Fragment>
-        <TopNavigation shouldShow={ location.pathname !== '/' } />
+        <TopNavigation />
         <Switch>
             <Route exact path="/" component={ Home } />
             <Route path="/board/new" component={ BoardFormContainer } />
@@ -19,8 +18,4 @@ const Routes = ({ location }) => (
     </Fragment>
 )
 
-Routes.propTypes = {
-    location: PropTypes.object.isRequired
-}
-
-export default withRouter(Routes)
+export default Routes

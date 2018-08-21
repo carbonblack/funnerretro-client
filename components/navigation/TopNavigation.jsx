@@ -1,8 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import { Link } from 'react-router-dom'
-import brandLogo from 'assets/retrospec_logo.svg'
+import brandLogo from 'assets/retrospec_logo.png'
 import colors from 'styles/colors'
 
 const nav = css`
@@ -20,23 +19,14 @@ const brand = css`
     height: 100%;
 
     img {
-        width: 3.1rem;
+        width: 4rem;
     }
 `
 
-const TopNavigation = ({ shouldShow }) => {
-    if(shouldShow)
-        return (
-            <div className={ nav }>
-                <Link className={ brand } to="/"><img src={ brandLogo } /></Link>
-            </div>
-        )
-
-    return null
-}
-
-TopNavigation.propTypes = {
-    shouldShow: PropTypes.bool
-}
+const TopNavigation = () => (
+    <div className={ nav }>
+        <Link className={ brand } to="/"><img src={ brandLogo } /></Link>
+    </div>
+)
 
 export default TopNavigation

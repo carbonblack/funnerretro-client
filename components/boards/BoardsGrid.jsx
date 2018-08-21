@@ -8,7 +8,6 @@ const styles = {
     boardContainer: css`
         color: ${ colors.black };
         padding: 0.5rem;
-        font-family: 'Abel', sans-serif;
         width: calc(20% - 1rem);
         min-width: 12.5rem;
     `,
