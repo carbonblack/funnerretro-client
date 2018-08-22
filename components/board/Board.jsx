@@ -24,9 +24,6 @@ const styles = {
     columnsContainer: css`
         display: flex;
         margin-top: 2rem;
-    `,
-    columnFormContainer: css`
-        margin-left: 1rem
     `
 }
 
@@ -49,9 +46,7 @@ class Board extends Component {
                 </div>
                 <div className={ styles.columnsContainer }>
                     { columns.map(column => <ColumnContainer key={ `column-${column.id}` } column={ column } />) }
-                    <div className={ styles.columnFormContainer }>
-                        <ColumnForm placeholder="Column name" submitLabel="Create" onSubmit={ value => onColumnForm(value) } />
-                    </div>
+                    <ColumnForm placeholder="Column name" submitLabel="Create" onSubmit={ value => onColumnForm(value) } />
                 </div>
             </div>
         )
