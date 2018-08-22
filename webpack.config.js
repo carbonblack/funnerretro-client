@@ -8,7 +8,7 @@ const paths = {
 }
 
 const proxyUrls = {
-    API: 'http://localhost:80'
+    API: 'https://localhost:4433'
 }
 
 module.exports = {
@@ -23,8 +23,10 @@ module.exports = {
             ],
             target: proxyUrls.API, 
             secure: false
-        }]
+        }],
+        https: true
     },
+    devtool: 'source-map',
     resolve: {
         extensions: ['.js', '.jsx'],
         modules: [
@@ -45,7 +47,7 @@ module.exports = {
                 use: ['babel-loader'],
             },
             {
-                test: /\.(png|svg)$/,
+                test: /\.(png|svg|pem)$/,
                 include: path.join(paths.SRC, 'assets'),
                 use: [
                     {

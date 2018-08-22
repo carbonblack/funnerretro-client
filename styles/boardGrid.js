@@ -17,7 +17,7 @@ export const sharedStyles = {
         text-transform: uppercase;
         font-size: 1.4rem;
         overflow: hidden;
-        word-break: break-all;
+        word-break: break-word;
         position: relative;
     `,
 }
