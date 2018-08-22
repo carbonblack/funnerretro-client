@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import New from 'components/shared/New'
 import Actions from 'components/shared/Actions'
+import colors from 'styles/colors'
 
 const header = css`
     display: flex;
     justify-content: space-between;
     align-content: center;
     margin-bottom: 1rem;
+    color: ${ colors.white };
 `
 
 const ColumnHeader = ({ name, id, editing, onSave, onEdit, onDelete }) => {
@@ -19,15 +21,15 @@ const ColumnHeader = ({ name, id, editing, onSave, onEdit, onDelete }) => {
 
     if(editing) {
         return (
-            <div>
+            <Fragment>
                 <New value={ name } onSubmit={ val => onSave(val) } submitLabel="Save" />
-            </div>
+            </Fragment>
         )
     }
 
     return (
         <div className={ header }>
-            <h3>{ name }</h3>
+            <p>{ name }</p>
             <Actions actions={ actions } />
         </div>
     )

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { css } from 'react-emotion'
+import { css, cx } from 'react-emotion'
+import { baseButton } from 'styles/button'
 import colors from 'styles/colors'
 import BoardsGrid from 'components/boards/BoardsGrid'
 import GroupsContainer from 'containers/GroupsContainer'
@@ -35,12 +36,9 @@ const styles = {
         font-size: 3rem;
         margin-bottom: 1rem;
     `,
-    sorting: css`
+    action: css`
         color: ${ colors.blueTextButton };
-
-        span {
-            padding-left: 1rem;
-        }
+        margin-left: 2rem;
     `
 }
 
@@ -50,7 +48,7 @@ class Boards extends Component {
     }
 
     render() {
-        const { boards } = this.props
+        const { boards, onDelete, onEditBoards, isEditingBoards } = this.props
 
         return (
             <div className={ styles.container }>
@@ -61,9 +59,13 @@ class Boards extends Component {
                     </div>
                     <div className={ styles.header }>
                         <p>Boards</p>
-                        <p className={ styles.sorting }>Most Recent <span>A-Z</span></p>
+                        <div>
+                            <span className={ styles.action }>Most Recent</span> 
+                            <span className={ styles.action }>A-Z</span>
+                            <button className={ cx(styles.action, baseButton) } onClick={ onEditBoards }>{ isEditingBoards ? 'Done' : 'Edit' }</button>
+                        </div>
                     </div>
-                    <BoardsGrid boards={ boards } />
+                    <BoardsGrid boards={ boards } onDelete={ onDelete } editing={ isEditingBoards } />
                 </div>
             </div>
         )
@@ -72,11 +74,15 @@ class Boards extends Component {
 
 Boards.propTypes = {
     load: PropTypes.func.isRequired,
-    boards: PropTypes.array
+    boards: PropTypes.array,
+    onDelete: PropTypes.func.isRequired,
+    onEditBoards: PropTypes.func.isRequired,
+    isEditingBoards: PropTypes.bool
 }
 
 Boards.defaultProps = {
-    boards: []
+    boards: [],
+    isEditingBoards: false
 }
 
 export default Boards

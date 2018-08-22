@@ -4,15 +4,10 @@ import { css, cx } from 'react-emotion'
 import { baseButton } from 'styles/button'
 import colors from 'styles/colors'
 
-const ColumnFormButton = css`
-    border: 4px solid ${ colors.black };
-`
-
 const container = css`
     display: flex;
     flex-direction: column;
     background: ${ colors.offWhite };
-    border: 5px solid ${ colors.black };
     padding: 1rem;
     height: fit-content;
 `
@@ -110,7 +105,7 @@ class ColumnForm extends Component {
             )
         } else {
             return (
-                <button className={ cx(baseButton, ColumnFormButton) } onClick={ () => this.setState({ shouldShowColumnFormInput: true }) }>Create a new column</button>
+                <button className={ baseButton } onClick={ () => this.setState({ shouldShowColumnFormInput: true }) }>Create a new column</button>
             )
         }
     }

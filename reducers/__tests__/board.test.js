@@ -9,6 +9,7 @@ describe('board reducers', () => {
             isFetchingBoard: false,
             boardError: null,
             isFetchingBoards: false,
+            isEditingBoards: false,
             boardsError: null,
             boards: [],
             columns: []
@@ -557,5 +558,11 @@ describe('board reducers', () => {
                 }
             ]
         })
+    })
+
+    test('should update editing boards', () => {
+        expect(reducer({}, {
+            type: actions.TOGGLE_EDIT_BOARDS
+        })).toEqual({ isEditingBoards: true })
     })
 })

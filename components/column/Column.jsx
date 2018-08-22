@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
-import colors from 'styles/colors'
 import CardContainer from 'containers/CardContainer'
 import New from 'components/shared/New'
 import ColumnHeader from 'components/column/ColumnHeader'
@@ -15,8 +14,7 @@ const styles = {
         width: 325px;
     `,
     inner: css`
-        background: ${ colors.white };
-        padding: 1rem 1rem 0 1rem;
+        padding: 1rem 0 0;
         border-radius: 7px;
     `,
     cards: css`

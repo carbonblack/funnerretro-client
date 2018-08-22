@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { css, cx } from 'react-emotion'
 import FontAwesome from 'react-fontawesome'
 import colors from 'styles/colors'
-import { actionButton } from 'styles/button'
+import { actionButtonDark } from 'styles/button'
 import New from 'components/shared/New'
 import Actions from 'components/shared/Actions'
 
@@ -39,7 +39,7 @@ const actionsContainer = css`
 `
 
 const firstActionButton = css`
-    ${ actionButton }
+    ${ actionButtonDark }
     padding-left: 0;
 `
 
@@ -99,7 +99,7 @@ class Card extends Component {
                             <FontAwesome name="thumbs-o-up" />
                         </button>
                         <span>{ card.content.votes }</span>
-                        <button className={ actionButton } onClick={ () => onVote(card.id, -1) }>
+                        <button className={ actionButtonDark } onClick={ () => onVote(card.id, -1) }>
                             <FontAwesome name="thumbs-o-down" />
                         </button>
                     </div>

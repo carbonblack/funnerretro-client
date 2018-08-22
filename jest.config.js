@@ -2,6 +2,8 @@ module.exports = {
     'collectCoverageFrom': [
         '**/*.{js,jsx}',
         '!**/node_modules/**',
+        '!**/coverage/**',
+        '!**/dist/**',
         '!webpack.config.js',
         '!jest.config.js',
         '!components/Index.jsx'

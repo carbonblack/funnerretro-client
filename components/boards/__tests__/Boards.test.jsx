@@ -7,6 +7,7 @@ describe('Boards test', () => {
         const component = <Boards 
             load={ () => {} }
             onDelete={ () => {} }
+            onEditBoards={ () => {} }
         />
         expect(shallow(component).exists()).toBe(true)
     })

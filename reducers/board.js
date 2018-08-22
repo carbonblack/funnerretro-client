@@ -9,7 +9,8 @@ const initialState = {
     isFetchingBoards: false,
     boardsError: null,
     boards: [],
-    columns: []
+    columns: [],
+    isEditingBoards: false
 }
 
 const board = (state = initialState, action) => {
@@ -183,6 +184,11 @@ const board = (state = initialState, action) => {
                     })(column.cards, action.columnId)
                 }
             })
+        }
+    case actionTypes.TOGGLE_EDIT_BOARDS:
+        return {
+            ...state,
+            isEditingBoards: !state.isEditingBoards
         }
     default:
         return state

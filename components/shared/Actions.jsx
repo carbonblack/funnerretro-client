@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import onClickOutside from 'react-onclickoutside'
 import FontAwesome from 'react-fontawesome'
-import { actionButton } from 'styles/button'
+import { actionButton, actionButtonDark } from 'styles/button'
 import colors from 'styles/colors'
 
 const actionsContainer = css`
@@ -14,7 +14,7 @@ const actionsContainer = css`
 `
 
 const action = css`
-    ${ actionButton };
+    ${ actionButtonDark };
     padding: 0.5rem 0rem;
 `
 
@@ -28,7 +28,7 @@ const actionsInner = css`
     top: 1.5rem;
     right: 0;
     background: ${ colors.white };
-    box-shadow: 0px 2px 5px 2px ${ colors.gray };
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
     padding: 0.5rem 1rem;
 `
 

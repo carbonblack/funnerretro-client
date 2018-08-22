@@ -2,23 +2,19 @@ import { css } from 'react-emotion'
 import colors from 'styles/colors'
 
 export const baseButton = css`
-    color: ${ colors.black };
-    background: ${ colors.offWhite };
-    border: 2px solid ${ colors.black };
-    padding: 0.5rem 0.75rem;
+    color: ${ colors.white };
+    background: ${ colors.darkBlue };
+    padding: 0.5rem 1.25rem;
     font-size: 0.9rem;
     transition: 0.2s;
     text-decoration: none;
-
-    &:hover {
-        background: ${ colors.lightPink };
-        color: ${ colors.white };
-    }
+    border: 0;
+    border-radius: 5px;
 `
 
 export const actionButton = css`
     font-size: 0.9rem;
-    color: ${ colors.offBlack };
+    color: ${ colors.white };
     border: 0;
     background: transparent;
 
@@ -26,6 +22,14 @@ export const actionButton = css`
         outline: none;
     }
 
+    &:hover {
+        color: ${ colors.lightBlueNew };
+    }
+`
+
+export const actionButtonDark = css`
+    ${ actionButton };
+    color: ${ colors.offBlack };
     &:hover {
         color: ${ colors.mediumGray };
     }

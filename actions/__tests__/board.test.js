@@ -92,6 +92,12 @@ describe('boards synchronous actions', () => {
             column
         })
     })
+
+    test('should create an action for toggling editing boards', () => {
+        expect(actions.toggleEditingBoards()).toEqual({
+            type: actionTypes.TOGGLE_EDIT_BOARDS
+        })
+    })
 })
 
 describe('boards asynchronous actions', () => {

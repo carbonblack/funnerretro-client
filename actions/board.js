@@ -224,3 +224,7 @@ export const reevaluateColumn = columnId => ({
     type: actionTypes.REBUILD_COLUMN,
     columnId
 })
+
+export const toggleEditingBoards = () => ({
+    type: actionTypes.TOGGLE_EDIT_BOARDS
+})
