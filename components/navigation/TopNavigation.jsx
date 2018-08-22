@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import { Link } from 'react-router-dom'
 import brandLogo from 'assets/retrospec_logo.png'
@@ -23,10 +24,15 @@ const brand = css`
     }
 `
 
-const TopNavigation = () => (
+const TopNavigation = ({ username }) => (
     <div className={ nav }>
         <Link className={ brand } to="/"><img src={ brandLogo } /></Link>
+        <p>{ username }</p>
     </div>
 )
+
+TopNavigation.propTypes = {
+    username: PropTypes.string
+}
 
 export default TopNavigation

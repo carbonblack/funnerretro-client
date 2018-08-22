@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
 import { Router } from 'react-router-dom'
 import history from '../history'
-import Routes from 'components/Routes'
+import RoutesContainer from 'containers/RoutesContainer'
 
 const Root = ({ store }) => (
     <Provider store={ store }>
         <Router history={ history }>
-            <Routes />
+            <RoutesContainer />
         </Router>
     </Provider>
 )
