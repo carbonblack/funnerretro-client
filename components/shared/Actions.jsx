@@ -23,13 +23,19 @@ const actionToggle = css`
     padding: 0;
 `
 
+const actionToggleDark = css`
+    ${ actionButtonDark };
+    padding: 0;
+`
+
 const actionsInner = css`
     position: absolute;
     top: 1.5rem;
     right: 0;
     background: ${ colors.white };
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
     padding: 0.5rem 1rem;
+    min-width: 3rem;
+    border-radius: 2px;
 `
 
 class Actions extends Component {
@@ -47,12 +53,12 @@ class Actions extends Component {
     }
 
     render() {
-        const { actions } = this.props
+        const { actions, dark } = this.props
         const { shouldShowActions } = this.state
 
         return (
             <div className={ actionsContainer }>
-                <button onClick={ () => this.setState({ shouldShowActions: !shouldShowActions }) } className={ actionToggle }>
+                <button onClick={ () => this.setState({ shouldShowActions: !shouldShowActions }) } className={ dark ? actionToggleDark : actionToggle }>
                     <FontAwesome name="ellipsis-v" />
                 </button>
                 {shouldShowActions &&
@@ -70,11 +76,13 @@ class Actions extends Component {
 }
 
 Actions.propTypes = {
-    actions: PropTypes.array
+    actions: PropTypes.array,
+    dark: PropTypes.bool
 }
 
 Actions.defaultProps = {
-    actions: []
+    actions: [],
+    dark: false
 }
 
 export { Actions }

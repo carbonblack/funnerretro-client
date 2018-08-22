@@ -8,7 +8,7 @@ import BoardGridElement from 'components/boards/BoardGridElement'
 
 const styles = {
     blankBoardInner: css`
-        background: ${ colors.lightBlueNew };
+        background: ${ colors.lightBlue };
     `,
     addBoard: css`
         color: ${ colors.white };

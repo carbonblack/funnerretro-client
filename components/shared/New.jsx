@@ -12,9 +12,11 @@ const container = css`
 
 const inputStyles = error => css`
     flex-grow: 1;
-    border: 1px solid ${ error ? colors.pink : colors.mediumGray };
+    border: 1px solid ${ error ? colors.red : colors.mediumGray };
+    box-shadow: ${ error ? `0 0 4px 0 ${ colors.red }` : '' };
     margin-right: 0.5rem;
     padding: 0.5rem;
+    border-radius: 5px;
 
     &:focus {
         outline: none;
@@ -22,7 +24,7 @@ const inputStyles = error => css`
 `
 
 const errorContainer = css`
-    color: ${ colors.pink };
+    color: ${ colors.red };
     flex-basis: 100%;
     margin-top: 0.5rem;
 `

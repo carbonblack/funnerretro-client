@@ -10,8 +10,8 @@ const styles = {
         display: flex;
         flex-direction: column;
         height: auto;
-        margin: 0 0.5rem 1rem;
-        width: 325px;
+        margin: 0 1.5rem 1rem 0.5rem;
+        width: 18.75rem;
     `,
     inner: css`
         padding: 1rem 0 0;

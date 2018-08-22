@@ -11,7 +11,7 @@ const baseCardContainer = css`
     background: ${ colors.white };
     margin-bottom: 1rem;
     padding: 0.5rem 1rem;
-    border: 1px solid ${ colors.black };
+    border-radius: 7px;
     word-break: break-all;
     user-select: text;
 
@@ -103,7 +103,7 @@ class Card extends Component {
                             <FontAwesome name="thumbs-o-down" />
                         </button>
                     </div>
-                    <Actions actions={ actions } />
+                    <Actions actions={ actions } dark={ true } />
                 </div>
             </div>
         )

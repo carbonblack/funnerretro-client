@@ -14,7 +14,7 @@ const styles = {
     header: css`
         display: flex;
         width: 100%;
-        color: ${ colors.logoOrange };
+        color: ${ colors.orange };
         margin: 0 0.5rem;
 
         h1 {
@@ -46,7 +46,7 @@ class Board extends Component {
                 </div>
                 <div className={ styles.columnsContainer }>
                     { columns.map(column => <ColumnContainer key={ `column-${column.id}` } column={ column } />) }
-                    <ColumnForm placeholder="Column name" submitLabel="Create" onSubmit={ value => onColumnForm(value) } />
+                    <ColumnForm placeholder='Column name' submitLabel='Add' onSubmit={ value => onColumnForm(value) } />
                 </div>
             </div>
         )

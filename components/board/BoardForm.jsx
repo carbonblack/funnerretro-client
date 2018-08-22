@@ -20,7 +20,7 @@ const styles = {
     header: css`
         margin-bottom: 1rem;
         text-transform: uppercase;
-        color: ${ colors.logoOrange };
+        color: ${ colors.orange };
     `,
     content: css`
         padding: 2rem 4rem;
@@ -47,7 +47,8 @@ const styles = {
         border-radius: 7px;
     `,
     active: css`
-        background-color: ${ colors.logoOrange };
+        background-color: ${ colors.orange };
+        box-shadow: 0 0 4px 0 ${ colors.orange };
     `
 }
 

@@ -9,7 +9,7 @@ const styles = {
         margin-right: 5rem;
     `,
     headerText: css`
-        color: ${ colors.logoOrange };
+        color: ${ colors.orange };
         font-size: 3rem;
         margin-bottom: 1rem;
     `,
@@ -24,10 +24,10 @@ const styles = {
         }
     `,
     link: css`
-        color: ${ colors.lightBlueNew };
+        color: ${ colors.lightBlue };
 
         :hover, :visited, :active, :focus {
-            color: ${ colors.lightBlueNew };
+            color: ${ colors.lightBlue };
         } 
     `,
     linkActive: css`

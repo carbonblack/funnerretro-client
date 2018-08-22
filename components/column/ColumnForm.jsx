@@ -4,47 +4,45 @@ import { css, cx } from 'react-emotion'
 import { baseButton } from 'styles/button'
 import colors from 'styles/colors'
 
-const container = css`
-    display: flex;
-    flex-direction: column;
-    background: ${ colors.offWhite };
-    padding: 1rem;
-    height: fit-content;
-`
+const styles = {
+    container: css`
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        width: 18.75rem;
+        height: fit-content;
+    `,
+    form: css`
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+    `,
+    inputStyles: css`
+        flex-grow: 1;
+        margin-right: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 5px;
 
-const form = css`
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
-`
-
-const inputStyles = css`
-    flex-grow: 1;
-    margin-right: 0.5rem;
-    padding: 0.75rem;
-
-    &:focus {
-        outline: none;
-    }
-`
-
-const pinkBorder = css`
-    border: 1px solid ${ colors.pink };
-`
-
-const grayBorder = css`
-    border: 1px solid ${ colors.mediumGray };
-`
-
-const cancelButton = css`
-    margin-right: 0.5rem;
-`
-
-const errorContainer = css`
-    color: ${ colors.pink };
-    flex-basis: 100%;
-    margin-top: 1rem;
-`
+        &:focus {
+            outline: none;
+        }
+    `,
+    grayBorder: css`
+        border: 1px solid ${ colors.mediumGray };
+    `,
+    errorBorder: css`
+        border: 1px solid ${ colors.red };
+        box-shadow: 0 0 4px 0 ${ colors.red };
+    `,
+    cancelButton: css`
+        margin-right: 0.5rem;
+    `,
+    errorContainer: css`
+        color: ${ colors.red };
+        flex-basis: 100%;
+        margin-top: 1rem;
+    `
+}
 
 class ColumnForm extends Component {
     state = {
@@ -89,23 +87,25 @@ class ColumnForm extends Component {
 
         if(shouldShowColumnFormInput) {
             return (
-                <div className={ container }>
-                    <form className={ form } onSubmit={ () => false }>
+                <div className={ styles.container }>
+                    <form className={ styles.form } onSubmit={ () => false }>
                         <input
-                            className={ cx(inputStyles, { [pinkBorder]: error, [grayBorder]: !error }) }
+                            className={ cx(styles.inputStyles, { [styles.errorBorder]: error, [styles.grayBorder]: !error }) }
                             value={ name }
                             placeholder={ placeholder } 
                             onChange={ e => this.setState({ name: e.target.value }) } 
                         />
-                        <a className={ cx(baseButton, cancelButton) } onClick={ this.onCancel }>Cancel</a>
+                        <button className={ cx(baseButton, styles.cancelButton) } onClick={ this.onCancel }>Cancel</button>
                         <button className={ baseButton } onClick={ e => this.onSubmit(e) }>{ submitLabel }</button>
                     </form>
-                    { error && <p className={ errorContainer }>{ error }</p> }
+                    { error && <p className={ styles.errorContainer }>{ error }</p> }
                 </div>
             )
         } else {
             return (
-                <button className={ baseButton } onClick={ () => this.setState({ shouldShowColumnFormInput: true }) }>Create a new column</button>
+                <div className={ styles.container }>
+                    <button className={ baseButton } onClick={ () => this.setState({ shouldShowColumnFormInput: true }) }>+ Add Column</button>
+                </div>
             )
         }
     }

@@ -32,7 +32,7 @@ const styles = {
         }
     `,
     headerText: css`
-        color: ${ colors.logoOrange };
+        color: ${ colors.orange };
         font-size: 3rem;
         margin-bottom: 1rem;
     `,

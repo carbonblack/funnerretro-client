@@ -8,7 +8,7 @@ import { sharedStyles } from 'styles/boardGrid'
 
 const styles = {
     deleteButton: css`
-        background: ${ colors.logoOrange };
+        background: ${ colors.orange };
         color: ${ colors.white };
         border-radius: 50%;
         padding: 1rem;

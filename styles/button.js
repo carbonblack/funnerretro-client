@@ -23,7 +23,7 @@ export const actionButton = css`
     }
 
     &:hover {
-        color: ${ colors.lightBlueNew };
+        color: ${ colors.lightBlue };
     }
 `
 
