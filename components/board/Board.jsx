@@ -23,7 +23,6 @@ const styles = {
     `,
     columnsContainer: css`
         display: flex;
-        margin-top: 2rem;
     `
 }
 

@@ -36,6 +36,8 @@ const actionsInner = css`
     padding: 0.5rem 1rem;
     min-width: 3rem;
     border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+    list-style-type: none;
 `
 
 class Actions extends Component {
@@ -62,13 +64,13 @@ class Actions extends Component {
                     <FontAwesome name="ellipsis-v" />
                 </button>
                 {shouldShowActions &&
-                    <div className={ actionsInner }> 
+                    <ul className={ actionsInner }> 
                         {actions.map(a => (
-                            <div key={ `action-${ a.text }` }>
+                            <li key={ `action-${ a.text }` }>
                                 <button onClick={ () => this.onActionClick(a) } className={ action }>{ a.text }</button>
-                            </div>
+                            </li>
                         ))}
-                    </div>
+                    </ul>
                 }
             </div>
         )

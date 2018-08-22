@@ -8,7 +8,7 @@ const nav = css`
     width: 5.1rem;
     height: 4.7rem;
     background-color: ${ colors.white };
-    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.5);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
     margin: 0 2.6rem 1.5rem;
 `
 
