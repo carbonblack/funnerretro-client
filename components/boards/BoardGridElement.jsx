@@ -12,10 +12,10 @@ const styles = {
         color: ${ colors.white };
         border-radius: 50%;
         padding: 1rem;
-        font-size: 1rem;
         position: absolute;
         right: 0.5rem;
         top: 0.5rem;
+        font-size: 1.25rem;
     `
 }
 
