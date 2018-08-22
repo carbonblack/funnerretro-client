@@ -29,7 +29,7 @@ const ColumnHeader = ({ name, id, editing, onSave, onEdit, onDelete }) => {
 
     return (
         <div className={ header }>
-            <p>{ name }</p>
+            <h3>{ name }</h3>
             <Actions actions={ actions } />
         </div>
     )

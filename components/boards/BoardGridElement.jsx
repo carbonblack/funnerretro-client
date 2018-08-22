@@ -16,6 +16,9 @@ const styles = {
         right: 0.5rem;
         top: 0.5rem;
         font-size: 1.25rem;
+    `,
+    boardName: css`
+        font-weight: 300;
     `
 }
 
@@ -25,7 +28,7 @@ const BoardGridElement = ({ board, editing, onDelete }) => {
             <div key={ `board-${ board.id }` } className={ sharedStyles.boardContainer }>
                 <Link to={ `/board/${ board.id }` }>
                     <div className={ sharedStyles.boardInner }>
-                        <p>{ board.content.name }</p>
+                        <h3 className={ styles.boardName }>{ board.content.name }</h3>
                     </div>
                 </Link>
             </div>
@@ -38,7 +41,7 @@ const BoardGridElement = ({ board, editing, onDelete }) => {
                         <button className={ styles.deleteButton } onClick={ () => onDelete(board.id) } >
                             <FontAwesome name="trash-o" />
                         </button>
-                        <p>{ board.content.name }</p>
+                        <h3 className={ styles.boardName }>{ board.content.name }</h3>
                     </div>
                 </Link>
             </div>

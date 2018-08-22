@@ -26,19 +26,29 @@ const styles = {
         padding: 0 0.5rem;
         display: flex;
         justify-content: space-between;
+        align-items: flex-end;
 
-        p {
-            font-size: 1.2rem;
+        h3, p {
+            font-size: 1.1rem;
         }
     `,
     headerText: css`
         color: ${ colors.orange };
         font-size: 3rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
     `,
     action: css`
         color: ${ colors.blueTextButton };
         margin-left: 2rem;
+        display: inline-block;
+    `,
+    editButton: css`
+        font-size: 1.1rem;
+    `,
+    actions: css`
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
     `
 }
 
@@ -55,14 +65,11 @@ class Boards extends Component {
                 <GroupsContainer />
                 <div className={ styles.inner }>
                     <div className={ styles.header }>
-                         <h1 className={ styles.headerText }>Nic Cage</h1>
-                    </div>
-                    <div className={ styles.header }>
-                        <p>Boards</p>
-                        <div>
-                            <span className={ styles.action }>Most Recent</span> 
-                            <span className={ styles.action }>A-Z</span>
-                            <button className={ cx(styles.action, baseButton) } onClick={ onEditBoards }>{ isEditingBoards ? 'Done' : 'Edit' }</button>
+                        <h1 className={ styles.headerText }>Nic Cage</h1>
+                        <div className={ styles.actions }>
+                            <p className={ styles.action }>Most Recent</p> 
+                            <p className={ styles.action }>A-Z</p>
+                            <button className={ cx(styles.action, baseButton, styles.editButton) } onClick={ onEditBoards }>{ isEditingBoards ? 'Done' : 'Edit' }</button>
                         </div>
                     </div>
                     <BoardsGrid boards={ boards } onDelete={ onDelete } editing={ isEditingBoards } />

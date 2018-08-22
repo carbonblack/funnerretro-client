@@ -10,6 +10,18 @@ export const baseButton = css`
     text-decoration: none;
     border: 0;
     border-radius: 5px;
+
+    &:active, :focus, :visited {
+        outline: none;
+    }
+
+    :hover {
+        background: ${ colors.lessDarkBlue };
+    }
+
+    :focus {
+        background: ${ colors.lightBlue };
+    }
 `
 
 export const actionButton = css`
@@ -23,14 +35,23 @@ export const actionButton = css`
     }
 
     &:hover {
-        color: ${ colors.lightBlue };
+        color: ${ colors.evenLighterBlue };
+    }
+
+    :focus {
+        color: ${ colors.lighterBlue };
     }
 `
 
 export const actionButtonDark = css`
     ${ actionButton };
-    color: ${ colors.offBlack };
-    &:hover {
-        color: ${ colors.mediumGray };
+    color: ${ colors.darkBlue };
+    
+    :hover {
+        color: ${ colors.mediumBlue };
+    }
+
+    :focus {
+        color: ${ colors.lightBlue };
     }
 `

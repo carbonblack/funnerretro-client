@@ -38,6 +38,7 @@ const actionsInner = css`
     border-radius: 2px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
     list-style-type: none;
+    z-index: 1;
 `
 
 class Actions extends Component {

@@ -22,6 +22,7 @@ const styles = {
         margin-right: 0.5rem;
         padding: 0.5rem;
         border-radius: 5px;
+        font-size: 0.8rem;
 
         &:focus {
             outline: none;

@@ -13,6 +13,10 @@ const styles = {
     addBoard: css`
         color: ${ colors.white };
         background: ${ colors.darkBlue };
+
+        h3 {
+            font-weight: 300;
+        }
     `
 }
 
@@ -24,7 +28,7 @@ const BoardsGrid = ({ boards, editing, onDelete }) => {
             <div className={ sharedStyles.boardContainer }>
                 <Link to="/board/new">
                     <div className={ cx(sharedStyles.boardInner, styles.addBoard) }>
-                        <p>+ Add board</p>
+                        <h3>+ Add board</h3>
                     </div>
                 </Link>
             </div>

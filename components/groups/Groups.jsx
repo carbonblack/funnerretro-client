@@ -20,11 +20,18 @@ const styles = {
 
         li {
             margin-bottom: 0.5rem;
-            font-size: 1.2rem;
+
+            h3 {
+                font-size: 1.4rem;
+            }
         }
     `,
     link: css`
         color: ${ colors.lightBlue };
+        
+        h3 {
+            font-weight: 300;
+        }
 
         :hover, :visited, :active, :focus {
             color: ${ colors.lightBlue };
@@ -51,12 +58,14 @@ class Groups extends Component {
             <div className={ styles.container }>
                 <h1 className={ styles.headerText }>Workspaces</h1>
                 <ul className={ styles.groupsContainer }>
-                    <NavLink activeClassName={ styles.linkActive } className={ styles.link } to='/boards/0'><li>My Boards</li></NavLink>
+                    <NavLink activeClassName={ styles.linkActive } className={ styles.link } to='/boards/0'><li><h3>My Boards</h3></li></NavLink>
                     { groups.map(group => (
                         <li key={ `group-${ group.id }` }>
-                            <NavLink activeClassName={ styles.linkActive } className={ styles.link } to={ `/boards/${ group.id }` }>
-                                { group.content.name }
-                            </NavLink>
+                            <h3>
+                                <NavLink activeClassName={ styles.linkActive } className={ styles.link } to={ `/boards/${ group.id }` }>
+                                    { group.content.name }
+                                </NavLink>
+                            </h3>
                         </li>
                     )) }
                 </ul>

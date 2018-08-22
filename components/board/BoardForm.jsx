@@ -36,6 +36,7 @@ const styles = {
         margin-top: 0.25rem;
         font-size: 0.8rem;
         font-family: 'Open Sans', sans-serif;
+        text-transform: none;
     `,
     templateButton: css`
         width: 100%;

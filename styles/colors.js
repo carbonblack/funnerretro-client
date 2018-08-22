@@ -11,6 +11,9 @@ const colors = {
     mediumBlue: '#306A8C',
     darkBlue: '#043552',
     lightBlue: '#5990B1',
+    lighterBlue: '#A3CBE3',
+    evenLighterBlue: '#CEE4F1',
+    lessDarkBlue: '#1B5374',
     blueTextButton: '#8EC2FF'
 }
 
