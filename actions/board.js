@@ -73,9 +73,9 @@ export const vote = (cardId, v) => (dispatch, getState) => (
     })
 )
 
-export const getBoards = () => dispatch => {
+export const getBoards = sortKey => dispatch => {
     dispatch(fetchBoards())
-    return axios.get('/api/v1/boards').then(response => {
+    return axios.get(`/api/v1/boards?sort_key=${ sortKey }&sort_order=DESC`).then(response => {
         dispatch(receiveBoards(response.data.boards.map(board => ({
             content: board.content,
             id: board.id

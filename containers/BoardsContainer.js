@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    load: () => dispatch(getBoards(ownProps.match.params.id)),
+    load: sortKey => dispatch(getBoards(sortKey, ownProps.match.params.id)),
     onDelete: id => dispatch(deleteBoard(id)),
     onEditBoards: () => dispatch(toggleEditingBoards())
 })

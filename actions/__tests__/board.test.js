@@ -116,7 +116,7 @@ describe('boards asynchronous actions', () => {
         ]
         const store = mockStore({ boards: [] })
         
-        moxios.stubRequest('/api/v1/boards', {
+        moxios.stubRequest('/api/v1/boards?sort_key=last_updated_time&sort_order=DESC', {
             status: 200,
             response: {
                 boards: [
@@ -125,7 +125,7 @@ describe('boards asynchronous actions', () => {
             }
         })
 
-        return store.dispatch(actions.getBoards()).then(() => expect(store.getActions()).toEqual(expectedActions))
+        return store.dispatch(actions.getBoards('last_updated_time')).then(() => expect(store.getActions()).toEqual(expectedActions))
     })
 
     it('should error when the get boards API errors', () => {
@@ -135,12 +135,12 @@ describe('boards asynchronous actions', () => {
         ]
         const store = mockStore({ boards: [] })
         
-        moxios.stubRequest('/api/v1/boards', {
+        moxios.stubRequest('/api/v1/boards?sort_key=last_updated_time&sort_order=DESC', {
             status: 500,
             statusText: 'error'
         })
 
-        return store.dispatch(actions.getBoards()).then(() => expect(store.getActions()).toEqual(expectedActions))
+        return store.dispatch(actions.getBoards('last_updated_time')).then(() => expect(store.getActions()).toEqual(expectedActions))
     })
 
     it('should create a column', () => {

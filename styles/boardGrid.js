@@ -9,7 +9,7 @@ export const sharedStyles = {
         min-width: 12.5rem;
     `,
     boardInner: css`
-        padding: 4rem 2rem;
+        padding: 3rem 2rem;
         background: ${ colors.white };
         color: ${ colors.darkBlue };
         height: 7rem;

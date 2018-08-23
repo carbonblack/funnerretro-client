@@ -42,6 +42,9 @@ const styles = {
         margin-left: 2rem;
         display: inline-block;
     `,
+    activeSort: css`
+        color: ${ colors.white };
+    `,
     editButton: css`
         font-size: 1.1rem;
     `,
@@ -53,12 +56,24 @@ const styles = {
 }
 
 class Boards extends Component {
+    state = {
+        sortKey: 'last_update_time'
+    }
+
     componentDidMount() {
-        this.props.load()
+        this.props.load('last_update_time')
+    }
+
+    handleSortChange = key => {
+        if (this.state.sortKey !== key) {
+            this.setState({ sortKey: key })
+            this.props.load(key)
+        }
     }
 
     render() {
         const { boards, onDelete, onEditBoards, isEditingBoards } = this.props
+        const { sortKey } = this.state 
 
         return (
             <div className={ styles.container }>
@@ -67,8 +82,8 @@ class Boards extends Component {
                     <div className={ styles.header }>
                         <h1 className={ styles.headerText }>Nic Cage</h1>
                         <div className={ styles.actions }>
-                            <p className={ styles.action }>Most Recent</p> 
-                            <p className={ styles.action }>A-Z</p>
+                            <a className={ cx(styles.action, { [styles.activeSort]: sortKey === 'last_update_time' }) } onClick={ () => this.handleSortChange('last_update_time') }>Most Recent</a> 
+                            <a className={ cx(styles.action, { [styles.activeSort]: sortKey === 'content.name' }) } onClick={ () => this.handleSortChange('content.name') }>A-Z</a>
                             <button className={ cx(styles.action, baseButton, styles.editButton) } onClick={ onEditBoards }>{ isEditingBoards ? 'Done' : 'Edit' }</button>
                         </div>
                     </div>
