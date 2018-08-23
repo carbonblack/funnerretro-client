@@ -103,7 +103,7 @@ class CardForm extends Component {
                                 placeholder={ placeholder } 
                                 onChange={ e => this.setState({ val: e.target.value }) } 
                             />
-                            <p>Colors</p>
+                            <p>WHY</p>
                         </div>
                         
                         <button type='reset' className={ cx(baseButton, styles.cancelButton, styles.button) } onClick={ this.onCancel }>Cancel</button>
