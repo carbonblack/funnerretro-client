@@ -55,7 +55,7 @@ class New extends Component {
 
     onCancel = () => {
         this.props.onCancel()
-        
+
         this.setState({ 
             shouldShowInput: false, 
             error: '', 
@@ -117,7 +117,7 @@ class New extends Component {
 
 New.propTypes = {
     onSubmit: PropTypes.func.isRequired,
-    onCancel: PropTypes.func.isRequired,
+    onCancel: PropTypes.func,
     placeholder: PropTypes.string,
     label: PropTypes.string,
     submitLabel: PropTypes.string,
@@ -130,7 +130,8 @@ New.defaultProps = {
     submitLabel: '',
     errorLabel: '',
     label: 'Add',
-    showInput: false
+    showInput: false,
+    onCancel: () => {}
 }
 
 export default New
