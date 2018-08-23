@@ -9,6 +9,7 @@ describe('Groups test', () => {
             load={ () => {} }
             isFetching={ false }
             fetchingError={ null }
+            onCreate={ () => {} }
         />
         expect(shallow(component).exists()).toBe(true)
     })
