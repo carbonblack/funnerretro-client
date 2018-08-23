@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import ColumnContainer from 'containers/ColumnContainer'
-import ColumnForm from 'components/column/ColumnForm'
 import colors from 'styles/colors'
+import New from 'components/shared/NewNew'
 
 const styles = {
     container: css`
@@ -45,7 +45,13 @@ class Board extends Component {
                 </div>
                 <div className={ styles.columnsContainer }>
                     { columns.map(column => <ColumnContainer key={ `column-${column.id}` } column={ column } />) }
-                    <ColumnForm placeholder='Column name' submitLabel='Add' onSubmit={ value => onColumnForm(value) } />
+                    <New
+                        placeholder='Column name'
+                        submitLabel='Add'
+                        onSubmit={ value => onColumnForm(value) }
+                        errorLabel='Column name must not be empty'
+                        label='+ Add column'
+                    />
                 </div>
             </div>
         )

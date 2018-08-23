@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import CardContainer from 'containers/CardContainer'
-import New from 'components/shared/New'
+import New from 'components/shared/NewNew'
 import ColumnHeader from 'components/column/ColumnHeader'
 
 const styles = {
@@ -54,7 +54,13 @@ class Column extends Component {
                         onEdit={ this.onEdit }
                     />
                     <div>
-                        <New placeholder="New card" submitLabel="Add" onSubmit={ value => onNewCard(value, column.id) } />
+                        <New
+                            placeholder="New card"
+                            submitLabel="Add"
+                            onSubmit={ value => onNewCard(value, column.id) }
+                            errorLabel='Card text must not be empty'
+                            label='+ Add card'
+                        />
                     </div>
                     <div className={ styles.cards }>
                         { column.cards.map(((card, index) => (

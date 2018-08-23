@@ -7,9 +7,10 @@ import colors from 'styles/colors'
 const styles = {
     container: css`
         display: flex;
+        flex-wrap: wrap;
         flex-direction: column;
-        padding: 1rem;
         width: 18.75rem;
+        margin-bottom: 1rem;
         height: fit-content;
     `,
     form: css`
@@ -18,11 +19,11 @@ const styles = {
         margin: 0;
     `,
     inputStyles: css`
-        flex-grow: 1;
         margin-right: 0.5rem;
         padding: 0.5rem;
         border-radius: 5px;
         font-size: 0.8rem;
+        width: 100%;
 
         &:focus {
             outline: none;
@@ -45,18 +46,18 @@ const styles = {
     `
 }
 
-class ColumnForm extends Component {
+class New extends Component {
     state = {
-        shouldShowColumnFormInput: false,
-        name: '',
-        error: null
+        shouldShowInput: false,
+        val: '',
+        error: ''
     }
 
     onCancel = () => {
         this.setState({ 
-            shouldShowColumnFormInput: false, 
-            error: null, 
-            name: '' 
+            shouldShowInput: false, 
+            error: '', 
+            val: '' 
         })
     }
 
@@ -64,37 +65,37 @@ class ColumnForm extends Component {
         e.stopPropagation()
         e.preventDefault()
 
-        const { onSubmit } = this.props
-        const { name } = this.state
+        const { onSubmit, errorLabel } = this.props
+        const { val } = this.state
 
-        if(name === '') {
+        if(val === '') {
             this.setState({
-                error: 'Column name must not be empty'
+                error: errorLabel
             })
             return
         }
 
         this.setState({
-            name: '',
+            val: '',
             error: null
         })
 
-        onSubmit(name)
+        onSubmit(val)
     }
 
     render() {
-        const { placeholder, submitLabel } = this.props
-        const { shouldShowColumnFormInput, name, error } = this.state
+        const { placeholder, submitLabel, label } = this.props
+        const { shouldShowInput, val, error } = this.state
 
-        if(shouldShowColumnFormInput) {
+        if(shouldShowInput) {
             return (
                 <div className={ styles.container }>
                     <form className={ styles.form } onSubmit={ () => false }>
                         <input
                             className={ cx(styles.inputStyles, { [styles.errorBorder]: error, [styles.grayBorder]: !error }) }
-                            value={ name }
+                            value={ val }
                             placeholder={ placeholder } 
-                            onChange={ e => this.setState({ name: e.target.value }) } 
+                            onChange={ e => this.setState({ val: e.target.value }) } 
                         />
                         <button className={ cx(baseButton, styles.cancelButton) } onClick={ this.onCancel }>Cancel</button>
                         <button className={ baseButton } onClick={ e => this.onSubmit(e) }>{ submitLabel }</button>
@@ -105,22 +106,26 @@ class ColumnForm extends Component {
         } else {
             return (
                 <div className={ styles.container }>
-                    <button className={ baseButton } onClick={ () => this.setState({ shouldShowColumnFormInput: true }) }>+ Add Column</button>
+                    <button className={ baseButton } onClick={ () => this.setState({ shouldShowInput: true }) }>{ label }</button>
                 </div>
             )
         }
     }
 }
 
-ColumnForm.propTypes = {
+New.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     placeholder: PropTypes.string,
-    submitLabel: PropTypes.string
+    label: PropTypes.string,
+    submitLabel: PropTypes.string,
+    errorLabel: PropTypes.string
 }
 
-ColumnForm.defaultProps = {
+New.defaultProps = {
     placeholder: '',
-    submitLabel: ''
+    submitLabel: '',
+    errorLabel: '',
+    label: 'Add'
 }
 
-export default ColumnForm
+export default New
