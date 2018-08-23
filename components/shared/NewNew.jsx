@@ -48,7 +48,7 @@ const styles = {
 
 class New extends Component {
     state = {
-        shouldShowInput: false,
+        shouldShowInput: this.props.showInput,
         val: '',
         error: ''
     }
@@ -97,8 +97,8 @@ class New extends Component {
                             placeholder={ placeholder } 
                             onChange={ e => this.setState({ val: e.target.value }) } 
                         />
-                        <button className={ cx(baseButton, styles.cancelButton) } onClick={ this.onCancel }>Cancel</button>
-                        <button className={ baseButton } onClick={ e => this.onSubmit(e) }>{ submitLabel }</button>
+                        <button type='reset' className={ cx(baseButton, styles.cancelButton) } onClick={ this.onCancel }>Cancel</button>
+                        <button type='submit' className={ baseButton } onClick={ e => this.onSubmit(e) }>{ submitLabel }</button>
                     </form>
                     { error && <p className={ styles.errorContainer }>{ error }</p> }
                 </div>
@@ -118,14 +118,16 @@ New.propTypes = {
     placeholder: PropTypes.string,
     label: PropTypes.string,
     submitLabel: PropTypes.string,
-    errorLabel: PropTypes.string
+    errorLabel: PropTypes.string,
+    showInput: PropTypes.bool
 }
 
 New.defaultProps = {
     placeholder: '',
     submitLabel: '',
     errorLabel: '',
-    label: 'Add'
+    label: 'Add',
+    showInput: false
 }
 
 export default New

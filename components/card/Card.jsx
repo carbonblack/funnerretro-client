@@ -75,7 +75,13 @@ class Card extends Component {
         if(this.state.editing) {
             return (
                 <div className={ cx(baseCardContainer, cardContainer(isDragging)) }>
-                    <New value={ card.content.text } onSubmit={ val => this.onSave(val) } submitLabel='Add' errorLabel='Card text must not be empty' />
+                    <New
+                        showInput={ true }
+                        value={ card.content.text }
+                        onSubmit={ val => this.onSave(val) }
+                        submitLabel='Add'
+                        errorLabel='Card text must not be empty'
+                    />
                 </div>
             )
         }
