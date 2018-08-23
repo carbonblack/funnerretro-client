@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import { Link } from 'react-router-dom'
-import brandLogo from 'assets/retrospec_logo.png'
+import brandLogo from 'assets/wolfpack_logo.svg'
 import colors from 'styles/colors'
 
 const styles = {
