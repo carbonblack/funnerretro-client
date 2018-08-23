@@ -25,7 +25,7 @@ export const getGroupsError = error => ({
     error
 })
 
-export const createGroup = (name) => dispatch => (
+export const createGroup = name => dispatch => (
     axios.post('/api/v1/groups', { name }).then(response => {
         dispatch(receiveGroup({ ...response.data.group }))
     })
