@@ -6,10 +6,10 @@
         "test:watch": "jest --watchAll",
         "test:coverage": "jest --coverage",
         "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
-        "build": "webpack",
+        "build": "webpack --env.NODE_ENV=production",
         "lint": "eslint --ext .js --ext .jsx .",
         "lint:fix": "eslint --ext .js --ext .jsx --fix .",
-        "start": "webpack-dev-server --inline --hot --mode=development"
+        "start": "webpack-dev-server --inline --hot --mode=development --env.NODE_ENV=development"
     },
     "repository": {
         "type": "git",
