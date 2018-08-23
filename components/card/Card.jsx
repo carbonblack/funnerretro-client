@@ -79,6 +79,7 @@ class Card extends Component {
                         showInput={ true }
                         value={ card.content.text }
                         onSubmit={ val => this.onSave(val) }
+                        onCancel={ () => this.onSave(card.content.text) }
                         submitLabel='Add'
                         errorLabel='Card text must not be empty'
                     />
