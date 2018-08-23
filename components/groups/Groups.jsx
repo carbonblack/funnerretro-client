@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import { NavLink } from 'react-router-dom'
 import colors from 'styles/colors'
+import New from 'components/shared/NewNew'
 
 const styles = {
     container: css`
@@ -52,11 +53,18 @@ class Groups extends Component {
     }
 
     render() {
-        const { groups } = this.props
+        const { groups, onCreate } = this.props
 
         return(
             <div className={ styles.container }>
                 <h1 className={ styles.headerText }>Workspaces</h1>
+                <New
+                    onSubmit={ name => onCreate(name) }
+                    submitLabel='Add'
+                    errorLabel='Workspace name must not be empty'
+                    label='+ Add Workspace'
+                    placeholder='Workspace name'
+                />
                 <ul className={ styles.groupsContainer }>
                     <NavLink activeClassName={ styles.linkActive } className={ styles.link } to='/boards/0'><li><h3>My Boards</h3></li></NavLink>
                     { groups.map(group => (
@@ -78,7 +86,8 @@ Groups.propTypes = {
     groups: PropTypes.array.isRequired,
     isFetching: PropTypes.bool.isRequired,
     fetchingErrors: PropTypes.string,
-    load: PropTypes.func.isRequired
+    load: PropTypes.func.isRequired,
+    onCreate: PropTypes.func.isRequired
 }
 
 export default Groups

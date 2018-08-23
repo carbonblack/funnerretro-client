@@ -10,6 +10,7 @@ export const baseButton = css`
     text-decoration: none;
     border: 0;
     border-radius: 5px;
+    word-break: normal;
 
     &:active, :focus, :visited {
         outline: none;

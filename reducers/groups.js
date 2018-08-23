@@ -27,6 +27,11 @@ const groups = (state = initialState, action) => {
             isFetching: false,
             fetchingError: action.error
         }
+    case actionTypes.RECEIVE_GROUP:
+        return {
+            ...state,
+            groups: [...state.groups, action.group]
+        }
     default:
         return state
     }

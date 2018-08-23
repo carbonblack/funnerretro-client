@@ -80,8 +80,9 @@ class Card extends Component {
                         value={ card.content.text }
                         onSubmit={ val => this.onSave(val) }
                         onCancel={ () => this.onSave(card.content.text) }
-                        submitLabel='Add'
+                        submitLabel='Save'
                         errorLabel='Card text must not be empty'
+                        thin
                     />
                 </div>
             )

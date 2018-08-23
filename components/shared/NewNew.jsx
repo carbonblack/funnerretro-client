@@ -13,6 +13,10 @@ const styles = {
         margin-bottom: 1rem;
         height: fit-content;
     `,
+    containerThin: css`
+        width: 16.75rem;
+        margin-bottom: 0;
+    `,
     form: css`
         display: flex;
         justify-content: space-between;
@@ -86,12 +90,12 @@ class New extends Component {
     }
 
     render() {
-        const { placeholder, submitLabel, label } = this.props
+        const { placeholder, submitLabel, label, thin } = this.props
         const { shouldShowInput, val, error } = this.state
 
         if(shouldShowInput) {
             return (
-                <div className={ styles.container }>
+                <div className={ cx(styles.container, { [styles.containerThin]: thin }) }>
                     <form className={ styles.form } onSubmit={ () => false }>
                         <input
                             className={ cx(styles.inputStyles, { [styles.errorBorder]: error, [styles.grayBorder]: !error }) }
@@ -122,7 +126,9 @@ New.propTypes = {
     label: PropTypes.string,
     submitLabel: PropTypes.string,
     errorLabel: PropTypes.string,
-    showInput: PropTypes.bool
+    showInput: PropTypes.bool,
+    value: PropTypes.string,
+    thin: PropTypes.bool
 }
 
 New.defaultProps = {
@@ -131,6 +137,8 @@ New.defaultProps = {
     errorLabel: '',
     label: 'Add',
     showInput: false,
+    value: '',
+    thin: false,
     onCancel: () => {}
 }
 

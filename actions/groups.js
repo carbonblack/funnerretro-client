@@ -24,3 +24,14 @@ export const getGroupsError = error => ({
     type: actionTypes.FETCH_GROUPS_ERROR,
     error
 })
+
+export const createGroup = (name) => dispatch => (
+    axios.post('/api/v1/groups', { name }).then(response => {
+        dispatch(receiveGroup({ ...response.data.group }))
+    })
+)
+
+export const receiveGroup = group => ({
+    type: actionTypes.RECEIVE_GROUP,
+    group
+})
