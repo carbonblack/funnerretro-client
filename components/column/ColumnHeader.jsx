@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
-import New from 'components/shared/New'
+import New from 'components/shared/NewNew'
 import Actions from 'components/shared/Actions'
 import colors from 'styles/colors'
 
@@ -22,7 +22,13 @@ const ColumnHeader = ({ name, id, editing, onSave, onEdit, onDelete }) => {
     if(editing) {
         return (
             <Fragment>
-                <New value={ name } onSubmit={ val => onSave(val) } submitLabel="Save" />
+                <New
+                    value={ name }
+                    onSubmit={ val => onSave(val) }
+                    submitLabel='Save'
+                    errorLabel='Column name must not be empty'
+                    showInput={ true }
+                />
             </Fragment>
         )
     }

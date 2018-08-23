@@ -49,7 +49,7 @@ const styles = {
 class New extends Component {
     state = {
         shouldShowInput: this.props.showInput,
-        val: '',
+        val: this.props.value,
         error: ''
     }
 
