@@ -88,10 +88,12 @@ class BoardForm extends Component {
     onChange = value => this.setState({ value: value })
 
     onSubmit = e => {
+        const { value, template } = this.state
+
         e.stopPropagation()
         e.preventDefault()
 
-        if(this.state.value === '') {
+        if(value === '') {
             this.setState({
                 error: 'Field must not be empty'
             })
@@ -102,7 +104,7 @@ class BoardForm extends Component {
             value: '',
             error: null
         })
-        this.props.onSubmit(this.state.value)
+        this.props.onSubmit(value, template)
     }
 
     render() {
