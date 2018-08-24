@@ -23,6 +23,9 @@ const styles = {
     `,
     columnsContainer: css`
         display: flex;
+    `,
+    columnFormContainer: css`
+        margin-top: 1rem;
     `
 }
 
@@ -45,13 +48,15 @@ class Board extends Component {
                 </div>
                 <div className={ styles.columnsContainer }>
                     { columns.map(column => <ColumnContainer key={ `column-${column.id}` } column={ column } />) }
-                    <SingleTextInputForm
-                        placeholder='Column name'
-                        submitLabel='Add'
-                        onSubmit={ value => onColumnForm(value) }
-                        errorLabel='Column name must not be empty'
-                        label='+ Add column'
-                    />
+                    <div className={ styles.columnFormContainer }>
+                        <SingleTextInputForm
+                            placeholder='Column name'
+                            submitLabel='Add'
+                            onSubmit={ value => onColumnForm(value) }
+                            errorLabel='Column name must not be empty'
+                            label='+ Add column'
+                        />
+                    </div>
                 </div>
             </div>
         )
