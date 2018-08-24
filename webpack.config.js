@@ -27,12 +27,7 @@ module.exports = env => {
                 ],
                 target: proxyAPIUrl,
                 secure: production
-            }],
-            watchOptions: {
-                aggregateTimeout: 100,
-                ignored: /node_modules/,
-                poll: true
-            }
+            }]
         },
         devtool: 'source-map',
         resolve: {
