@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import CardContainer from 'containers/CardContainer'
 import ColumnHeader from 'components/column/ColumnHeader'
-import CardForm from 'components/Card/CardForm'
+import CardForm from 'components/card/CardForm'
 
 const styles = {
     columnContainer: css`
