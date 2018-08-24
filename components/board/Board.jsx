@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import ColumnContainer from 'containers/ColumnContainer'
 import colors from 'styles/colors'
-import New from 'components/shared/NewNew'
+import SingleTextInputForm from 'components/shared/SingleTextInputForm'
 
 const styles = {
     container: css`
@@ -45,7 +45,7 @@ class Board extends Component {
                 </div>
                 <div className={ styles.columnsContainer }>
                     { columns.map(column => <ColumnContainer key={ `column-${column.id}` } column={ column } />) }
-                    <New
+                    <SingleTextInputForm
                         placeholder='Column name'
                         submitLabel='Add'
                         onSubmit={ value => onColumnForm(value) }

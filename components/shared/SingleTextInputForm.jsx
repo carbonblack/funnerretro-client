@@ -50,7 +50,7 @@ const styles = {
     `
 }
 
-class New extends Component {
+class SingleTextInputForm extends Component {
     state = {
         shouldShowInput: this.props.showInput,
         val: this.props.value,
@@ -119,7 +119,7 @@ class New extends Component {
     }
 }
 
-New.propTypes = {
+SingleTextInputForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     onCancel: PropTypes.func,
     placeholder: PropTypes.string,
@@ -131,7 +131,7 @@ New.propTypes = {
     thin: PropTypes.bool
 }
 
-New.defaultProps = {
+SingleTextInputForm.defaultProps = {
     placeholder: '',
     submitLabel: '',
     errorLabel: '',
@@ -142,4 +142,4 @@ New.defaultProps = {
     onCancel: () => {}
 }
 
-export default New
+export default SingleTextInputForm

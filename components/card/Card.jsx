@@ -4,7 +4,7 @@ import { css, cx } from 'react-emotion'
 import FontAwesome from 'react-fontawesome'
 import colors from 'styles/colors'
 import { actionButtonDark } from 'styles/button'
-import New from 'components/shared/NewNew'
+import SingleTextInputForm from 'components/shared/SingleTextInputForm'
 import Actions from 'components/shared/Actions'
 
 const baseCardContainer = css`
@@ -75,7 +75,7 @@ class Card extends Component {
         if(this.state.editing) {
             return (
                 <div className={ cx(baseCardContainer, cardContainer(isDragging)) }>
-                    <New
+                    <SingleTextInputForm
                         showInput={ true }
                         value={ card.content.text }
                         onSubmit={ val => this.onSave(val) }

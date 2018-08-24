@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { css, cx } from 'react-emotion'
-import New from 'components/shared/New'
 import colors from 'styles/colors'
 import { sharedStyles } from 'styles/boardGrid' 
-
+import { baseButton } from 'styles/button'
 
 const styles = {
     container: css`
@@ -50,20 +49,69 @@ const styles = {
     active: css`
         background-color: ${ colors.orange };
         box-shadow: 0 0 4px 0 ${ colors.orange };
+    `,
+    formContainer: css`
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    `,
+    errorContainer: css`
+        color: ${ colors.red };
+        flex-basis: 100%;
+        margin-top: 0.5rem;
+    `,
+    inputStyles: css`
+        flex-grow: 1;
+        border: 1px solid ${ colors.mediumGray };
+        margin-right: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 5px;
+        font-size: 0.8rem;
+
+        &:focus {
+            outline: none;
+        }
+    `,
+    inputErrorStyles: css`
+        border: 1px solid ${ colors.red };
+        box-shadow: 0 0 4px 0 ${ colors.red };
     `
 }
 
 class BoardForm extends Component {
     state = {
-        template: 'empty'
+        template: 'empty',
+        value: this.props.value ? this.props.value : '',
+        error: null
     }
 
     componentDidMount() {
         this.props.load()
     }
 
+    onChange = value => this.setState({ value: value })
+
+    onSubmit = e => {
+        e.stopPropagation()
+        e.preventDefault()
+
+        if(this.state.value === '') {
+            this.setState({
+                error: 'Field must not be empty'
+            })
+            return
+        }
+
+        this.setState({
+            value: '',
+            error: null
+        })
+        this.props.onSubmit(this.state.value)
+    }
+
     render() {
-        const { onSubmit, templates } = this.props
+        const { templates } = this.props
+        const { value, error, template } = this.state
 
         return (
             <div className={ styles.container }>
@@ -71,18 +119,22 @@ class BoardForm extends Component {
                     <div className={ styles.content }>
                         <h1 className={ styles.header }>Create a new retro board</h1>
                         <div className={ styles.inputContainer }>
-                            <New placeholder="Board name" submitLabel="Create" onSubmit={ boardName => onSubmit(boardName, this.state.template) } />
+                            <form className={ styles.formContainer } onSubmit={ () => false }>
+                                <input value={ value } className={ cx(styles.inputStyles, { [styles.inputErrorStyles]: error }) } placeholder='Board name' onChange={ e => this.onChange(e.target.value) } />
+                                <button className={ baseButton } onClick={ e => this.onSubmit(e) }>Create</button>
+                                { error && <p className={ styles.errorContainer }>{ error }</p> }
+                            </form>
                         </div>
                         { templates.length > 0 && 
                             <Fragment>
                                 <h2 className={ styles.header }>Template</h2>
                                 <ul className={ styles.templateContainer }>
-                                    {this.props.templates.map((template, index) => (
+                                    {this.props.templates.map((t, index) => (
                                         <li className={ sharedStyles.boardContainer } key={ `template-${ index }` }>
-                                            <div className={ cx(styles.outer, { [styles.active]: this.state.template === template.id }) }>
-                                                <div className={ sharedStyles.boardInner } onClick={ () => this.setState({ template: template.id }) }>
-                                                    <h3>{ template.name }</h3>
-                                                    <p className={ styles.description }>{ template.description }</p>
+                                            <div className={ cx(styles.outer, { [styles.active]: template === t.id }) }>
+                                                <div className={ sharedStyles.boardInner } onClick={ () => this.setState({ template: t.id }) }>
+                                                    <h3>{ t.name }</h3>
+                                                    <p className={ styles.description }>{ t.description }</p>
                                                 </div>
                                             </div>
                                         </li>

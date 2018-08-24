@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import { NavLink } from 'react-router-dom'
 import colors from 'styles/colors'
-import New from 'components/shared/NewNew'
+import SingleTextInputForm from 'components/shared/SingleTextInputForm'
 
 const styles = {
     container: css`
@@ -58,7 +58,7 @@ class Groups extends Component {
         return(
             <div className={ styles.container }>
                 <h1 className={ styles.headerText }>Workspaces</h1>
-                <New
+                <SingleTextInputForm
                     onSubmit={ name => onCreate(name) }
                     submitLabel='Add'
                     errorLabel='Workspace name must not be empty'

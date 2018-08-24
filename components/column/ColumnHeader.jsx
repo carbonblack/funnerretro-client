@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
-import New from 'components/shared/NewNew'
+import SingleTextInputForm from 'components/shared/SingleTextInputForm'
 import Actions from 'components/shared/Actions'
 import colors from 'styles/colors'
 
@@ -22,7 +22,7 @@ const ColumnHeader = ({ name, id, editing, onSave, onEdit, onDelete }) => {
     if(editing) {
         return (
             <Fragment>
-                <New
+                <SingleTextInputForm
                     value={ name }
                     onSubmit={ val => onSave(val) }
                     submitLabel='Save'
