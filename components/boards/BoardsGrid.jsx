@@ -21,7 +21,7 @@ const styles = {
 }
 
 const BoardsGrid = ({ boards, editing, onDelete }) => {
-    const numberOfBlankBoards = boards.length > 14 ? boards.length % 5 : 14 - boards.length
+    const numberOfBlankBoards = boards.length > 19 ? boards.length % 5 : 19 - boards.length
     
     return (
         <Fragment>
