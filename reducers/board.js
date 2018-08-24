@@ -10,7 +10,10 @@ const initialState = {
     boardsError: null,
     boards: [],
     columns: [],
-    isEditingBoards: false
+    isEditingBoards: false,
+    sortKey: 'last_updated_time',
+    sortDirection: 'DESC',
+    groupFilter: '0'
 }
 
 const board = (state = initialState, action) => {
@@ -189,6 +192,13 @@ const board = (state = initialState, action) => {
         return {
             ...state,
             isEditingBoards: !state.isEditingBoards
+        }
+    case actionTypes.UPDATE_BOARDS_SEARCH_DEFINITION:
+        return {
+            ...state,
+            sortKey: action.sortKey,
+            sortDirection: action.sortDirection,
+            groupFilter: action.groupFilter
         }
     default:
         return state

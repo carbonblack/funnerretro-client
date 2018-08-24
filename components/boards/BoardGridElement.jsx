@@ -38,7 +38,14 @@ const BoardGridElement = ({ board, editing, onDelete }) => {
             <div key={ `board-${ board.id }` } className={ sharedStyles.boardContainer }>
                 <Link to={ `/board/${ board.id }` }>
                     <div className={ sharedStyles.boardInner }>
-                        <button className={ styles.deleteButton } onClick={ () => onDelete(board.id) } >
+                        <button
+                            className={ styles.deleteButton }
+                            onClick={ e => {
+                                e.preventDefault()
+                                e.stopPropagation()
+                                onDelete(board.id) 
+                            } }
+                        >
                             <FontAwesome name="trash-o" />
                         </button>
                         <h3 className={ styles.boardName }>{ board.content.name }</h3>

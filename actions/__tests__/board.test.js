@@ -114,7 +114,7 @@ describe('boards asynchronous actions', () => {
             { type: actionTypes.FETCH_BOARDS },
             { type: actionTypes.RECEIVE_BOARDS, boards: [{ id: 'something', content: { name: 'hi' } }] }
         ]
-        const store = mockStore({ boards: [] })
+        const store = mockStore({ board: { boards: [], sortKey: 'last_updated_time', sortDirection: 'DESC', groupFilter: '1' } })
         
         moxios.stubRequest('/api/v1/boards?filter.content.group=1&sort_key=last_updated_time&sort_order=DESC', {
             status: 200,
@@ -125,7 +125,7 @@ describe('boards asynchronous actions', () => {
             }
         })
 
-        return store.dispatch(actions.getBoards('last_updated_time', '1')).then(() => expect(store.getActions()).toEqual(expectedActions))
+        return store.dispatch(actions.getBoards()).then(() => expect(store.getActions()).toEqual(expectedActions))
     })
 
     it('should error when the get boards API errors', () => {
@@ -133,14 +133,14 @@ describe('boards asynchronous actions', () => {
             { type: actionTypes.FETCH_BOARDS },
             { type: actionTypes.FETCH_BOARDS_ERROR, error: 'error' }
         ]
-        const store = mockStore({ boards: [] })
+        const store = mockStore({ board: { boards: [], sortKey: 'last_updated_time', sortDirection: 'DESC', groupFilter: '1' } })
         
         moxios.stubRequest('/api/v1/boards?filter.content.group=1&sort_key=last_updated_time&sort_order=DESC', {
             status: 500,
             statusText: 'error'
         })
 
-        return store.dispatch(actions.getBoards('last_updated_time', '1')).then(() => expect(store.getActions()).toEqual(expectedActions))
+        return store.dispatch(actions.getBoards()).then(() => expect(store.getActions()).toEqual(expectedActions))
     })
 
     it('should create a column', () => {

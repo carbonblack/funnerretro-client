@@ -12,7 +12,10 @@ describe('board reducers', () => {
             isEditingBoards: false,
             boardsError: null,
             boards: [],
-            columns: []
+            columns: [],
+            groupFilter: '0',
+            sortKey: 'last_updated_time',
+            sortDirection: 'DESC'
         })
     })
 

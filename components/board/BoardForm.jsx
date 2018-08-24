@@ -142,7 +142,7 @@ class BoardForm extends Component {
                             <h2 className={ styles.header }>Workspace</h2>
                             <select value={ this.state.group } onChange={ e => this.onGroupChange(e.target.value) }>
                                 { groups.map(g => (
-                                    <option key={ `option-${ g }` } value={ g.id }>{ g.name }</option>
+                                    <option key={ `option-${ g.id }` } value={ g.id }>{ g.name }</option>
                                 )) }
                             </select>
                         </div>

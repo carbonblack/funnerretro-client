@@ -74,9 +74,14 @@ export const vote = (cardId, v) => (dispatch, getState) => (
     })
 )
 
-export const getBoards = (sortKey, group) => (dispatch, getState) => {
+export const getBoards = () => (dispatch, getState) => {
+    const boardState = getState().board
+    const sortKey = boardState.sortKey
+    const sortDirection = boardState.sortDirection
+    const groupFilter = boardState.groupFilter
+
     dispatch(fetchBoards())
-    const url = `/api/v1/boards?${ group === '0' ? `creator=${ getState().user.username }` : `filter.content.group=${ group }` }&sort_key=${ sortKey }&sort_order=DESC`
+    const url = `/api/v1/boards?${ groupFilter === '0' ? `creator=${ getState().user.username }` : `filter.content.group=${ groupFilter }` }&sort_key=${ sortKey }&sort_order=${ sortDirection }`
 
     return axios.get(url).then(response => {
         dispatch(receiveBoards(response.data.boards.map(board => ({
@@ -202,7 +207,6 @@ export const deleteBoard = boardId => dispatch => (
 )
 
 export const successfulDeleteBoard = boardId => dispatch => {
-    dispatch(push('/boards'))
     dispatch({
         type: actionTypes.DELETE_BOARD,
         boardId
@@ -245,3 +249,10 @@ export const uploadCards = (file, columnId) => (dispatch, getState) => (
         alert(response)
     })
 )
+
+export const updateBoardsSearchDefinition = (sortKey, sortDirection, groupFilter) => ({
+    type: actionTypes.UPDATE_BOARDS_SEARCH_DEFINITION,
+    sortKey,
+    sortDirection,
+    groupFilter
+})

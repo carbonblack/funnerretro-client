@@ -68,13 +68,11 @@ class Groups extends Component {
                 <ul className={ styles.groupsContainer }>
                     <NavLink activeClassName={ styles.linkActive } className={ styles.link } to='/boards/0'><li><h3>My Boards</h3></li></NavLink>
                     { groups.map(group => (
-                        <li key={ `group-${ group.id }` }>
-                            <h3>
-                                <NavLink activeClassName={ styles.linkActive } className={ styles.link } to={ `/boards/${ group.id }` }>
-                                    { group.name }
-                                </NavLink>
-                            </h3>
-                        </li>
+                        <NavLink key={ `group-${ group.id }` } activeClassName={ styles.linkActive } className={ styles.link } to={ `/boards/${ group.id }` }>
+                            <li>
+                                <h3>{ group.name }</h3>
+                            </li>
+                        </NavLink>
                     )) }
                 </ul>
             </div>
