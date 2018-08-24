@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { getBoards, deleteBoard, toggleEditingBoards } from 'actions/board'
 import Boards from 'components/boards/Boards'
-import { updateBoardsSearchDefinition } from '../actions/board';
+import { updateBoardsSearchDefinition } from 'actions/board'
 
 const mapStateToProps = (state, ownProps) => ({
     boards: state.board.boards,
