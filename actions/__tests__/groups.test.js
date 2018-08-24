@@ -76,4 +76,22 @@ describe('groups async actions', () => {
 
         return store.dispatch(actions.getGroups()).then(() => expect(store.getActions()).toEqual(expectedActions))
     })
+
+    it('should create group', () => {
+        const group = { id: '1', content: { name: 'hello' } }
+        const expectedActions = [
+            { type: actionTypes.RECEIVE_GROUP, group }
+        ]
+
+        const store = mockStore({ groups: [], isFetching: false, fetchingError: null })
+
+        moxios.stubRequest('/api/v1/groups', {
+            status: 200,
+            response: {
+                group
+            }
+        })  
+        
+        return store.dispatch(actions.createGroup('hello')).then(() => expect(store.getActions()).toEqual(expectedActions))
+    })
 })

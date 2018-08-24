@@ -19,5 +19,5 @@ export const sharedStyles = {
         overflow: hidden;
         word-break: break-word;
         position: relative;
-    `,
+    `
 }
