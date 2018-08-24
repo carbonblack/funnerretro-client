@@ -77,7 +77,7 @@ const DraggableCard = ({ connectDragSource, connectDropTarget, isDragging, card,
                 isDragging={ isDragging }
                 onDelete={ id => onDelete(id) }
                 onVote={ (id, votes) => onVote(id, votes) } 
-                onTextChange={ (id, val) => onUpdateText(id, val) }
+                onTextChange={ (id, val, color) => onUpdateText(id, val, color) }
                 onEdit={ id => onEdit(id) }
             />
         </div>

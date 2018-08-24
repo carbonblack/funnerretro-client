@@ -3,12 +3,13 @@ import * as headers from 'constants/headers'
 import axios from 'axios'
 import { push } from 'react-router-redux'
 
-export const createCard = (value, columnId) => (dispatch, getState) => {
+export const createCard = (value, columnId, color) => (dispatch, getState) => {
     const boardId = getState().board.id
     return axios.post(`/api/v1/boards/${ boardId }/nodes`, {
         parent_id: columnId,
         content: {
             text: value,
+            color: color,
             votes: 0
         }
     }, headers.json).then(response => {

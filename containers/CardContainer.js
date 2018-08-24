@@ -5,7 +5,7 @@ import DraggableCard from 'components/card/DraggableCard'
 const mapDispatchToProps = dispatch => ({
     onVote: (cardId, votes) => dispatch(vote(cardId, votes)),
     onDelete: cardId => dispatch(deleteCard(cardId)),
-    onUpdateText: (cardId, text) => {
+    onUpdateText: (cardId, text, color) => {
         dispatch(updateCard(cardId, {
             operations: [
                 {
@@ -16,6 +16,11 @@ const mapDispatchToProps = dispatch => ({
                 {
                     field: 'blur',
                     value: false,
+                    operation: 'SET'
+                },
+                {
+                    field: 'color',
+                    value: color,
                     operation: 'SET'
                 }
             ]

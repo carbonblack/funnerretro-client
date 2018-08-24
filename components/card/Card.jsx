@@ -4,15 +4,27 @@ import { css, cx } from 'react-emotion'
 import FontAwesome from 'react-fontawesome'
 import colors from 'styles/colors'
 import { actionButtonDark } from 'styles/button'
-import SingleTextInputForm from 'components/shared/SingleTextInputForm'
+import CardForm from 'components/card/CardForm'
 import Actions from 'components/shared/Actions'
+
+const styles = {
+    colorOptions: css`
+        border-radius: 50%;
+        min-width: 1rem;
+        height: 1rem;
+        margin-left: auto;
+    `,
+    topContainer: css`
+        display: flex;
+    `
+}
 
 const baseCardContainer = css`
     background: ${ colors.white };
-    margin-bottom: 1rem;
-    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
     border-radius: 7px;
-    word-break: break-all;
+    word-break: break-word;
     user-select: text;
 
     form {
@@ -31,11 +43,13 @@ const blurCard = css`
 
 const text = css`
     margin-bottom: 0.25rem;
+    margin-right: 0.5rem;
 `
 
 const actionsContainer = css`
     display: flex;
     justify-content: space-between;
+    align-items: center;
 `
 
 const firstActionButton = css`
@@ -57,11 +71,11 @@ class Card extends Component {
         onEdit(card.id)
     }
 
-    onSave = val => {
+    onSave = (val, color) => {
         this.setState({
             editing: false
         })
-        this.props.onTextChange(this.props.card.id, val)
+        this.props.onTextChange(this.props.card.id, val, color)
     }
 
     render() {
@@ -75,14 +89,15 @@ class Card extends Component {
         if(this.state.editing) {
             return (
                 <div className={ cx(baseCardContainer, cardContainer(isDragging)) }>
-                    <SingleTextInputForm
-                        showInput={ true }
+                    <CardForm
                         value={ card.content.text }
-                        onSubmit={ val => this.onSave(val) }
-                        onCancel={ () => this.onSave(card.content.text) }
+                        color={ card.content.color }
+                        showInput={ true }
+                        placeholder="New card"
+                        onSubmit={ (value, color) => this.onSave(value, color) }
+                        onCancel={ () => this.onSave(card.content.text, card.content.color) }
                         submitLabel='Save'
                         errorLabel='Card text must not be empty'
-                        thin
                     />
                 </div>
             )
@@ -100,7 +115,10 @@ class Card extends Component {
 
         return (
             <div className={ cx(baseCardContainer, cardContainer(isDragging)) }>
-                <p className={ text }>{ card.content.text }</p>
+                <div className={ styles.topContainer }>
+                    <p className={ text }>{ card.content.text }</p>
+                    <span className={ styles.colorOptions } style={ { backgroundColor: card.content.color } }></span>
+                </div>
                 <div className={ actionsContainer }>
                     <div>
                         <button className={ firstActionButton } onClick={ () => onVote(card.id, 1) }>

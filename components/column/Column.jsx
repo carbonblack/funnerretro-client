@@ -57,7 +57,7 @@ class Column extends Component {
                         <CardForm 
                             placeholder="New card"
                             submitLabel="Add"
-                            onSubmit={ value => onNewCard(value, column.id) }
+                            onSubmit={ (value, color) => onNewCard(value, color) }
                             errorLabel='Card text must not be empty'
                         />
                     </div>

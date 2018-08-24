@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css, cx } from 'react-emotion'
 import { baseButton } from 'styles/button'
+import onClickOutside from 'react-onclickoutside'
 import colors from 'styles/colors'
 
 const styles = {
@@ -47,7 +48,10 @@ const styles = {
         color: ${ colors.red };
         flex-basis: 100%;
         margin-top: 1rem;
-    `
+    `,
+    button: css`
+        text-align: left;
+    `,
 }
 
 class SingleTextInputForm extends Component {
@@ -57,14 +61,16 @@ class SingleTextInputForm extends Component {
         error: ''
     }
 
-    onCancel = () => {
-        this.props.onCancel()
-
+    handleClickOutside = () => {
         this.setState({ 
             shouldShowInput: false, 
             error: '', 
             val: '' 
         })
+
+        if (this.state.shouldShowInput) {
+            this.props.onCancel()
+        }
     }
 
     onSubmit = e => {
@@ -103,7 +109,6 @@ class SingleTextInputForm extends Component {
                             placeholder={ placeholder } 
                             onChange={ e => this.setState({ val: e.target.value }) } 
                         />
-                        <button type='reset' className={ cx(baseButton, styles.cancelButton) } onClick={ this.onCancel }>Cancel</button>
                         <button type='submit' className={ baseButton } onClick={ e => this.onSubmit(e) }>{ submitLabel }</button>
                     </form>
                     { error && <p className={ styles.errorContainer }>{ error }</p> }
@@ -112,7 +117,7 @@ class SingleTextInputForm extends Component {
         } else {
             return (
                 <div className={ styles.container }>
-                    <button className={ baseButton } onClick={ () => this.setState({ shouldShowInput: true }) }>{ label }</button>
+                    <button className={ cx(baseButton, styles.button) } onClick={ () => this.setState({ shouldShowInput: true }) }>{ label }</button>
                 </div>
             )
         }
@@ -142,4 +147,6 @@ SingleTextInputForm.defaultProps = {
     onCancel: () => {}
 }
 
-export default SingleTextInputForm
+export { SingleTextInputForm }
+
+export default onClickOutside(SingleTextInputForm)

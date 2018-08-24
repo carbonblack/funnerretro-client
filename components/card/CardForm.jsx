@@ -2,15 +2,14 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css, cx } from 'react-emotion'
 import { baseButton } from 'styles/button'
-import colors from 'styles/colors'
+import onClickOutside from 'react-onclickoutside'
+import colors, { cardColorOptions } from 'styles/colors'
 
 const styles = {
     container: css`
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
-        width: 18.75rem;
-        margin-bottom: 1rem;
         height: fit-content;
     `,
     form: css`
@@ -19,7 +18,6 @@ const styles = {
         margin: 0;
     `,
     inputStyles: css`
-        margin-right: 0.5rem;
         padding: 0.5rem;
         border-radius: 5px;
         font-size: 0.8rem;
@@ -28,6 +26,10 @@ const styles = {
         &:focus {
             outline: none;
         }
+    `,
+    inputContainer: css`
+        margin-right: 0.5rem;
+        flex-grow: 1;
     `,
     grayBorder: css`
         border: 1px solid ${ colors.mediumGray };
@@ -43,6 +45,36 @@ const styles = {
         color: ${ colors.red };
         flex-basis: 100%;
         margin-top: 1rem;
+    `,
+    button: css`
+        background: ${ colors.lightBlue };
+        text-align: left;
+    `,
+    colorOptions: css`
+        display: flex;
+        justify-content: space-between;
+        margin: 0.5rem;
+    `,
+    colorOption: css`
+        border: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+
+        :focus, :active {
+            outline: none;
+        }
+    `,
+    colorOptionContainer: (active, color) => css`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        padding: 1px;
+        background-color: ${ active ? colors.darkBlue : color };
+        box-shadow: ${ active ? `0 0 4px 0 ${ colors.darkBlue }` : '' };
     `
 }
 
@@ -50,17 +82,20 @@ class CardForm extends Component {
     state = {
         shouldShowInput: this.props.showInput,
         val: this.props.value,
+        color: this.props.color,
         error: ''
     }
 
-    onCancel = () => {
-        this.props.onCancel()
-
+    handleClickOutside = () => {
         this.setState({ 
             shouldShowInput: false, 
             error: '', 
             val: '' 
         })
+
+        if (this.state.shouldShowInput) {
+            this.props.onCancel()
+        }
     }
 
     onSubmit = e => {
@@ -68,7 +103,7 @@ class CardForm extends Component {
         e.preventDefault()
 
         const { onSubmit, errorLabel } = this.props
-        const { val } = this.state
+        const { val, color } = this.state
 
         if(val === '') {
             this.setState({
@@ -78,28 +113,38 @@ class CardForm extends Component {
         }
 
         this.setState({
+            shouldShowInput: false,
+            color: '',
             val: '',
             error: null
         })
 
-        onSubmit(val)
+        onSubmit(val, color)
     }
 
     render() {
         const { submitLabel } = this.props
-        const { shouldShowInput, val, error } = this.state
+        const { shouldShowInput, val, error, color } = this.state
 
         if(shouldShowInput) {
             return (
                 <div className={ styles.container }>
                     <form className={ styles.form } onSubmit={ () => false }>
-                        <input
-                            className={ cx(styles.inputStyles, { [styles.errorBorder]: error, [styles.grayBorder]: !error }) }
-                            value={ val }
-                            placeholder='Card text' 
-                            onChange={ e => this.setState({ val: e.target.value }) } 
-                        />
-                        <button type='reset' className={ cx(baseButton, styles.cancelButton) } onClick={ this.onCancel }>Cancel</button>
+                        <div className={ styles.inputContainer }>
+                            <input
+                                className={ cx(styles.inputStyles, { [styles.errorBorder]: error, [styles.grayBorder]: !error }) }
+                                value={ val }
+                                placeholder='Card text' 
+                                onChange={ e => this.setState({ val: e.target.value }) } 
+                            />
+                            <div className={ styles.colorOptions }>
+                                { cardColorOptions.map(c => (
+                                    <span key={ `color-${ c }` } className={ styles.colorOptionContainer(color === c, c) }>
+                                        <button onClick={ () => this.setState({ color: c }) } className={ styles.colorOption } style={ { backgroundColor: c } }></button>
+                                    </span>
+                                )) }
+                            </div>
+                        </div>
                         <button type='submit' className={ baseButton } onClick={ e => this.onSubmit(e) }>{ submitLabel }</button>
                     </form>
                     { error && <p className={ styles.errorContainer }>{ error }</p> }
@@ -108,7 +153,7 @@ class CardForm extends Component {
         } else {
             return (
                 <div className={ styles.container }>
-                    <button className={ baseButton } onClick={ () => this.setState({ shouldShowInput: true }) }>+ Add card</button>
+                    <button className={ cx(baseButton, styles.button) } onClick={ () => this.setState({ shouldShowInput: true }) }>+ Add card</button>
                 </div>
             )
         }
@@ -117,11 +162,12 @@ class CardForm extends Component {
 
 CardForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
-    onCancel: PropTypes.func,
     submitLabel: PropTypes.string,
     errorLabel: PropTypes.string,
     showInput: PropTypes.bool,
-    value: PropTypes.string
+    value: PropTypes.string,
+    color: PropTypes.string,
+    onCancel: PropTypes.func
 }
 
 CardForm.defaultProps = {
@@ -129,7 +175,8 @@ CardForm.defaultProps = {
     errorLabel: '',
     showInput: false,
     value: '',
+    color: '',
     onCancel: () => {}
 }
 
-export default CardForm
+export default onClickOutside(CardForm)

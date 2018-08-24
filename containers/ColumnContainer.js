@@ -5,7 +5,7 @@ import { createCard, moveCard, deleteColumn, updateColumn } from 'actions/board'
 import Column from 'components/column/Column'
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    onNewCard: value => dispatch(createCard(value, ownProps.column.id)),
+    onNewCard: (value, color) => dispatch(createCard(value, ownProps.column.id, color)),
     moveCard: (columnId, dragIndex, hoverIndex) => dispatch(moveCard(columnId, dragIndex, hoverIndex)),
     onDelete: columnId => dispatch(deleteColumn(columnId)),
     onNameChange: (columnId, name) => {
