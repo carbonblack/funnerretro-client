@@ -4,7 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const paths = {
     DIST: path.resolve(__dirname, 'dist'),
-    SRC: path.resolve(__dirname)
+    SRC: path.resolve(__dirname),
+    STATIC: path.resolve(__dirname, 'assets')
 }
 
 module.exports = env => {
@@ -23,7 +24,10 @@ module.exports = env => {
                 ],
                 target: proxyAPIUrl,
                 secure: production
-            }]
+            }],
+            hot: true,
+            inline: true,
+            progress: true
         },
         devtool: 'source-map',
         resolve: {
@@ -37,6 +41,7 @@ module.exports = env => {
             path: paths.DIST,
             filename: 'app.bundle.js',
         },
+        mode: production ? 'production' : 'development',
         module: {
             rules: [
                 {
@@ -46,26 +51,22 @@ module.exports = env => {
                     use: ['babel-loader'],
                 },
                 {
-                    test: /\.(png|svg|pem)$/,
-                    include: path.join(paths.SRC, 'assets'),
+                    test: /\.(png|svg)$/,
+                    include: paths.STATIC,
                     use: [
                         {
                             loader: 'file-loader',
                             options: {}
                         }
                     ]
-                },
-                {
-                    test: /\.css$/,
-                    include: path.join(paths.SRC, 'assets'),
-                    use: ['style-loader','css-loader']
                 }
             ],
         },
-         plugins: [
+        plugins: [
             new HtmlWebpackPlugin({
                 template: path.join(paths.SRC, 'assets/index.html'),
-            })
+            }),
+            new webpack.HotModuleReplacementPlugin()
         ]
     }   
 }
