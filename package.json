@@ -9,7 +9,7 @@
         "build": "webpack --env.NODE_ENV=production",
         "lint": "eslint --ext .js --ext .jsx .",
         "lint:fix": "eslint --ext .js --ext .jsx --fix .",
-        "start": "webpack-dev-server --env.NODE_ENV=development"
+        "start": "webpack-dev-server --watch-poll --env.NODE_ENV=development"
     },
     "repository": {
         "type": "git",

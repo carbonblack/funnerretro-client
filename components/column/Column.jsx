@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import CardContainer from 'containers/CardContainer'
-import SingleTextInputForm from 'components/shared/SingleTextInputForm'
 import ColumnHeader from 'components/column/ColumnHeader'
+import CardForm from 'components/Card/CardForm'
 
 const styles = {
     columnContainer: css`
@@ -54,7 +54,7 @@ class Column extends Component {
                         onEdit={ this.onEdit }
                     />
                     <div>
-                        <SingleTextInputForm
+                        <CardForm 
                             placeholder="New card"
                             submitLabel="Add"
                             onSubmit={ value => onNewCard(value, column.id) }

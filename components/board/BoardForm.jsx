@@ -37,10 +37,6 @@ const styles = {
         font-family: 'Open Sans', sans-serif;
         text-transform: none;
     `,
-    templateButton: css`
-        width: 100%;
-        height: 100%;
-    `,
     outer: css`
         padding: 4px;
         background-color: ${ colors.white };
@@ -152,11 +148,13 @@ class BoardForm extends Component {
 BoardForm.propTypes = {
     load: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
-    templates: PropTypes.array
+    templates: PropTypes.array,
+    value: PropTypes.string
 }
 
 BoardForm.defaultProps = {
-    templates: []
+    templates: [],
+    value: ''
 }
 
 export default BoardForm
