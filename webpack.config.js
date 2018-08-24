@@ -18,6 +18,9 @@ module.exports = env => {
         },
         devServer: {
             contentBase: paths.SRC,
+            hot: true,
+            inline: true,
+            progress: true,
             proxy: [{
                 context: [
                     '/api/**'
@@ -25,9 +28,11 @@ module.exports = env => {
                 target: proxyAPIUrl,
                 secure: production
             }],
-            hot: true,
-            inline: true,
-            progress: true
+            watchOptions: {
+                aggregateTimeout: 100,
+                ignored: /node_modules/,
+                poll: true
+            }
         },
         devtool: 'source-map',
         resolve: {
