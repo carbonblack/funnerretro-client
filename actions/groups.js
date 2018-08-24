@@ -4,10 +4,7 @@ import axios from 'axios'
 export const getGroups = () => dispatch => {
     dispatch(fetchGroups())
     return axios.get('/api/v1/groups').then(response => {
-        dispatch(receiveGroups(response.data.groups.map(group => ({
-            content: group.content,
-            id: group.id
-        }))))
+        dispatch(receiveGroups(response.data.groups.map(group => ({ ...group }))))
     }).catch(response => dispatch(getGroupsError(response.response.statusText)))
 }
 

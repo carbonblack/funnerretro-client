@@ -4,6 +4,7 @@ import { css } from 'react-emotion'
 import CardContainer from 'containers/CardContainer'
 import ColumnHeader from 'components/column/ColumnHeader'
 import CardForm from 'components/card/CardForm'
+import CardUpload from 'components/card/CardUpload'
 
 const styles = {
     columnContainer: css`
@@ -39,7 +40,7 @@ class Column extends Component {
     }
 
     render() {
-        const { column, onNewCard, moveCard, onDelete } = this.props
+        const { column, onNewCard, moveCard, onDelete, onUpload } = this.props
         const { editing } = this.state
 
         return (
@@ -72,6 +73,7 @@ class Column extends Component {
                             />
                         )))}
                     </div>
+                    <CardUpload shouldShow={ !!column.cards || column.cards.length === 0 } onUpload={ file => onUpload(column.id, file) } />
                 </div>
             </div>
         )
@@ -84,6 +86,7 @@ Column.propTypes = {
     onNewCard: PropTypes.func.isRequired,
     moveCard: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
+    onUpload: PropTypes.func.isRequired
 }
 
 Column.defaultProps = {

@@ -71,6 +71,18 @@ const styles = {
     inputErrorStyles: css`
         border: 1px solid ${ colors.red };
         box-shadow: 0 0 4px 0 ${ colors.red };
+    `,
+    groups: css`
+        margin-bottom: 1rem;
+        select {
+            width: 250px;
+            height: 30px;
+            overflow: hidden;
+
+            :active, :focus {
+                outline: none;
+            }
+        }
     `
 }
 
@@ -78,6 +90,7 @@ class BoardForm extends Component {
     state = {
         template: 'empty',
         value: this.props.value ? this.props.value : '',
+        group: this.props.groups.length > 0 ? this.props.groups[0].id : '',
         error: null
     }
 
@@ -85,10 +98,12 @@ class BoardForm extends Component {
         this.props.load()
     }
 
-    onChange = value => this.setState({ value: value })
+    onNameChange = value => this.setState({ value: value })
+
+    onGroupChange = value => this.setState({ group: value })
 
     onSubmit = e => {
-        const { value, template } = this.state
+        const { value, template, group } = this.state
 
         e.stopPropagation()
         e.preventDefault()
@@ -104,11 +119,11 @@ class BoardForm extends Component {
             value: '',
             error: null
         })
-        this.props.onSubmit(value, template)
+        this.props.onSubmit(value, template, group)
     }
 
     render() {
-        const { templates } = this.props
+        const { templates, groups } = this.props
         const { value, error, template } = this.state
 
         return (
@@ -118,10 +133,18 @@ class BoardForm extends Component {
                         <h1 className={ styles.header }>Create a new retro board</h1>
                         <div className={ styles.inputContainer }>
                             <form className={ styles.formContainer } onSubmit={ () => false }>
-                                <input value={ value } className={ cx(styles.inputStyles, { [styles.inputErrorStyles]: error }) } placeholder='Board name' onChange={ e => this.onChange(e.target.value) } />
+                                <input value={ value } className={ cx(styles.inputStyles, { [styles.inputErrorStyles]: error }) } placeholder='Board name' onChange={ e => this.onNameChange(e.target.value) } />
                                 <button className={ baseButton } onClick={ e => this.onSubmit(e) }>Create</button>
                                 { error && <p className={ styles.errorContainer }>{ error }</p> }
                             </form>
+                        </div>
+                        <div className={ styles.groups }>
+                            <h2 className={ styles.header }>Workspace</h2>
+                            <select value={ this.state.group } onChange={ e => this.onGroupChange(e.target.value) }>
+                                { groups.map(g => (
+                                    <option key={ `option-${ g }` } value={ g.id }>{ g.name }</option>
+                                )) }
+                            </select>
                         </div>
                         { templates.length > 0 && 
                             <Fragment>
@@ -151,11 +174,13 @@ BoardForm.propTypes = {
     load: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
     templates: PropTypes.array,
-    value: PropTypes.string
+    value: PropTypes.string,
+    groups: PropTypes.array
 }
 
 BoardForm.defaultProps = {
     templates: [],
+    groups: [],
     value: ''
 }
 

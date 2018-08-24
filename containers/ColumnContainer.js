@@ -3,6 +3,7 @@ import { DragDropContext } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 import { createCard, moveCard, deleteColumn, updateColumn } from 'actions/board'
 import Column from 'components/column/Column'
+import { uploadCards } from 'actions/board'
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     onNewCard: (value, color) => dispatch(createCard(value, ownProps.column.id, color)),
@@ -18,7 +19,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
                 }
             ]
         }))
-    }
+    },
+    onUpload: (columnId, file) => dispatch(uploadCards(file, columnId))
 })
 
 export default DragDropContext(HTML5Backend)(connect(null, mapDispatchToProps)(Column))

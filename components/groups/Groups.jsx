@@ -71,7 +71,7 @@ class Groups extends Component {
                         <li key={ `group-${ group.id }` }>
                             <h3>
                                 <NavLink activeClassName={ styles.linkActive } className={ styles.link } to={ `/boards/${ group.id }` }>
-                                    { group.content.name }
+                                    { group.name }
                                 </NavLink>
                             </h3>
                         </li>

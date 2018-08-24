@@ -9,6 +9,7 @@ describe('Column test', () => {
             onNewCard={ () => {} }
             moveCard={ () => {} }
             onDelete={ () => {} }
+            onUpload={ () => {} }
         />
         expect(shallow(component).exists()).toBe(true)
     })

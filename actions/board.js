@@ -74,9 +74,11 @@ export const vote = (cardId, v) => (dispatch, getState) => (
     })
 )
 
-export const getBoards = sortKey => dispatch => {
+export const getBoards = (sortKey, group) => (dispatch, getState) => {
     dispatch(fetchBoards())
-    return axios.get(`/api/v1/boards?sort_key=${ sortKey }&sort_order=DESC`).then(response => {
+    const url = `/api/v1/boards?${ group === '0' ? `creator=${ getState().user.username }` : `filter.content.group=${ group }` }&sort_key=${ sortKey }&sort_order=DESC`
+
+    return axios.get(url).then(response => {
         dispatch(receiveBoards(response.data.boards.map(board => ({
             content: board.content,
             id: board.id
@@ -171,8 +173,14 @@ export const successfulColumnDelete = columnId => ({
     columnId
 })
 
-export const createBoard = board => dispatch => (
-    axios.post('/api/v1/boards', board, headers.json).then(response => {
+export const createBoard = board => (dispatch, getState) => (
+    axios.post('/api/v1/boards', {
+        ...board,
+        content: {
+            ...board.content,
+            creator: getState().user.username
+        }
+    }, headers.json).then(response => {
         response.data.nodes.forEach(node => {
             if(node.type === 'Board') {
                 dispatch(receiveBoard({
@@ -229,3 +237,11 @@ export const reevaluateColumn = columnId => ({
 export const toggleEditingBoards = () => ({
     type: actionTypes.TOGGLE_EDIT_BOARDS
 })
+
+export const uploadCards = (file, columnId) => (dispatch, getState) => (
+    axios.post(`/api/v1/boards/${ getState().board.id }/nodes/${ columnId }/import_children`, {
+        file
+    }, headers.multiPart).then(response => {
+        alert(response)
+    })
+)
