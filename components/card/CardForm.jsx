@@ -179,4 +179,6 @@ CardForm.defaultProps = {
     onCancel: () => {}
 }
 
+export { CardForm }
+
 export default onClickOutside(CardForm)
