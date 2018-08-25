@@ -49,4 +49,32 @@ describe('groups reducers', () => {
             fetchingError: 'error here'
         })
     })
+
+    test('should handle receiving a single group', () => {
+        expect(reducer({
+            groups: [
+                {
+                    id: '1',
+                    name: 'hi'
+                }
+            ]
+        }, {
+            type: actions.RECEIVE_GROUP,
+            group: {
+                id: '2',
+                name: 'hi there'
+            }
+        })).toEqual({
+            groups: [
+                {
+                    id: '1',
+                    name: 'hi'
+                },
+                {
+                    id: '2',
+                    name: 'hi there'
+                }
+            ]
+        })
+    })
 })
