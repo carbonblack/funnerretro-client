@@ -11,8 +11,8 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    load: sortKey => {
-        dispatch(updateBoardsSearchDefinition(sortKey, 'DESC', ownProps.match.params.id))
+    load: (sortKey, sortDirection) => {
+        dispatch(updateBoardsSearchDefinition(sortKey, sortDirection, ownProps.match.params.id))
         dispatch(getBoards(sortKey, ownProps.match.params.id))
     },
     onDelete: id => dispatch(deleteBoard(id)),
