@@ -57,17 +57,21 @@ const styles = {
 
 class Boards extends Component {
     state = {
-        sortKey: 'last_update_time'
+        sortKey: 'last_update_time',
+        sortDirection: 'DESC'
     }
 
     componentDidMount() {
-        this.props.load('last_update_time')
+        this.props.load('last_update_time', 'DESC')
     }
 
-    handleSortChange = key => {
+    handleSortChange = (key, direction) => {
         if (this.state.sortKey !== key) {
-            this.setState({ sortKey: key })
-            this.props.load(key)
+            this.setState({
+                sortKey: key,
+                sortDirection: direction
+            })
+            this.props.load(key, direction)
         }
     }
 
@@ -82,8 +86,8 @@ class Boards extends Component {
                     <div className={ styles.header }>
                         <h1 className={ styles.headerText }>Nic Cage</h1>
                         <div className={ styles.actions }>
-                            <a className={ cx(styles.action, { [styles.activeSort]: sortKey === 'last_update_time' }) } onClick={ () => this.handleSortChange('last_update_time') }>Most Recent</a> 
-                            <a className={ cx(styles.action, { [styles.activeSort]: sortKey === 'content.name' }) } onClick={ () => this.handleSortChange('content.name') }>A-Z</a>
+                            <a className={ cx(styles.action, { [styles.activeSort]: sortKey === 'last_update_time' }) } onClick={ () => this.handleSortChange('last_update_time', 'DESC') }>Most Recent</a>
+                            <a className={ cx(styles.action, { [styles.activeSort]: sortKey === 'content.name' }) } onClick={ () => this.handleSortChange('content.name', 'ASC') }>A-Z</a>
                             <button className={ cx(styles.action, baseButton, styles.editButton) } onClick={ onEditBoards }>{ isEditingBoards ? 'Done' : 'Edit' }</button>
                         </div>
                     </div>
