@@ -67,8 +67,10 @@ class Boards extends Component {
 
     handleSortChange = (key, direction) => {
         if (this.state.sortKey !== key) {
-            this.setState({ sortKey: key })
-            this.setState({ sortDirection: direction })
+            this.setState({
+                sortKey: key,
+                sortDirection: direction
+            })
             this.props.load(key, direction)
         }
     }
