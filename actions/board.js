@@ -178,12 +178,11 @@ export const successfulColumnDelete = columnId => ({
     columnId
 })
 
-export const createBoard = board => (dispatch, getState) => (
+export const createBoard = board => dispatch => (
     axios.post('/api/v1/boards', {
         ...board,
         content: {
-            ...board.content,
-            creator: getState().user.username
+            ...board.content
         }
     }, headers.json).then(response => {
         response.data.nodes.forEach(node => {

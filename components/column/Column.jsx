@@ -73,7 +73,7 @@ class Column extends Component {
                             />
                         )))}
                     </div>
-                    <CardUpload shouldShow={ !!column.cards || column.cards.length === 0 } onUpload={ file => onUpload(column.id, file) } />
+                    { (!column.cards || column.cards.length === 0) && <CardUpload onUpload={ file => onUpload(column.id, file) } /> }
                 </div>
             </div>
         )

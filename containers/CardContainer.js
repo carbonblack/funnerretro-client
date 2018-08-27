@@ -2,6 +2,10 @@ import { connect } from 'react-redux'
 import { vote, deleteCard, updateCard } from 'actions/board'
 import DraggableCard from 'components/card/DraggableCard'
 
+const mapStateToProps = state => ({
+    username: state.user.username
+})
+
 const mapDispatchToProps = dispatch => ({
     onVote: (cardId, votes) => dispatch(vote(cardId, votes)),
     onDelete: cardId => dispatch(deleteCard(cardId)),
@@ -39,4 +43,4 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-export default connect(null, mapDispatchToProps)(DraggableCard)
+export default connect(mapStateToProps, mapDispatchToProps)(DraggableCard)

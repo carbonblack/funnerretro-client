@@ -79,7 +79,7 @@ class Card extends Component {
     }
 
     render() {
-        const { card, isDragging, onDelete, onVote } = this.props
+        const { card, isDragging, onDelete, onVote, username } = this.props
 
         const actions = [
             { text: 'Edit', action: this.onEdit },
@@ -129,7 +129,7 @@ class Card extends Component {
                             <FontAwesome name="thumbs-o-down" />
                         </button>
                     </div>
-                    <Actions actions={ actions } dark={ true } />
+                { card.creator === username && <Actions actions={ actions } dark={ true } /> }
                 </div>
             </div>
         )
@@ -142,7 +142,8 @@ Card.propTypes = {
     onTextChange: PropTypes.func.isRequired,
     isDragging: PropTypes.bool.isRequired,
     onDelete: PropTypes.func.isRequired,
-    onVote: PropTypes.func.isRequired
+    onVote: PropTypes.func.isRequired,
+    username: PropTypes.string
 }
 
 export default Card

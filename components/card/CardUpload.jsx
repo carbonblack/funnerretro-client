@@ -55,38 +55,27 @@ class CardUpload extends Component {
     setPreviewRef = element => this.previewRef = element
 
     render() {
-        const { shouldShow } = this.props
-        if (shouldShow) {
-            return (
-                <Fragment>
-                    <Dropzone
-                        accept={ ['img/jpeg', 'img/png', 'img/jpg'] }
-                        className={ styles.drop }
-                        name='file'
-                        onDrop={ this.onDrop }
-                    >
-                        <div className={ styles.inner }>
-                            <p>Click or drag and drop images to upload images. Wolfpack will translate the image into cards.</p>
-                        </div>
-                    </Dropzone>
-                    { this.state.file && <button className={ baseButton } onClick={ this.onSubmit }>Submit</button> }
-                    {/* <img className={ styles.preview } ref={ this.setPreviewRef } alt='' src={ this.state.content } /> */}
-                </Fragment>
-            )
-        }
-
-
-        return null
+        return (
+            <Fragment>
+                <Dropzone
+                    accept={ ['img/jpeg', 'img/png', 'img/jpg'] }
+                    className={ styles.drop }
+                    name='file'
+                    onDrop={ this.onDrop }
+                >
+                    <div className={ styles.inner }>
+                        <p>Click or drag and drop images to upload images. Wolfpack will translate the image into cards.</p>
+                    </div>
+                </Dropzone>
+                { this.state.file && <button className={ baseButton } onClick={ this.onSubmit }>Submit</button> }
+                {/* <img className={ styles.preview } ref={ this.setPreviewRef } alt='' src={ this.state.content } /> */}
+            </Fragment>
+        )
     }
 }
 
 CardUpload.propTypes = {
-    shouldShow: PropTypes.bool,
     onUpload: PropTypes.func.isRequired
-}
-
-CardUpload.defaultProps = {
-    shouldShow: false
 }
 
 export default CardUpload
