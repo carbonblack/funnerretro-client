@@ -20,7 +20,7 @@ export const baseButton = css`
         background: ${ colors.lessDarkBlue };
     }
 
-    :focus {
+    :active {
         background: ${ colors.lightBlue };
     }
 `
@@ -39,7 +39,7 @@ export const actionButton = css`
         color: ${ colors.evenLighterBlue };
     }
 
-    :focus {
+    :active {
         color: ${ colors.lighterBlue };
     }
 `
@@ -52,7 +52,7 @@ export const actionButtonDark = css`
         color: ${ colors.mediumBlue };
     }
 
-    :focus {
+    :active {
         color: ${ colors.lightBlue };
     }
 `

@@ -41,7 +41,8 @@ const styles = {
 }
 
 class CardUpload extends Component {
-    state ={
+    state = {
+        preview: null,
         content: null,
         error: null
     }
@@ -55,24 +56,28 @@ class CardUpload extends Component {
             this.setState({ error: `File type not supported: ${ rejectedFiles[0].type }` })
         } else {
             const reader = new FileReader()
-            reader.onloadend = () => this.setState({
-                content: reader.result,
+            reader.onload = event => this.setState({
+                content: btoa(event.target.result),
                 error: null
             })
-            reader.readAsDataURL(acceptedFiles[0])
+            reader.readAsBinaryString(acceptedFiles[0])
+
+            const previewReader = new FileReader()
+            previewReader.onload = () => this.setState({ preview: previewReader.result })
+            previewReader.readAsDataURL(acceptedFiles[0])
         }
     }
 
     setPreviewRef = element => this.previewRef = element
 
     render() {
-        const { content, error } = this.state
+        const { content, error, preview } = this.state
 
         if (content) {
             return (
                 <div className={ styles.inner }>
                     <div className={ styles.previewContainer }>
-                        <img className={ styles.preview } src={ content } alt='' />
+                        <img className={ styles.preview } src={ preview } alt='' />
                     </div>
                     <button className={ cx(baseButton, styles.cancel) } onClick={ this.onCancel }>Cancel</button>
                     <button className={ baseButton } onClick={ this.onSubmit }>Submit</button>
