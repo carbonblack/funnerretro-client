@@ -242,9 +242,7 @@ export const toggleEditingBoards = () => ({
 })
 
 export const uploadCards = (file, columnId) => (dispatch, getState) => (
-    axios.post(`/api/v1/boards/${ getState().board.id }/nodes/${ columnId }/import_children`, {
-        file
-    }, headers.multiPart).then(response => {
+    axios.post(`/api/v1/boards/${ getState().board.id }/nodes/${ columnId }/import_children`, file).then(response => {
         alert(response)
     })
 )

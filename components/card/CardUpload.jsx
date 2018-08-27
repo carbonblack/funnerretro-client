@@ -48,7 +48,7 @@ class CardUpload extends Component {
 
     onCancel = () => this.setState({ content: null, error: null })
 
-    onSubmit = () => this.props.onUpload(this.state.file)
+    onSubmit = () => this.props.onUpload(this.state.content)
 
     onDrop = (acceptedFiles, rejectedFiles) => {
         if (rejectedFiles.length > 0) {
