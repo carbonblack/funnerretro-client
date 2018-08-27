@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { css } from 'react-emotion'
+import { css, cx } from 'react-emotion'
 import { baseButton } from 'styles/button'
 import Dropzone from 'react-dropzone'
 import colors from 'styles/colors'
@@ -9,6 +9,11 @@ const styles = {
     preview: css`
         width: 15rem;
         height: auto;
+        margin: 0 0 1rem;
+    `,
+    previewContainer: css`
+        width: 100%;
+        text-align: center;
     `,
     drop: css`
         margin: 1rem 0;
@@ -17,6 +22,7 @@ const styles = {
     `,
     inner: css`
         display: flex;
+        flex-wrap: wrap;
         max-width: 100%;
         max-height: 100%;
         padding: 1rem;
@@ -24,53 +30,70 @@ const styles = {
         align-items: center;
         color: ${ colors.white };
         font-size: 0.8rem;
+    `,
+    error: css`
+        font-size: 0.8rem;
+        color:${ colors.red };
+    `,
+    cancel: css`
+        margin-right: 0.5rem;
     `
 }
 
 class CardUpload extends Component {
     state ={
-        file: null,
-        content: null
-    }
-    
-
-    onSubmit = () => {
-        this.props.onUpload(this.state.file)
+        content: null,
+        error: null
     }
 
-    onDrop = acceptedFiles => {
-        const reader = new FileReader()
-        const file = acceptedFiles[0]
-        reader.onload = () => this.setState({ content: reader.result })
-        reader.readAsDataURL(new Blob(file))
+    onCancel = () => this.setState({ content: null, error: null })
 
-        const data = new FormData()
-        data.append('file', file)
-        
-        this.setState({
-            file: data
-        })
+    onSubmit = () => this.props.onUpload(this.state.file)
+
+    onDrop = (acceptedFiles, rejectedFiles) => {
+        if (rejectedFiles.length > 0) {
+            this.setState({ error: `File type not supported: ${ rejectedFiles[0].type }` })
+        } else {
+            const reader = new FileReader()
+            reader.onloadend = () => this.setState({
+                content: reader.result,
+                error: null
+            })
+            reader.readAsDataURL(acceptedFiles[0])
+        }
     }
 
     setPreviewRef = element => this.previewRef = element
 
     render() {
-        return (
-            <Fragment>
-                <Dropzone
-                    accept={ ['img/jpeg', 'img/png', 'img/jpg'] }
-                    className={ styles.drop }
-                    name='file'
-                    onDrop={ this.onDrop }
-                >
-                    <div className={ styles.inner }>
-                        <p>Click or drag and drop images to upload images. Wolfpack will translate the image into cards.</p>
+        const { content, error } = this.state
+
+        if (content) {
+            return (
+                <div className={ styles.inner }>
+                    <div className={ styles.previewContainer }>
+                        <img className={ styles.preview } src={ content } alt='' />
                     </div>
-                </Dropzone>
-                { this.state.file && <button className={ baseButton } onClick={ this.onSubmit }>Submit</button> }
-                {/* <img className={ styles.preview } ref={ this.setPreviewRef } alt='' src={ this.state.content } /> */}
-            </Fragment>
-        )
+                    <button className={ cx(baseButton, styles.cancel) } onClick={ this.onCancel }>Cancel</button>
+                    <button className={ baseButton } onClick={ this.onSubmit }>Submit</button>
+                </div>
+            )
+        } else {
+            return (
+                <Fragment>
+                    <Dropzone
+                        accept={ ['image/jpeg', 'image/png', 'image/jpg'] }
+                        className={ styles.drop }
+                        onDrop={ this.onDrop }
+                    >
+                        <div className={ styles.inner }>
+                            <p>Click or drag and drop to upload an image. Wolfpack will translate the image into cards.</p>
+                        </div>
+                    </Dropzone>
+                    { error && <p className={ styles.error }>{ error }</p> }
+                </Fragment>
+            )
+        }
     }
 }
 
