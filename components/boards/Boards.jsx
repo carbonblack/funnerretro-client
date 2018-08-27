@@ -76,7 +76,7 @@ class Boards extends Component {
     }
 
     render() {
-        const { boards, onDelete, onEditBoards, isEditingBoards } = this.props
+        const { boards, onDelete, onEditBoards, isEditingBoards, group } = this.props
         const { sortKey } = this.state 
 
         return (
@@ -84,7 +84,7 @@ class Boards extends Component {
                 <GroupsContainer />
                 <div className={ styles.inner }>
                     <div className={ styles.header }>
-                        <h1 className={ styles.headerText }>Nic Cage</h1>
+                        <h1 className={ styles.headerText }>{ group.name }</h1>
                         <div className={ styles.actions }>
                             <a className={ cx(styles.action, { [styles.activeSort]: sortKey === 'last_update_time' }) } onClick={ () => this.handleSortChange('last_update_time', 'DESC') }>Most Recent</a>
                             <a className={ cx(styles.action, { [styles.activeSort]: sortKey === 'content.name' }) } onClick={ () => this.handleSortChange('content.name', 'ASC') }>A-Z</a>
@@ -103,12 +103,14 @@ Boards.propTypes = {
     boards: PropTypes.array,
     onDelete: PropTypes.func.isRequired,
     onEditBoards: PropTypes.func.isRequired,
-    isEditingBoards: PropTypes.bool
+    isEditingBoards: PropTypes.bool,
+    group: PropTypes.object
 }
 
 Boards.defaultProps = {
     boards: [],
-    isEditingBoards: false
+    isEditingBoards: false,
+    group: {}
 }
 
 export default Boards
