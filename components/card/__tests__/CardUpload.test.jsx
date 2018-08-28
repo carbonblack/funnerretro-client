@@ -6,6 +6,7 @@ describe('CardUpload test', () => {
     it('should render with the required props', () => {
         const component = <CardUpload
             onUpload={ () => {} }
+            processingImage={ false }
         />
         expect(shallow(component).exists()).toBe(true)
     })
