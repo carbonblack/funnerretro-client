@@ -40,7 +40,7 @@ class Column extends Component {
     }
 
     render() {
-        const { column, onNewCard, moveCard, onDelete, onUpload } = this.props
+        const { column, onNewCard, moveCard, onDelete, onUpload, processingImage } = this.props
         const { editing } = this.state
 
         return (
@@ -73,7 +73,9 @@ class Column extends Component {
                             />
                         )))}
                     </div>
-                    { (!column.cards || column.cards.length === 0) && <CardUpload onUpload={ file => onUpload(column.id, file) } /> }
+                    { (!column.cards || column.cards.length === 0) &&
+                        <CardUpload processingImage={ processingImage } onUpload={ file => onUpload(column.id, file) } />
+                    }
                 </div>
             </div>
         )
@@ -86,7 +88,8 @@ Column.propTypes = {
     onNewCard: PropTypes.func.isRequired,
     moveCard: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-    onUpload: PropTypes.func.isRequired
+    onUpload: PropTypes.func.isRequired,
+    processingImage: PropTypes.bool
 }
 
 Column.defaultProps = {
@@ -96,7 +99,8 @@ Column.defaultProps = {
             name: ''
         },
         cards: []
-    }
+    },
+    processingImage: false
 }
 
 export default Column

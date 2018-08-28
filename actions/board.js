@@ -241,8 +241,9 @@ export const toggleEditingBoards = () => ({
     type: actionTypes.TOGGLE_EDIT_BOARDS
 })
 
-export const uploadCards = (file, columnId) => (dispatch, getState) => (
-    axios.post(`/api/v1/boards/${ getState().board.id }/nodes/${ columnId }/import_nodes`, file, headers.upload).then(response => {
+export const uploadCards = (file, columnId) => (dispatch, getState) => {
+    dispatch(updateProcessingImageStatus(true))
+    return axios.post(`/api/v1/boards/${ getState().board.id }/nodes/${ columnId }/import_nodes`, file, headers.upload).then(response => {
         response.data.nodes.forEach(node => {
             dispatch(receiveCard({
                 content: node.content,
@@ -252,12 +253,18 @@ export const uploadCards = (file, columnId) => (dispatch, getState) => (
                 orig_version: node.orig_version
             }, node.column_header))
         })
+        dispatch(updateProcessingImageStatus(false))
     })
-)
+}
 
 export const updateBoardsSearchDefinition = (sortKey, sortDirection, groupFilter) => ({
     type: actionTypes.UPDATE_BOARDS_SEARCH_DEFINITION,
     sortKey,
     sortDirection,
     groupFilter
+})
+
+export const updateProcessingImageStatus = processingImage => ({
+    type: actionTypes.UPDATE_PROCESSING_IMAGE_STATUS,
+    processingImage
 })

@@ -98,6 +98,13 @@ describe('boards synchronous actions', () => {
             type: actionTypes.TOGGLE_EDIT_BOARDS
         })
     })
+
+    test('should create an action for toggling processing image flag', () => {
+        expect(actions.updateProcessingImageStatus(true)).toEqual({
+            type: actionTypes.UPDATE_PROCESSING_IMAGE_STATUS,
+            processingImage: true
+        })
+    })
 })
 
 describe('boards asynchronous actions', () => {

@@ -13,7 +13,8 @@ const initialState = {
     isEditingBoards: false,
     sortKey: 'last_updated_time',
     sortDirection: 'DESC',
-    groupFilter: '0'
+    groupFilter: '0',
+    processingImage: false
 }
 
 const board = (state = initialState, action) => {
@@ -199,6 +200,11 @@ const board = (state = initialState, action) => {
             sortKey: action.sortKey,
             sortDirection: action.sortDirection,
             groupFilter: action.groupFilter
+        }
+    case actionTypes.UPDATE_PROCESSING_IMAGE_STATUS:
+        return {
+            ...state,
+            processingImage: action.processingImage
         }
     default:
         return state

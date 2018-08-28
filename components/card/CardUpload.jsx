@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { css, cx } from 'react-emotion'
 import { baseButton } from 'styles/button'
 import Dropzone from 'react-dropzone'
+import FontAwesome from 'react-fontawesome'
 import colors from 'styles/colors'
 
 const styles = {
@@ -37,6 +38,12 @@ const styles = {
     `,
     cancel: css`
         margin-right: 0.5rem;
+    `,
+    loading: css`
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0.5rem;
     `
 }
 
@@ -71,7 +78,19 @@ class CardUpload extends Component {
     setPreviewRef = element => this.previewRef = element
 
     render() {
+        const { processingImage } = this.props
         const { content, error, preview } = this.state
+
+        if (processingImage) {
+            return (
+                <div className={ styles.inner }>
+                    <div className={ styles.loading }>
+                        <FontAwesome size='lg' name="spinner" spin />
+                    </div>
+                    <p>This may take a moment...</p>
+                </div>
+            )
+        }
 
         if (content) {
             return (
@@ -83,27 +102,28 @@ class CardUpload extends Component {
                     <button className={ baseButton } onClick={ this.onSubmit }>Submit</button>
                 </div>
             )
-        } else {
-            return (
-                <Fragment>
-                    <Dropzone
-                        accept={ ['image/jpeg', 'image/png', 'image/jpg'] }
-                        className={ styles.drop }
-                        onDrop={ this.onDrop }
-                    >
-                        <div className={ styles.inner }>
-                            <p>Click or drag and drop to upload an image. Wolfpack will translate the image into cards.</p>
-                        </div>
-                    </Dropzone>
-                    { error && <p className={ styles.error }>{ error }</p> }
-                </Fragment>
-            )
         }
+
+        return (
+            <Fragment>
+                <Dropzone
+                    accept={ ['image/jpeg', 'image/png', 'image/jpg'] }
+                    className={ styles.drop }
+                    onDrop={ this.onDrop }
+                >
+                    <div className={ styles.inner }>
+                        <p>Click or drag and drop to upload an image. Wolfpack will translate the image into cards.</p>
+                    </div>
+                </Dropzone>
+                { error && <p className={ styles.error }>{ error }</p> }
+            </Fragment>
+        )
     }
 }
 
 CardUpload.propTypes = {
-    onUpload: PropTypes.func.isRequired
+    onUpload: PropTypes.func.isRequired,
+    processingImage: PropTypes.bool.isRequired
 }
 
 export default CardUpload
