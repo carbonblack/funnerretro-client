@@ -6,7 +6,7 @@ import Column from 'components/column/Column'
 import { uploadCards } from 'actions/board'
 
 const mapStateToProps = state => ({
-    processingImage: state.board.processingImage
+    columnsProcessingImage: state.board.columnsProcessingImage
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

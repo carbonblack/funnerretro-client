@@ -14,7 +14,7 @@ const initialState = {
     sortKey: 'last_updated_time',
     sortDirection: 'DESC',
     groupFilter: '0',
-    processingImage: false
+    columnsProcessingImage: []
 }
 
 const board = (state = initialState, action) => {
@@ -202,9 +202,16 @@ const board = (state = initialState, action) => {
             groupFilter: action.groupFilter
         }
     case actionTypes.UPDATE_PROCESSING_IMAGE_STATUS:
+        if (action.processingImage) {
+            return {
+                ...state,
+                columnsProcessingImage: [...state.columnsProcessingImage, action.columnId]
+            }
+        }
+
         return {
             ...state,
-            processingImage: action.processingImage
+            columnsProcessingImage: state.columnsProcessingImage.filter(i => i === action.columnId)
         }
     default:
         return state

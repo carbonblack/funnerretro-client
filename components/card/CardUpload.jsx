@@ -75,8 +75,6 @@ class CardUpload extends Component {
         }
     }
 
-    setPreviewRef = element => this.previewRef = element
-
     render() {
         const { processingImage } = this.props
         const { content, error, preview } = this.state

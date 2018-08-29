@@ -16,7 +16,7 @@ describe('board reducers', () => {
             groupFilter: '0',
             sortKey: 'last_updated_time',
             sortDirection: 'DESC',
-            processingImage: false
+            columnsProcessingImage: []
         })
     })
 

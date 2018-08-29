@@ -100,8 +100,9 @@ describe('boards synchronous actions', () => {
     })
 
     test('should create an action for toggling processing image flag', () => {
-        expect(actions.updateProcessingImageStatus(true)).toEqual({
+        expect(actions.updateProcessingImageStatus('1', true)).toEqual({
             type: actionTypes.UPDATE_PROCESSING_IMAGE_STATUS,
+            columnId: '1',
             processingImage: true
         })
     })
