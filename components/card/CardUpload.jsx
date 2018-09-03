@@ -60,7 +60,7 @@ class CardUpload extends Component {
 
     onDrop = (acceptedFiles, rejectedFiles) => {
         if (rejectedFiles.length > 0) {
-            this.setState({ error: `File type not supported or file is too large. Upload a PNG or JPEG image that is under 15MB.` })
+            this.setState({ error: 'File type not supported or file is too large. Upload a PNG or JPEG image that is under 15MB.' })
         } else {
             const reader = new FileReader()
             reader.onload = event => this.setState({
@@ -83,7 +83,7 @@ class CardUpload extends Component {
             return (
                 <div className={ styles.inner }>
                     <div className={ styles.loading }>
-                        <FontAwesome size='lg' name="spinner" spin />
+                        <FontAwesome size='lg' name='spinner' spin />
                     </div>
                     <p>This may take a moment...</p>
                 </div>
