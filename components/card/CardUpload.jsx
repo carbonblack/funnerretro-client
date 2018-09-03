@@ -60,7 +60,7 @@ class CardUpload extends Component {
 
     onDrop = (acceptedFiles, rejectedFiles) => {
         if (rejectedFiles.length > 0) {
-            this.setState({ error: `File type not supported: ${ rejectedFiles[0].type }` })
+            this.setState({ error: `File type not supported or file is too large. Upload a PNG or JPEG image that is under 15MB.` })
         } else {
             const reader = new FileReader()
             reader.onload = event => this.setState({
@@ -107,6 +107,7 @@ class CardUpload extends Component {
                 <Dropzone
                     accept={ ['image/jpeg', 'image/png', 'image/jpg'] }
                     className={ styles.drop }
+                    maxSize={ 15000000 }
                     onDrop={ this.onDrop }
                 >
                     <div className={ styles.inner }>
