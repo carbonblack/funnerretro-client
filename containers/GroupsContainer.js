@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { getGroups, createGroup } from 'actions/groups'
+import { getGroups, createGroup, deleteGroup } from 'actions/groups'
 import Groups from 'components/groups/Groups'
 
 const mapStateToProps = state => ({
@@ -11,7 +11,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     load: () => dispatch(getGroups()),
-    onCreate: name => dispatch(createGroup(name))
+    onCreate: name => dispatch(createGroup(name)),
+    onDelete: id => dispatch(deleteGroup(id))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Groups))

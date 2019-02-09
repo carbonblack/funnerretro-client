@@ -4,6 +4,7 @@ import { css } from 'react-emotion'
 import { NavLink } from 'react-router-dom'
 import colors from 'styles/colors'
 import SingleTextInputForm from 'components/shared/SingleTextInputForm'
+import FontAwesome from 'react-fontawesome'
 
 const styles = {
     container: css`
@@ -26,6 +27,17 @@ const styles = {
                 font-size: 1.4rem;
             }
         }
+    `,
+    group: css`
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    `,
+    deleteButton: css`
+        background: transparent;
+        border: 0;
+        color: ${ colors.lightBlue };
+        font-size: 1.25rem;
     `,
     link: css`
         color: ${ colors.lightBlue };
@@ -53,7 +65,7 @@ class Groups extends Component {
     }
 
     render() {
-        const { groups, onCreate } = this.props
+        const { groups, onCreate, onDelete } = this.props
 
         return(
             <div className={ styles.container }>
@@ -69,8 +81,11 @@ class Groups extends Component {
                     <NavLink activeClassName={ styles.linkActive } className={ styles.link } to='/boards/0'><li><h3>My Boards</h3></li></NavLink>
                     { groups.map(group => (
                         <NavLink key={ `group-${ group.id }` } activeClassName={ styles.linkActive } className={ styles.link } to={ `/boards/${ group.id }` }>
-                            <li>
+                            <li className={ styles.group }>
                                 <h3>{ group.name }</h3>
+                                <button className={ styles.deleteButton } onClick={ () => onDelete(group.id) }>
+                                    <FontAwesome name="trash-o" />
+                                </button>
                             </li>
                         </NavLink>
                     )) }
@@ -85,7 +100,8 @@ Groups.propTypes = {
     isFetching: PropTypes.bool.isRequired,
     fetchingErrors: PropTypes.string,
     load: PropTypes.func.isRequired,
-    onCreate: PropTypes.func.isRequired
+    onCreate: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired
 }
 
 export default Groups

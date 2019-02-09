@@ -32,3 +32,7 @@ export const receiveGroup = group => ({
     type: actionTypes.RECEIVE_GROUP,
     group
 })
+
+export const deleteGroup = id => dispatch => (
+    axios.delete(`/api/v1/groups/${ id }`).then(() => dispatch(getGroups()))
+)
