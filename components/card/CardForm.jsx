@@ -86,6 +86,8 @@ class CardForm extends Component {
         error: ''
     }
 
+    handleClickColor = (c) => this.setState({ color: c });
+
     handleClickOutside = () => {
         this.setState({ 
             shouldShowInput: false, 
@@ -98,10 +100,7 @@ class CardForm extends Component {
         }
     }
 
-    onSubmit = e => {
-        e.stopPropagation()
-        e.preventDefault()
-
+    onSubmit = () => {
         const { onSubmit, errorLabel } = this.props
         const { val, color } = this.state
 
@@ -140,12 +139,12 @@ class CardForm extends Component {
                             <div className={ styles.colorOptions }>
                                 { cardColorOptions.map(c => (
                                     <span key={ `color-${ c }` } className={ styles.colorOptionContainer(color === c, c) }>
-                                        <button onClick={ () => this.setState({ color: c }) } className={ styles.colorOption } style={ { backgroundColor: c } }></button>
+                                        <button type="button" onClick={ () => this.handleClickColor(c) } className={ styles.colorOption } style={ { backgroundColor: c } }></button>
                                     </span>
                                 )) }
                             </div>
                         </div>
-                        <button type='submit' className={ baseButton } onClick={ e => this.onSubmit(e) }>{ submitLabel }</button>
+                        <button type='submit' className={ baseButton } onClick={ this.onSubmit }>{ submitLabel }</button>
                     </form>
                     { error && <p className={ styles.errorContainer }>{ error }</p> }
                 </div>
