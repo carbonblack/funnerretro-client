@@ -86,7 +86,7 @@ class CardForm extends Component {
         error: ''
     }
 
-    handleClickColor = (c) => this.setState({ color: c });
+    handleClickColor = c => this.setState({ color: c })
 
     handleClickOutside = () => {
         this.setState({ 
