@@ -95,9 +95,7 @@ class CardForm extends Component {
             val: '' 
         })
 
-        if (this.state.shouldShowInput) {
-            this.props.onCancel()
-        }
+        this.props.onCancel()
     }
 
     onSubmit = () => {
