@@ -134,7 +134,7 @@ export const getBoard = boardId => dispatch => {
 
                 return cards
             })(response.data.nodes, column.id)
-        })).sort((a, b) => a.orig_version > b.orig_version)
+        })).sort((a, b) => a.orig_version - b.orig_version)
 
         dispatch(receiveBoard({
             content: board.content,
